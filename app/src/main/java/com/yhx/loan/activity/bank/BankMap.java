@@ -101,7 +101,7 @@ public class BankMap {
         try {
             for (String key : keys) {
                 oldName = bankCodeMap.get(key);
-                if (oldName.contains(bankName)) {
+                if (bankName.contains(oldName)) {
                     return key;
                 }
             }
