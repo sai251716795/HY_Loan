@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (C) 2008 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ -->
+
+<resources>
+    <!-- Camera Preferences Picture size dialog box entries -->
+    <string-array name="oliveapp_camera_pref_camera_picturesize_entries" translatable="false">
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_13mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_8mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_5mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_5mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_5mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_4mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_3mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_2mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_2mp_wide</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_2mp_wide</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_1_5mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_1_3mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_1mp</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_1mp</item>
+        <item>960 x 720</item>
+        <item>720 x 480</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_vga</item>
+        <item>@string/oliveapp_camera_pref_camera_picturesize_entry_qvga</item>
+    </string-array>
+
+    <!-- When launching the camera app first time, we will set the picture
+         size to the first one in the list that is also supported by the
+         driver -->
+    <string-array name="oliveapp_camera_pref_camera_picturesize_entryvalues" translatable="false">
+        <item>4128x3096</item>
+        <item>3264x2448</item>
+        <item>2592x1944</item>
+        <item>2592x1936</item>
+        <item>2560x1920</item>
+        <item>2688x1520</item>
+        <item>2048x1536</item>
+        <item>1600x1200</item>
+        <item>1920x1088</item>
+        <item>1920x1080</item>
+        <item>1440x1080</item>
+        <item>1280x960</item>
+        <item>1280x720</item>
+        <item>1024x768</item>
+        <item>960x720</item>
+        <item>720x480</item>
+        <item>640x480</item>
+        <item>320x240</item>
+    </string-array>
+
+    <!-- Camera Preferences focus mode dialog box entries -->
+    <string-array name="oliveapp_camera_pref_camera_focusmode_entries" translatable="false">
+        <item>@string/oliveapp_camera_pref_camera_focusmode_entry_auto</item>
+        <item>@string/oliveapp_camera_pref_camera_focusmode_entry_infinity</item>
+        <item>@string/oliveapp_camera_pref_camera_focusmode_entry_macro</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_focusmode_entryvalues" translatable="false">
+        <item>auto</item>
+        <item>infinity</item>
+        <item>macro</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_focusmode_labels" translatable="false">
+        <item>@string/oliveapp_camera_pref_camera_focusmode_label_auto</item>
+        <item>@string/oliveapp_camera_pref_camera_focusmode_label_infinity</item>
+        <item>@string/oliveapp_camera_pref_camera_focusmode_label_macro</item>
+    </string-array>
+
+    <!-- Camera Preferences flash mode dialog box entries -->
+    <string-array name="oliveapp_camera_pref_camera_flashmode_entries" translatable="false">
+        <item>@string/oliveapp_camera_pref_camera_flashmode_entry_off</item>
+        <item>@string/oliveapp_camera_pref_camera_flashmode_entry_auto</item>
+        <item>@string/oliveapp_camera_pref_camera_flashmode_entry_on</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_flashmode_labels" translatable="false">
+        <item>@string/oliveapp_camera_pref_camera_flashmode_label_off</item>
+        <item>@string/oliveapp_camera_pref_camera_flashmode_label_auto</item>
+        <item>@string/oliveapp_camera_pref_camera_flashmode_label_on</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_flashmode_entryvalues" translatable="false">
+        <item>off</item>
+        <item>auto</item>
+        <item>on</item>
+    </string-array>
+
+    <array name="oliveapp_camera_camera_flashmode_icons" translatable="false">
+    </array>
+
+    <array name="oliveapp_camera_camera_flashmode_largeicons" translatable="false">
+    </array>
+
+    <string-array name="oliveapp_camera_pref_camera_recordlocation_entryvalues" translatable="false">
+        <item>off</item>
+        <item>on</item>
+    </string-array>
+
+    <array name="oliveapp_camera_pref_camera_recordlocation_entries" translatable="false">
+        <item>@string/oliveapp_camera_setting_off</item>
+        <item>@string/oliveapp_camera_setting_on</item>
+    </array>
+
+    <array name="oliveapp_camera_camera_id_entries" translatable="false">
+        <item>@string/oliveapp_camera_pref_camera_id_entry_back</item>
+        <item>@string/oliveapp_camera_pref_camera_id_entry_front</item>
+    </array>
+
+    <array name="oliveapp_camera_camera_id_labels" translatable="false">
+        <item>@string/oliveapp_camera_pref_camera_id_label_back</item>
+        <item>@string/oliveapp_camera_pref_camera_id_label_front</item>
+    </array>
+
+    <array name="oliveapp_camera_camera_id_icons" translatable="false">
+    </array>
+
+    <array name="oliveapp_camera_camera_id_largeicons" translatable="false">
+    </array>
+
+    <string-array name="oliveapp_camera_pref_camera_hdr_plus_entries" translatable="false">
+        <item>@string/oliveapp_camera_setting_off</item>
+        <item>@string/oliveapp_camera_setting_on</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_hdr_plus_entryvalues" translatable="false">
+        <item>@string/oliveapp_camera_setting_off_value</item>
+        <item>@string/oliveapp_camera_setting_on_value</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_hdr_entries" translatable="false">
+        <item>@string/oliveapp_camera_setting_off</item>
+        <item>@string/oliveapp_camera_setting_on</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_hdr_entryvalues" translatable="false">
+        <item>@string/oliveapp_camera_setting_off_value</item>
+        <item>@string/oliveapp_camera_setting_on_value</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_timer_sound_entries" translatable="false">
+        <item>@string/oliveapp_camera_setting_off</item>
+        <item>@string/oliveapp_camera_setting_on</item>
+    </string-array>
+
+    <string-array name="oliveapp_camera_pref_camera_timer_sound_entryvalues" translatable="false">
+        <item>@string/oliveapp_camera_setting_off_value</item>
+        <item>@string/oliveapp_camera_setting_on_value</item>
+    </string-array>
+
+    <!-- Default focus mode setting.-->
+    <string-array name="oliveapp_camera_pref_camera_focusmode_default_array" translatable="false">
+        <item>continuous-picture</item>
+        <item>auto</item>
+    </string-array>
+
+    <!-- Icons for exposure compensation -->
+    <array name="oliveapp_camera_pref_camera_exposure_icons" translatable="false">
+    </array>
+
+    <!--  Labels for Countdown timer -->
+    <string-array name="pref_camera_countdown_labels">
+        <item>@string/oliveapp_camera_pref_camera_countdown_label_off</item>
+        <item>@string/oliveapp_camera_pref_camera_countdown_label_one</item>
+        <item>@string/oliveapp_camera_pref_camera_countdown_label_three</item>
+        <item>@string/oliveapp_camera_pref_camera_countdown_label_ten</item>
+        <item>@string/oliveapp_camera_pref_camera_countdown_label_fifteen</item>
+    </string-array>
+
+</resources>

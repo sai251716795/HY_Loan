@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/oliveapp_activity_horizontal_margin"
+    android:paddingRight="@dimen/oliveapp_activity_horizontal_margin"
+    android:paddingTop="@dimen/oliveapp_activity_vertical_margin"
+    android:paddingBottom="@dimen/oliveapp_activity_vertical_margin"
+    tools:context=".liveness.SampleResultActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/oliveappResultTextView"
+        android:text="This is result"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
+
+</RelativeLayout>

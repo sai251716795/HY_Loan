@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/common_dialogprogress"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_commondialog"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:orientation="vertical" >
+    
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:padding="5dp" >
+
+        <ProgressBar
+            style="@android:style/Widget.Holo.ProgressBar.Small"
+            android:id="@+id/progressBar1"
+            android:layout_width="25dp"
+            android:layout_gravity="center"
+            android:layout_height="25dp" />
+
+        <TextView
+            android:id="@+id/tv_common_dialog_loading"
+            android:layout_width="wrap_content"
+            android:maxWidth="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:text="加载中..."
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+</RelativeLayout>

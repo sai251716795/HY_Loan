@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2008 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<ChoiceSet
+        xmlns:camera="http://schemas.android.com/apk/res-auto"
+        camera:oliveapp_sdktitle="@string/oliveapp_camera_pref_camera_settings_category">
+    <Picture
+            camera:oliveapp_key="oliveapp_camera_pref_camera_flashmode_key"
+            camera:oliveapp_defaultValue="@string/oliveapp_camera_pref_camera_flashmode_default"
+            camera:oliveapp_sdktitle="@string/oliveapp_camera_pref_camera_flashmode_title"
+            camera:oliveapp_icons="@array/oliveapp_camera_camera_flashmode_icons"
+            camera:oliveapp_largeIcons="@array/oliveapp_camera_camera_flashmode_largeicons"
+            camera:oliveapp_entries="@array/oliveapp_camera_pref_camera_flashmode_entries"
+            camera:oliveapp_entryValues="@array/oliveapp_camera_pref_camera_flashmode_entryvalues"
+            camera:oliveapp_labelList="@array/oliveapp_camera_pref_camera_flashmode_labels" />
+    <Picture
+            camera:oliveapp_key="oliveapp_camera_pref_camera_exposure_key"
+            camera:oliveapp_defaultValue="@string/oliveapp_camera_pref_exposure_default"
+            camera:oliveapp_sdktitle="@string/oliveapp_camera_pref_exposure_title"/>
+    <ShowChoices
+            camera:oliveapp_key="oliveapp_camera_pref_camera_focusmode_key"
+            camera:oliveapp_defaultValue="@array/oliveapp_camera_pref_camera_focusmode_default_array"
+            camera:oliveapp_sdktitle="@string/oliveapp_camera_pref_camera_focusmode_title"
+            camera:oliveapp_entries="@array/oliveapp_camera_pref_camera_focusmode_entries"
+            camera:oliveapp_labelList="@array/oliveapp_camera_pref_camera_focusmode_labels"
+            camera:oliveapp_entryValues="@array/oliveapp_camera_pref_camera_focusmode_entryvalues" />
+    <Picture
+            camera:oliveapp_key="oliveapp_camera_pref_camera_id_key"
+            camera:oliveapp_defaultValue="@string/oliveapp_camera_pref_camera_id_default"
+            camera:oliveapp_sdktitle="@string/oliveapp_camera_pref_camera_id_title"
+            camera:oliveapp_icons="@array/oliveapp_camera_camera_id_icons"
+            camera:oliveapp_entries="@array/oliveapp_camera_camera_id_entries"
+            camera:oliveapp_labelList="@array/oliveapp_camera_camera_id_labels"
+            camera:oliveapp_largeIcons="@array/oliveapp_camera_camera_id_largeicons" />
+    <Timer
+            camera:oliveapp_key="oliveapp_camera_pref_camera_timer_key"
+            camera:oliveapp_defaultValue="@string/oliveapp_camera_pref_camera_timer_default"
+            camera:oliveapp_sdktitle="@string/oliveapp_camera_pref_camera_timer_title" />
+    <ShowChoices
+            camera:oliveapp_key="oliveapp_camera_pref_camera_timer_sound_key"
+            camera:oliveapp_defaultValue="@string/oliveapp_camera_pref_camera_timer_sound_default"
+            camera:oliveapp_sdktitle="@string/oliveapp_camera_pref_camera_timer_sound_title"
+            camera:oliveapp_entries="@array/oliveapp_camera_pref_camera_timer_sound_entries"
+            camera:oliveapp_entryValues="@array/oliveapp_camera_pref_camera_timer_sound_entryvalues" />
+</ChoiceSet>

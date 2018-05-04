@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff9249</color>
+    <color name="colorPrimaryDark">#e26918</color>
+    <color name="colorAccent">#ff9249</color>
+
+    <color name="textColorHint">#dfdfdf</color>
+    <color name="editTextColor">#333333</color>
+    <color name="textGray">#999999</color>
+    <color name="sysBtColor">#24a4ee</color>
+    <color name="bacGout">#f4f4f4</color>
+    <color name="sysColor_green">#29a6ef</color>
+
+
+</resources>

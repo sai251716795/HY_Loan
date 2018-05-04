@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>借款协议</title> 
+<style> 
+@font-face
+{
+	font-family: myFirstFont;
+	src: url(sansation_light.woff);
+}
+
+@font-face
+{
+	font-family: myFirstFont;
+	src: url(sansation_bold.woff);
+	font-weight:bold;
+}
+
+div
+{
+	font-family:myFirstFont;
+	line-height:2.0;
+	
+}
+</style>
+<script type="text/javascript">
+     function insert(arg){
+   	document.getElementById("customerName").innerHTML=arg.customerName;//客户名称
+	document.getElementById("customerName1").innerHTML=arg.customerName;//1、户名（与乙方姓名一致）：
+	document.getElementById("customerCardNo").innerHTML=arg.customerCardNo;//身份证号：
+	document.getElementById("customerMobile").innerHTML=arg.customerMobile;//联系电话：
+	
+	document.getElementById("loanMoneyAmount").innerHTML=arg.loanMoneyAmount;//1、借款本金计人民币
+	document.getElementById("loanMoneyAmount_capital").innerHTML=arg.loanMoneyAmountCapital; //元（大写：
+	document.getElementById("loanTermCount").innerHTML=arg.loanTermCount;                     //2、借款期限：
+	document.getElementById("loanBankCardNO").innerHTML=arg.loanBankCardNO;                   //5、乙方指定的银行卡账户：：
+	document.getElementById("loanBankCardNO1").innerHTML=arg.loanBankCardNO;                  //，3、银行卡号
+	document.getElementById("loanBankCardOfOpenBank").innerHTML=arg.loanBankName;   //2、开户行：
+	document.getElementById("originalLoanRegDate").innerHTML=arg.originalLoanRegDate;         //2、借款期限：起
+	document.getElementById("finishDate").innerHTML=arg.finishDate;                           //截止日期
+	document.getElementById("applyNo").innerHTML=arg.originalLoanRegDate;         //2、借款期限：起
+
+    }
+
+</script>
+</head>
+<body>
+
+
+<div style="font-family:myFirstFont;line-height:2.0;">
+	
+<div>
+<center><h1 style="font-size:20px;"><a style="color:#0484f2">借款协议</a></h1></center>
+</div>
+&nbsp; 甲方（出借方）：<u><span ></span></u>
+	<br>&nbsp; 身份证号：<u><span ></span></u>
+	<br>&nbsp; 联系电话：<u><span ></span></u>
+	<br>
+	<br>&nbsp; 乙方（借款方）：<u><span id="customerName"></span></u>
+	<br>&nbsp; 身份证号：<u><span id="customerCardNo"></span></u>
+	<br>&nbsp; 联系电话：<u><span id="customerMobile"></span></u>
+	<br>&nbsp; 签订日期：<u><span id="applyNo"></span></u>
+	<br>
+	<br>&nbsp;&nbsp; 甲乙双方均为具有完全民事权利能力和完全民事行为能力的自然人、法人或其他组织，根据中华人民共和国有关法律法规，经双方协商一致订立本协议，达成如下协议：
+	<br>&nbsp;&nbsp; <b>第一条 释义</b>
+	<br>&nbsp;&nbsp; 1、出借方指与乙方签署《借款协议》的出借方。
+	<br>&nbsp;&nbsp; 2、手续费包含服务费和利息。服务费指甲方在乙方借款过程中提供系列服务所产生的一系列费用，包括但不限于信审费和管理费。利息指基于本金产生的正常借款期内的利息。
+	<br>&nbsp;&nbsp; 3、支付机构指在借款方及本协议各方之间作为中介机构提供资金转移服务的银行或非银行金融机构。
+	<br>&nbsp;&nbsp; 4、本金指乙方申请借款金额，以《借款协议》约定的金额为准。
+	<br>&nbsp;&nbsp; 5、利息指基于本金产生的正常借款期内的利息。
+	<br>&nbsp;&nbsp; 6、宽限期指应还款日后1天，宽限期不会产生罚息及其他费用。
+	<br>&nbsp;&nbsp; 7、滞纳金计人民币10元/笔，逾期即需缴纳，单笔借款仅需缴纳一次。
+	<br>&nbsp;&nbsp; 8、逾期指乙方在宽限期满后未足额还清款项的借款状态，逾期会产生逾期罚息及其他费用，该费用统称为逾期费。
+	<br>&nbsp;&nbsp; <b>第二条 借款基本信息</b>
+	<br>&nbsp;&nbsp; 1、借款本金计人民币<u><span id="loanMoneyAmount"></span></u> 元（大写：<u><span
+		id="loanMoneyAmount_capital"></span></u> ）。
+	<br>&nbsp;&nbsp; 2、借款期限：<u> <span id="originalLoanRegDate"></span> </u>起至还款日<u> <span
+		id="finishDate"></span></u> 止，
+	共计<u><span id="loanTermCount"></span></u>期。
+	<br>&nbsp;&nbsp; 3、借款利率：年化14%。
+	<br>&nbsp;&nbsp; 4、还款方式：到期一次性还本付息。
+	<br>&nbsp;&nbsp; 5、乙方指定的银行卡账户：<u><span id="loanBankCardNO"></span></u>
+	<br>&nbsp;&nbsp; 5.1、户名（与乙方姓名一致）：<u><span id="customerName1"></span></u>
+	<br>&nbsp;&nbsp; 5.2、开户行： <u><span id="loanBankCardOfOpenBank"></span></u>
+	<br>&nbsp;&nbsp; 5.3、银行卡号：<u> <span id="loanBankCardNO1"></span></u>
+<br>&nbsp;&nbsp; <b>第三条 借款的发放及还款</b>
+<br>&nbsp;&nbsp; 1、甲乙双方确认，甲方通过银行转账或第三方支付渠道将款项转入乙方指定的银行卡账户。款项一经从甲方的银行账户或第三方支付账户支付完成，即视为借款已经发放，乙方不得以任何理由拒绝履行本协议项下的还款义务。
+<br>&nbsp;&nbsp; 2、若乙方收到的借款金额与本协议约定不一致的，双方同意按照以下方式处理：
+<br>&nbsp;&nbsp; 2.1、实际收到金额小于借款金额减去相应手续费后的金额，任何一方应在3天内通知对方，由甲方安排1日内补齐差额至乙方绑定银行卡，借款期限自补齐时起算。否则，本协议借款金额及利息按照实际支付金额计算。
+<br>&nbsp;&nbsp; 2.2、实际收到金额大于借款金额减去相应手续费后的金额，任何一方应在3天内通知对方，乙方应在1日内退还多余金额。否则本协议自始借款金额及利息按照实际支付金额计算。
+<br>&nbsp;&nbsp; 3、乙方应按照本协议的还款时间或借款到期日（包括提前还款或提前到期约定的借款到期日）支付借款本息和相关费用。
+<br>&nbsp;&nbsp; 4、本协议约定的乙方应向甲方支付的其他应付款项（包括但不限于逾期罚息、违约金、损害赔偿金等）的支付方式与借款本息的支付方式相同。
+<br>&nbsp;&nbsp; <b>第四条 提前到期</b>
+<br>&nbsp;&nbsp; 1、本协议项下借款提前到期情况如下：
+<br>&nbsp;&nbsp; 1.1、乙方提前偿还未到期款项。
+<br>&nbsp;&nbsp; 1.2、乙方的资信情况或还款能力出现重大变化（包括但不限于经营状况发生重大变化、拖欠其他债务），足以影响其偿债能力或使其已经不再符合出借条件的。
+<br>&nbsp;&nbsp; 1.3、本协议约定的福建省恒圆金服科技有限公司旗下产品或由福建省恒圆金服科技有限公司提供服务的产品app、网站及微信公众号（以下简称“恒圆”）线上公示的提前到期的情形。
+<br>&nbsp;&nbsp; 2、借款提前到期的，双方确定提前到期当日（或“恒圆”线上公示的其他时间）为借款到期日。
+<br>&nbsp;&nbsp; 3、借款提前到期的，约定的费用，包括但不限于利息等，不予减免。
+<br>&nbsp;&nbsp; <b>第五条 逾期还款</b>
+<br>&nbsp;&nbsp; 1、如因乙方原因，乙方在本协议约定的还款日后第二天仍无法按时足额还款即视为逾期，同时乙方承诺支付逾期利息及其他费用。
+<br>&nbsp;&nbsp; 2、逾期罚息 ：自宽限期后的第一天起，每日按未还本金的0.05%计收，逾期超过7日，每日按未还本金的0.06%计收。
+<br>&nbsp;&nbsp; 3、乙方理解并接受平台计算结果会四舍五入保留“分”一级单位，对此可能造成金额有细微出入。
+<br>&nbsp;&nbsp; 4、本平台积极响应国家政策，您在本平台发起的借款，还款时除借款本金外的累计费用将不超过借款本金的50%。
+<br>&nbsp;&nbsp; <b>第六条 各方权利和义务</b>
+<br>&nbsp;&nbsp; 1、甲方的权利和义务
+<br>&nbsp;&nbsp; 1.1、甲方应确保其提供信息和资料的真实性，不得提供虚假信息或隐瞒重要事实。
+<br>&nbsp;&nbsp; 1.2、甲方应在本协议签订日期通过本协议第三条中规定的借款发放方式，足额发放借款给乙方。
+<br>&nbsp;&nbsp; 1.3、甲方保证其所出借资金为来源合法的自有资金，如果任何第三方对甲方所出借资金的归属、合法性等提出异议，甲方应自行解决并承担由此产生的法律责任。
+<br>&nbsp;&nbsp; 1.4、甲方有权依本协议约定或法律规定，收取乙方应偿付的借款本金、利息、逾期利息、违约金、损害赔偿金及所有其他应付费用；甲方有权了解、核实有关乙方身份、还款能力、企业信用和财务状况。
+<br>&nbsp;&nbsp; 1.5、甲方授权和/或委托平台（本协议项下平台指福建省恒圆金服科技有限公司）根据本协议代表甲方所采取的一切行为和措施的法律后果均归属于甲方，且该等授权和/或委托不可撤销。
+<br>&nbsp;&nbsp; 1.6、甲方及甲方委托的第三方通过平台将本协议项下债权转让给他人的，在甲方的债权转让后，乙方需对新债权人继续履行本协议下其对甲方的所有义务，甲方无需就债权转让另行通知乙方。
+<br>&nbsp;&nbsp; 1.7、甲方委托平台向乙方以书面或电子方式发出本协议约定的各类通知，以书面或电子方式送达方为有效。书面或电子方式包括但不限于：电话、传真、快递、邮件、电子邮件、短信、App push、App消息、微信或网站公告、页面直接展示等。上述通知应当被视为在下列时间送达：以传真发送，为该传真成功发送并由收件方收到之日；以快递或专人发送，为收件人收到该通知之日；以挂号邮件发送，为发出后7个工作日；以电子邮件发送，为电子邮件成功发出之日；以短信发送，为短信成功发出之日；以App push、App消息、微信或网站公告、页面直接展示，自公告、通知之日起。
+<br>&nbsp;&nbsp; 2、乙方的权利和义务
+<br>&nbsp;&nbsp; 2.1、乙方应积极配合甲方及平台对其经营事项、经济状况的调查、了解及监督，按甲方及平台的要求提供有关主体、还款能力及信用情况的资料，并保证资料的真实性、合法性、有效性和完整性。
+<br>&nbsp;&nbsp; 2.2、按本协议约定一次性偿还本息。
+<br>&nbsp;&nbsp; 2.3、乙方承诺所借款项不用于任何违法用途, 否则由乙方自行承担全部责任。
+<br>&nbsp;&nbsp; 2.4、乙方不得将本协议项下的任何权利义务转让给其他任何第三方。
+<br>&nbsp;&nbsp; 2.5、在借款全部清偿前，乙方发生变更住所、通讯地址、经营事项或银行账户等影响甲方权益的事项时，乙方应于有关事项变更后3日内书面通知甲方及平台。
+<br>&nbsp;&nbsp; 2.6、在借款全部清偿前，乙方经济状况发生变化，可能影响其债务清偿能力的，乙方应当在变化发生后3日内书面通知甲方及平台；乙方如拟为他人债务提供担保，可能影响自身债务清偿能力的，乙方应当提前书面通知甲方及平台并征得甲方书面同意；发生对乙方履行本协议项下还款义务产生不利影响的其他事件，包括但不限于经济状况恶化、陷入经济纠纷、行政处罚、重大违纪事件时，乙方应于事件发生后3日内书面通知甲方及平台。
+<br>&nbsp;&nbsp; 2.7、乙方应承担本协议项下有关费用的支出，包括但不限于用于公证、鉴定、评估、登记、快递等事项的费用。
+<br>&nbsp;&nbsp; 2.8、乙方委托平台向甲方以书面或电子方式发出本协议约定的各类通知，以书面或电子方式送达方为有效。书面或电子方式包括但不限于：电话、传真、快递、邮件、电子邮件、短信、App push、App消息、微信或网站公告、页面直接展示等。上述通知应当被视为在下列时间送达：以传真发送，为该传真成功发送并由收件方收到之日；以快递或专人发送，为收件人收到该通知之日；以挂号邮件发送，为发出后7个工作日；以电子邮件发送，为电子邮件成功发出之日；以短信发送，为短信成功发出之日；以App push、App消息、微信或网站公告、页面直接展示，自公告、通知之日起。
+<br>&nbsp;&nbsp; <b>第七条 违约责任</b>
+<br>&nbsp;&nbsp; 1、本协议有效期内，任何一方未履行或未完全履行本协议项下的任何义务，均构成违约，应按法律规定及本协议的约定对守约方承担违约责任并承担相关费用，包括但不限于诉讼费、财产保全费、交通费、律师费、执行费、评估费、拍卖费、保管费、过户费等费用。如违约方为乙方的，甲方有权立即解除本协议，并要求乙方立即偿还未偿还的本金、利息等其他费用。
+<br>&nbsp;&nbsp; 2、乙方应按照如下顺序清偿款项：
+<br>&nbsp;&nbsp; 2.1、放款手续费。
+<br>&nbsp;&nbsp; 2.2、服务费。
+<br>&nbsp;&nbsp; 2.3、利息。
+<br>&nbsp;&nbsp; 2.4、滞纳金。
+<br>&nbsp;&nbsp; 2.5、逾期费用。
+<br>&nbsp;&nbsp; 2.6、逾期罚息。
+<br>&nbsp;&nbsp; 2.7、借款本金。
+<br>&nbsp;&nbsp; 3、超过本协议约定的还款日无法按时足额还款，或甲方发现乙方出现逃避、拒绝沟通或拒绝承认欠款事实、故意转让资金、信用情况恶化等影响本协议履行的情形，甲方有权将乙方的“逾期记录”、“恶意行为”或“不良情况”通过第三方渠道上报征信系统，或将乙方违约失信的相关信息及乙方其他信息向其亲属朋友、媒体、用人单位、公安机关、检查机关、法律机关披露，届时造成的不良后果由乙方自行承担。
+<br>&nbsp;&nbsp; <b>第八条 协议的签订与生效</b>
+<br>&nbsp;&nbsp; 1、双方同意本协议的各方可选择通过以下任一方式签订本协议：
+<br>&nbsp;&nbsp; 1.1、通过平台页面点击确认本协议。
+<br>&nbsp;&nbsp; 1.2、委托或授权平台或平台指定的第三方代为确认本协议。
+<br>&nbsp;&nbsp; 1.3、经平台认可的其他方式确认本协议。
+<br>&nbsp;&nbsp; 1.4、“恒圆”旗下产品适用该协议内容。
+<br>&nbsp;&nbsp; 2、双方确认，即便在签订时并没有另一方的信息、借款信息等, 也不得以此为由拒绝履行本协议项下的义务。各方同意签订本协议后即视为不可撤销及变更地授权平台根据最终撮合结果自主生成前述信息，且未经平台及其他方同意，任何一方不得以任何方式撤回、撤销本协议。
+<br>&nbsp;&nbsp; 3、本协议及其修改或补充均采用通过平台以电子文本形式制成，并保存在“恒圆”（及其合作的第三方电子签约平台）为此设立的专用服务器上备查，各方均认可该形式的协议效力。如平台选择不公示，各方对本协议内容有任何争议，应以平台记录为准。本协议的传真件、复印件和扫描件等有效复本的效力与本协议原件效力一致。
+<br>&nbsp;&nbsp; 4、本协议自文首或平台所载的签订时间成立并生效。
+<br>&nbsp;&nbsp; <b>第九条 协议的变更、解除和终止</b>
+<br>&nbsp;&nbsp; 1、本协议于乙方履行全部还款义务后自动终止。
+<br>&nbsp;&nbsp; 2、本协议任何一方均不得擅自变更或提前解除本协议。如确需变更或解除本协议，应经本协议各方协商一致，并达成书面协议。书面协议达成之前，本协议继续执行。
+<br>&nbsp;&nbsp; 3、本协议解除或终止后，本协议及附件项下未清偿的借款本金、利息、逾期利息、违约金及所有其他应付款项未清偿的，继续适用本协议相关条款。
+<br>&nbsp;&nbsp; <b>第十条 法律适用与管辖</b>
+<br>&nbsp;&nbsp; 1、本协议的效力、解释以及履行适应中华人民共和国的法律。
+<br>&nbsp;&nbsp; 2、本协议各方因本协议履行发生争议的，均应首先通过友好协商的方式解决，协商不成的，任何一方均可把争议提交给本协议的签订地“恒圆”所在地（福州市闽侯县）的人民法院管辖。
+<br>&nbsp;&nbsp; <b>第十一条 附则</b>
+<br>&nbsp;&nbsp; 1、乙方同意并确认，乙方通过其平台账户和银行账户采取的所有操作行为所产生的法律效果和法律责任均归属于乙方本人；乙方授权和委托平台根据本协议所采取的全部行动和措施的法律后果均归属于乙方本人，与平台无关，平台也不因此承担任何责任。
+<br>&nbsp;&nbsp; 2、双方一致同意，甲方委托“恒圆”平台管理其在本协议项下对乙方的债权，管理权限包括但不限于代为收取本息及罚金、代为催收、代为追究乙方的违约责任、代为向乙方发送和接受通知、代为接受同意乙方的续期申请。
+<br>&nbsp;&nbsp; 3、双方确认，如有非本协议版本的借款协议，以非本协议的版本为准。
+<br>&nbsp;&nbsp; 4、各方均确认，本协议的签订、生效和履行以不违反中国的法律为前提。如果本协议中的任何一条或多条被司法部门认定为违反所须适用的法律，则该条将被视为无效，但该无效条款并不影响本协议其他条款的效力。
+<br>&nbsp;&nbsp; 5、本协议各条目标题仅为方便各方阅读使用，具体意思以条文内容约定为准。
+</div>
+
+
+</body>
+</html>

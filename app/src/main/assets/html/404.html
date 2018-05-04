@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: #555555;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+.button2 {background-color: #008CBA;} /* Blue */
+.button3 {background-color: #f44336;} /* Red */
+.button4 {background-color: #e7e7e7; color: 555555;border-radius: 8px;} /* Gray */
+.button5 {background-color: #555555;} /* Black */
+        * {
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        html {
+            color: #888;
+            display: table;
+            font-family: sans-serif;
+            height: 100%;
+            text-align: center;
+            width: 100%;
+        }
+
+        body {
+            display: table-cell;
+            vertical-align: middle;
+            margin: 2em auto;
+        }
+
+        h1 {
+            color: #555;
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+        p {
+            margin: 10px auto;
+			font-size: 0.8em;
+			word-spacing:20px;
+            width: 280px;
+        }
+
+        @media only screen and (max-width: 280px) {
+
+            body, p {
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.5em;
+                margin: 0 0 0.3em;
+            }
+
+        }
+
+
+    </style>
+</head>
+<body>
+<img src="network.png">
+<h1>页面丢失了</h1>
+<p>可能是网络原因或者没有找到此网页，请尝试刷新或者退出！</p>
+<input type="button" class="button button4" style="margin-top:10px" onclick="window.android.myRefresh();" value="点击刷新"/>
+</body>
+</html>

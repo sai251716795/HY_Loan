@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="rectangle">
+
+            <!-- 尺寸 -->
+            <size
+                android:width="160dp"
+                android:height="80dp" />
+
+            <!-- 颜色 -->
+            <!--<solid android:color="@color/colorPrimary" />-->
+
+            <!-- 内间距 -->
+            <padding
+                android:bottom="8dp"
+                android:left="8dp"
+                android:right="8dp"
+                android:top="8dp" />
+
+            <!-- 渐变 -->
+            <gradient
+                android:angle="45"
+                android:endColor="@color/colorPrimary"
+                android:startColor="@color/colorAccent"
+                android:type="linear" />
+
+            <!-- 圆角 -->
+            <!--<corners android:radius="200dp" />-->
+
+            <!-- 圆角单独设置 -->
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="0dp"
+                android:topLeftRadius="40dp"
+                android:topRightRadius="40dp" />
+
+            <!-- 描边 -->
+
+        </shape>
+    </item>
+    <item >
+       <shape android:shape="line">
+
+           <stroke
+               android:width="2dp"
+               android:color="#666"
+               android:dashGap="4dp"
+               android:dashWidth="4dp" />
+       </shape>
+
+    </item>
+</layer-list>

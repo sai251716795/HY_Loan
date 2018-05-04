@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:orientation="vertical"
+    tools:context=".activity.login.ModifyActivity">
+
+    <include layout="@layout/layout_simple_title" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_marginTop="20dp"
+            android:background="@drawable/layout_line_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="原始密码"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/old_pwd1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:hint="输入之前的密码"
+                android:textColor="@color/textblack"
+                android:textColorHint="#dfdfdf"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="15dp"
+            android:background="@drawable/layout_line_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="新的密码"
+                android:textColor="@color/textblack"
+
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/new_pwd1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:hint="输入6-11位新的密码"
+                android:textColor="@color/textblack"
+                android:textColorHint="#dfdfdf"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="15dp"
+            android:background="@drawable/layout_line_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="确认密码"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/new_pwd2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:maxLength="11"
+                android:maxLines="1"
+                android:hint="输入6-11位新的密码"
+                android:textColor="@color/textblack"
+                android:textColorHint="#dfdfdf"
+                android:textSize="16sp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/modifyBtn"
+        style="@style/button_green_style"
+        android:text="确定修改" />
+
+</LinearLayout>

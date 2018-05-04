@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yhx.loan">
+
+    <!-- 活体检测 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.EACCES" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 获取机型信息权限 -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".base.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon, android:theme">
+
+        <!-- 百度地图appkey -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="7nB8i8hBW8jChQftSgdXu7Ihd1aNoTRi" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" />
+            </intent-filter>
+        </service>
+        <!-- 本地 provider -->
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.yhx.loan.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".activity.LaunchScreenActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.GuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Splash" />
+        <activity android:name=".TestActivity" />
+        <activity
+            android:name=".activity.web.WebBrowserActivity"
+            android:configChanges="orientation|locale|keyboardHidden|screenLayout|screenSize|smallestScreenSize|keyboard"
+            android:label="网页"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".activity.web.WebX5Activity"
+            android:configChanges="orientation|locale|keyboardHidden|screenLayout|screenSize|smallestScreenSize|keyboard"
+            android:label="webX5 网页"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.tencent.smtt.sdk.VideoActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="com.tencent.smtt.tbs.video.PLAY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.authen.ContactCreditActivity"
+            android:label="紧急联系人" />
+        <activity
+            android:name=".activity.authen.EssentialInformationActivity"
+            android:label="个人基础信息填写" />
+        <activity
+            android:name=".activity.authen.JobInformationActivity"
+            android:label="工作信息填写" />
+        <activity
+            android:name=".activity.authen.AuthTableActivity"
+            android:label="认证桌面" />
+        <activity
+            android:name=".activity.authen.RealNameOneActivity"
+            android:label="实名认证" />
+        <activity
+            android:name=".activity.authen.RealNameResultActivity"
+            android:label="实名认证结果" />
+        <activity
+            android:name=".activity.loan.AuthorizedActivity"
+            android:label="贷款申请结果" />
+        <activity
+            android:name=".activity.loan.LoanAuthActivity"
+            android:label="贷款检测" />
+        <activity
+            android:name=".activity.loan.SelectLoanAmountActivity"
+            android:label="金额选择" />
+        <activity
+            android:name=".activity.authen.oliveStartActivity"
+            android:label="人脸识别" />
+        <activity
+            android:name=".activity.loan.Stipulation"
+            android:label="条款" />
+        <activity
+            android:name=".activity.loan.LoanConfirmActivity"
+            android:label="贷款信息确认" />
+        <activity
+            android:name=".activity.bank.AddBankActivity"
+            android:label="添加银行卡" />
+        <activity
+            android:name=".activity.bank.BindBankCardMobileAuthActivity"
+            android:label="银行卡认证" />
+        <activity
+            android:name=".activity.bank.BankCardManageActivity"
+            android:label="管理我的银行卡" />
+        <activity
+            android:name=".activity.bank.CCBankBindActivity"
+            android:label="添加贷记卡" />
+        <activity
+            android:name=".activity.bank.DCBankBindActivity"
+            android:label="添加储蓄卡" />
+        <activity android:name=".activity.main.SettingActivity" />
+        <activity android:name=".activity.main.NoticeActivity" />
+        <activity android:name=".activity.login.RegisterActivity" />
+        <activity android:name=".activity.login.LoginActivity" />
+        <activity android:name=".activity.login.ModifyActivity" />
+        <activity android:name=".activity.login.PwdManagementActivity" />
+        <activity android:name=".activity.order.LoanDetailsActivity" />
+        <activity android:name=".activity.order.LoanListActivity" />
+        <activity android:name=".activity.loan.LoanAddConactsActivity" />
+        <activity android:name=".activity.main.FeedbackActivity" />
+        <activity android:name=".activity.main.AboutAppActivity" />
+        <activity android:name=".activity.loan.AgrementBookActivity" />
+        <activity android:name=".activity.order.RepayPlanActivity" />
+        <activity android:name=".activity.order.RepayPlanDetailsActivity" />
+        <activity android:name=".activity.change.ChangeRepayNumberActivity" />
+        <activity android:name=".activity.order.repay.EarlyRepaymentActivity" />
+        <activity android:name=".activity.order.repay.PaymentHistoryActivity" />
+        <activity android:name=".activity.order.repay.RepayTableActivity" />
+        <activity android:name=".activity.order.repay.RepayHDetailsActivity"></activity>
+    </application>
+
+</manifest>

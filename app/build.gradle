@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+android {
+    buildToolsVersion '27.0.2'
+    compileSdkVersion 27
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
+
+    dexOptions {
+        jumboMode = true
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+
+    defaultConfig {
+        applicationId "com.yhx.loan"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_7
+            targetCompatibility JavaVersion.VERSION_1_7
+        }
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
+        packagingOptions {
+            exclude 'META-INF/rxjava.properties'
+            exclude 'META-INF/ASL2.0'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':Library')
+    implementation project(':Liveness')
+    implementation project(':ocr_ui')
+    implementation project(':View')
+    implementation project(':BarCode')
+    implementation 'com.google.code.gson:gson:2.2.4'
+    implementation('com.android.support:appcompat-v7:27+') {
+        exclude group: 'com.android.support:appcompat-v7:27.1.0'
+    }
+    implementation 'com.android.support:design:27+'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:support-vector-drawable:27+'
+    implementation 'com.android.support:gridlayout-v7:27+'
+    implementation 'org.litepal.android:core:+'
+    implementation 'com.android.support:support-vector-drawable:27+'
+    implementation 'com.yanzhenjie:permission:1.+'
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.jakewharton:butterknife:+'
+    implementation 'io.reactivex:rxjava:+'
+    implementation 'com.lzy.net:okgo:3.0.4'
+    implementation 'com.lzy.net:okrx2:2.0.2'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.lzy.net:okserver:2.0.5'
+    implementation 'io.reactivex:rxandroid:1.0.1'
+    implementation 'com.lzy.widget:imagepicker:+'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-alpha-9'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-alpha-9'
+
+    implementation('cn.bingoogolapple:bga-banner:2.2.4@aar') {
+        exclude group: 'com.android.support:appcompat-v7:27+'
+    }
+    implementation 'com.android.support:support-v4:27+'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    implementation 'com.squareup.picasso:picasso:+'   //optional
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation 'com.smartTop:jd-address:1.0.3'
+    implementation 'com.feezu.liuli:timeselector:1.1.+'
+
+    testImplementation 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+}

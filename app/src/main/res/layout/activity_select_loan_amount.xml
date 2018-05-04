@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.loan.SelectLoanAmountActivity">
+
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/my_top_button"
+                android:orientation="vertical"
+                android:padding="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="30dp"
+                    android:text="恭喜你获得额度"
+                    android:textColor="@color/white"
+                    android:textSize="23sp" />
+
+                <TextView
+                    android:id="@+id/loan_Quota"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="20000"
+                    android:textColor="@color/white"
+                    android:textSize="32sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="选择你贷款金额"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+                <com.hx.view.bar.TecCircleSeekBar
+                    android:id="@+id/arc_money_seekBar"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    app:innerBgColor="#ffffff"
+                    app:innerColor="#eefd8026"
+                    app:innerPadding="3dp"
+                    app:innerWidth="8dp"
+                    app:outerColor="#ebe6e2"
+                    app:outerWidth="3dp"
+                    app:rotation="0"
+                    android:layout_gravity="center_horizontal"
+                    app:sumRotation="200"
+                    app:sweepAngle="250"
+                    app:tec_curSpeedSize="25dp"
+                    app:tec_hintColor="@color/white"
+                    app:tec_hintSize="16dp"
+                    app:tec_hintText="借款金额/元"
+                    app:tec_textSize="40dp"
+                    app:tec_textColor="#000000"
+                    app:tecThumb="@drawable/acr_thumb"
+                    app:tec_textValues="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/left_simple_48" />
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scrollbars="none">
+
+                    <RadioGroup
+                        android:id="@+id/qs_radioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/qs_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/periods_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="3期"
+                            android:visibility="gone"
+                            android:textColor="@color/periods_radiobutton"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/qs_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/periods_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:visibility="gone"
+                            android:text="4期"
+                            android:textColor="@color/periods_radiobutton"
+                            android:textSize="13sp" />
+                        <RadioButton
+                            android:id="@+id/qs_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/periods_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="6期"
+                            android:visibility="gone"
+                            android:textColor="@color/periods_radiobutton"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/qs_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/periods_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="12期"
+                            android:textColor="@color/periods_radiobutton"
+                            android:textSize="13sp" />
+                        <RadioButton
+                            android:id="@+id/qs_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/periods_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="18期"
+                            android:textColor="@color/periods_radiobutton"
+                            android:textSize="13sp" />
+                        <RadioButton
+                            android:id="@+id/qs_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/periods_background"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="24期"
+                            android:textColor="@color/periods_radiobutton"
+                            android:textSize="13sp" />
+                    </RadioGroup>
+
+                </HorizontalScrollView>
+
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/right32" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="到期应还：" />
+
+                <TextView
+                    android:id="@+id/all_trade_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00000.0元"
+                    android:textColor="@color/yellow" />
+
+                <ImageView
+                    android:id="@+id/show_message"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/e_m" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/go_borrow_money_bt"
+                style="@style/button_green_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="去借钱" />
+        </LinearLayout>
+
+    </ScrollView>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp">
+
+                <ImageView
+                    android:id="@+id/back_image"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/home_icon_back" />
+
+                <TextView
+                    android:id="@+id/tx_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:text="    "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_default" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
+
+</LinearLayout>

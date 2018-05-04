@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/layout_simple_title" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1">
+    <LinearLayout
+        android:id="@+id/job_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="职业"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/et_jobInfo_job"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical"
+                android:background="@drawable/right9"
+                android:hint="请选择"
+                android:inputType="text"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="职业类型"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/et_jobInfo_proftyp"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical"
+                android:background="@drawable/right9"
+                android:hint="请选择"
+                android:inputType="text"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="税后月薪"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_jobInfo_Salary"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:layout_weight="1"
+                android:background="@null"
+                android:entries="@array/loan_marry"
+                android:hint="请填写"
+                android:inputType="text"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="公司全名"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_jobInfo_CompanyName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:layout_weight="1"
+                android:background="@null"
+                android:entries="@array/loan_marry"
+                android:hint="请输入公司全名"
+                android:inputType="text"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="所在部门"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_jobInfo_indivbranch"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:layout_weight="1"
+                android:background="@null"
+                android:entries="@array/loan_marry"
+                android:hint="请输入您所在部门"
+                android:inputType="text"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="现单位性质"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/et_jobInfo_indivemptyp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:layout_weight="1"
+                android:entries="@array/loan_marry"
+                android:background="@drawable/right9"
+                android:hint="请选择"
+                android:inputType="text"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="现单位行业性质"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/et_jobInfo_indivindtrytyp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:layout_weight="1"
+                android:entries="@array/loan_marry"
+                android:background="@drawable/right9"
+                android:hint="请选择"
+                android:inputType="text"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="公司地址"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/et_jobInfo_CompanyAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:layout_weight="1"
+                android:entries="@array/loan_marry"
+                android:background="@drawable/right9"
+                android:hint="请选择地址"
+                android:inputType="text"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+        <EditText
+            android:id="@+id/et_jobInfo_CompanyAddress_detailed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@null"
+            android:gravity="right"
+            android:hint="输入详细地址"
+            android:padding="5dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/textblack"
+            android:textSize="16sp" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="公司电话"
+                android:textColor="@color/textblack"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_jobInfo_CompanyTel_code"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
+                android:layout_weight="1"
+                android:background="@null"
+                android:entries="@array/loan_marry"
+                android:hint="区号"
+                android:maxLength="4"
+                android:inputType="number"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="—" />
+
+            <EditText
+                android:id="@+id/et_jobInfo_CompanyTel_num"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:entries="@array/loan_marry"
+                android:maxLength="8"
+                android:gravity="center"
+                android:hint="电话"
+                android:inputType="number"
+                android:paddingRight="20dp"
+                android:textSize="@dimen/text_size_loan_edit" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/textblack"
+                android:gravity="center_vertical"
+                android:text="工作状态"
+                android:textSize="@dimen/text_size_loan_titler" />
+
+            <TextView
+                android:id="@+id/sp_loan_workState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:background="@drawable/right9"
+                android:entries="@array/loan_work_state"
+                android:text="在职"
+                android:textSize="@dimen/text_size_loan_edit" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:orientation="horizontal" >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="现单位工作年限"
+                android:textColor="@color/textblack"
+                android:textSize="@dimen/text_size_loan_titler" />
+
+            <EditText
+                android:id="@+id/et_loan_JobYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="right|center_vertical"
+                android:hint="请填写"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="2"
+                android:numeric="decimal"
+                android:textSize="@dimen/text_size_loan_edit" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="总工作年限"
+                android:textColor="@color/textblack"
+                android:textSize="@dimen/text_size_loan_titler" />
+
+            <EditText
+                android:id="@+id/et_loan_CompanyTotalWorkingTerms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="right|center_vertical"
+                android:hint="请填写"
+                android:inputType="number"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:textSize="@dimen/text_size_loan_edit" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grayline" />
+        <Button
+            android:id="@+id/essential_info_submit"
+            style="@style/button_green_style"
+            android:text="提交" />
+
+    </LinearLayout>
+</ScrollView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_shortAnimTime">
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="35dp" />
+            <gradient android:centerColor="#b6ec7937" android:endColor="#b6f2662b" android:startColor="#b6f48b4f" />
+            <padding android:bottom="10dp" android:left="15dp" android:right="15dp" android:top="10dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="35dp" />
+            <!-- 点击之前 -->
+            <gradient android:centerColor="#ec7937" android:endColor="#f2662b" android:startColor="#f48b4f" />
+            <padding android:bottom="10dp" android:left="15dp" android:right="15dp" android:top="10dp" />
+        </shape>
+
+    </item>
+
+
+</selector>

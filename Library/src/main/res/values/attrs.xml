@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="FlashView">
+        <attr name="effect">
+            <enum name="accordion" value="0" />
+            <enum name="cube" value="1" />
+            <enum name="def" value="2" />
+            <enum name="depthPage" value="3" />
+            <enum name="inRightDown" value="4" />
+            <enum name="inRightUp" value="5" />
+            <enum name="rotate" value="6" />
+            <enum name="zoomOutPage" value="7" />
+        </attr>
+    </declare-styleable>
+    
+     <!-- 电子签名 -->
+    <declare-styleable name="SignaturePad">
+        <attr name="minWidth" format="float" />
+        <attr name="maxWidth" format="float" />
+        <attr name="penColor" format="color" />
+        <attr name="velocityFilterWeight" format="float" />
+    </declare-styleable>
+    
+    
+    <declare-styleable name="gridPasswordView">
+
+        <attr name="gpvTextColor" format="color|reference" />
+        <attr name="gpvTextSize" format="dimension" />
+
+        <attr name="gpvLineColor" format="color" />
+        <attr name="gpvGridColor" format="color" />
+        <attr name="gpvLineWidth" format="dimension" />
+
+        <attr name="gpvPasswordLength" format="integer" />
+        <attr name="gpvPasswordTransformation" format="string" />
+
+        <attr name="gpvPasswordType" format="enum">
+            <enum name="numberPassword" value="0" />
+            <enum name="textPassword" value="1" />
+            <enum name="textVisiblePassword" value="2" />
+            <enum name="textWebPassword" value="3" />
+        </attr>
+
+    </declare-styleable>
+    
+     <declare-styleable name="PullRefreshLayout">
+        <attr name="type" format="enum">
+            <enum name="material" value="0" />
+            <enum name="circles" value="1" />
+            <enum name="water_drop" value="2" />
+            <enum name="ring" value="3" />
+        </attr>
+        <attr name="colors" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+        <attr name="selectedTabTextColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="JazzyViewPager">
+        <attr name="style">
+            <enum name="standard" value="0" />
+            <enum name="tablet" value="1" />
+            <enum name="cubein" value="2" />
+            <enum name="cubeout" value="3" />
+            <enum name="flipvertical" value="4" />
+            <enum name="fliphorizontal" value="5" />
+            <enum name="stack" value="6" />
+            <enum name="zoomin" value="7" />
+            <enum name="zoomout" value="8" />
+            <enum name="rotateup" value="9" />
+            <enum name="rotatedown" value="10" />
+            <enum name="accordion" value="11" />
+        </attr>
+        <attr name="fadeEnabled" format="boolean" />
+        <attr name="outlineEnabled" format="boolean" />
+        <attr name="outlineColor" format="color|reference" />
+    </declare-styleable>
+    
+</resources>

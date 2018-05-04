@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yhx.loan.MainActivity">
+
+    <com.yhx.loan.view.CustomViewPager
+        android:id="@+id/central"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></com.yhx.loan.view.CustomViewPager>
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0.5dp"-->
+    <!--android:background="@color/textGray"/>-->
+    <!--<android.support.design.widget.BottomNavigationView-->
+    <!--android:id="@+id/navigation"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:menu="@menu/navigation" />-->
+    <RadioGroup
+        android:id="@+id/button_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom"
+        android:background="@drawable/shape_login_layout"
+        android:orientation="horizontal"
+        android:paddingTop="5dp">
+
+        <RadioButton
+            android:id="@+id/home_radio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/tabar_home"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="首页"
+            android:textColor="@color/color_radiobutton"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/loan_radio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/tabar_loan"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="贷款记录"
+            android:textColor="@color/color_radiobutton"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/me_radio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="5dp"
+            android:drawableTop="@drawable/tabar_me"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:text="我的"
+            android:textColor="@color/color_radiobutton"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="oliveapp_step_hint_focus">请正对屏幕</string>
+    <string name="oliveapp_step_prestart_hint_focus">请将手机靠近脸部\n尽量贴合人形轮廓</string>
+    <string name="oliveapp_step_hint_mouthopen">请张嘴\n随后合拢</string>
+    <string name="oliveapp_step_hint_eyeclose">请闭眼\n随后睁眼</string>
+    <string name="oliveapp_step_hint_headshake">请左右摇头\n随后正对屏幕</string>
+    <string name="oliveapp_step_hint_headup">请缓慢抬头\n随后正对屏幕</string>
+    <string name="oliveapp_step_hint_headleft">请缓慢左转\n随后正对屏幕</string>
+    <string name="oliveapp_step_hint_headright">请缓慢右转\n随后正对屏幕</string>
+    <string name="oliveapp_step_hint_normal">请直视屏幕</string>
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/oliveapp_active_state"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="5dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/oliveapp_circular_progress_bar_inner"
+            android:id="@+id/oliveapp_innerBackgroundImageView" />
+
+        <ProgressBar
+            android:id="@+id/oliveapp_timeoutProgressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rotation="-90"
+            android:max="1000"
+            android:progress="0"
+            android:scaleY="-1"
+            android:progressDrawable="@drawable/oliveapp_circular_progress_bar"
+            android:background="@drawable/oliveapp_circular_progress_bar_bg_transparent"
+            android:layout_centerInParent="true" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:id="@+id/oliveapp_countdownTextView"
+                android:textSize="15sp"
+                android:textColor="#fffffcfe"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

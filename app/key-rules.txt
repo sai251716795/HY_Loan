@@ -1,0 +1,3 @@
+pwd:DGGejK5T1
+alias:fjrs
+D:\Workspaces\rsApp\fujianruishengKey.jks

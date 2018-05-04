@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_simple_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/default_height"
+            android:layout_marginTop="15dip"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginRight="@dimen/default_margin"
+                android:background="@color/white"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="5dip">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="1dip">
+
+                        <ImageView
+                            android:id="@+id/image_idCard_front"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/name_confirm_pic_positive" />
+
+                        <TextView
+                            style="@style/btn_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text="身份证正面照"
+                            android:textColor="@color/textblack" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dip"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="1dip">
+
+                        <ImageView
+                            android:id="@+id/image_idCard_both"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/name_confirm_pic_reverse" />
+
+                        <TextView
+                            style="@style/btn_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:text="身份证反面"
+                            android:textColor="@color/textblack" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_name"
+                    style="@style/style_edit_layout">
+
+                    <TextView
+                        style="@style/style_text_item"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="姓名" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        style="@style/style_edit_item"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:hint="请输入真实姓名"
+                        android:inputType="text"
+                        android:maxLength="8"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_idcard"
+                    style="@style/style_edit_layout">
+
+                    <TextView
+                        style="@style/style_text_item"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="身份证号" />
+
+                    <EditText
+                        android:id="@+id/editTxtID"
+                        style="@style/style_edit_item"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:hint="请输入身份证号"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" "
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/text_size_loan_titler" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:text="身份证有效期"
+                        android:textSize="@dimen/text_size_loan_titler" />
+
+                    <EditText
+                        android:id="@+id/et_loan_IdCardNumberEffectPeriodOfStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:gravity="right|center_vertical"
+                        android:hint="yyyyMMdd"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:maxLines="1"
+                        android:textSize="@dimen/text_size_loan_edit" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:text="-"
+                        android:textSize="@dimen/text_size_loan_titler" />
+
+                    <EditText
+                        android:id="@+id/et_loan_IdCardNumberEffectPeriodOfEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:hint="yyyyMMdd"
+                        android:inputType="number"
+                        android:maxLength="8"
+                        android:maxLines="1"
+                        android:textSize="@dimen/text_size_loan_edit" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_margin="4dp"
+                    android:background="@color/line_color" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/loan_residenceAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/right9"
+                android:gravity="right"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:hint="请选择户籍地址"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/loan_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="详细地址"
+                android:padding="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/grayline" />
+
+            <Button
+                android:id="@+id/btn_bca_next"
+                style="@style/button_green_style"
+                android:layout_marginBottom="@dimen/default_height"
+                android:layout_marginTop="@dimen/default_height"
+                android:text="@string/submit" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

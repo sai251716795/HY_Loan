@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ColorArcProgressBar">
+        <attr name="back_color" format="color" />
+        <attr name="front_color1" format="color" />
+        <attr name="front_color2" format="color" />
+        <attr name="front_color3" format="color" />
+        <attr name="back_width" format="dimension" />
+        <attr name="front_width" format="dimension" />
+        <attr name="is_need_title" format="boolean" />
+        <attr name="is_need_content" format="boolean" />
+        <attr name="is_need_unit" format="boolean" />
+        <attr name="is_need_dial" format="boolean" />
+        <attr name="string_title" format="string" />
+        <attr name="string_unit" format="string" />
+        <attr name="total_engle" format="integer" />
+        <attr name="current_value" format="float" />
+        <attr name="max_value" format="float" />
+
+    </declare-styleable>
+
+    <declare-styleable name="ArcSeekBar">
+        <attr name="thumb" format="reference" />
+        <attr name="progress" format="integer" />
+        <attr name="maxProgress" format="integer" />
+        <attr name="progressColor" format="color" />
+        <attr name="progressWidth" format="dimension" />
+        <attr name="progressBackgroundColor" format="color" />
+        <attr name="progressBackgroundWidth" format="dimension" />
+        <attr name="roundEdges" format="boolean" />
+        <attr name="enabled" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TecCircleSeekBarStyle">
+        <!--外圆宽度和颜色-->
+        <attr name="outerWidth" format="dimension" />
+        <attr name="outerColor" format="color" />
+        <!--内圆宽度和颜色-->
+        <attr name="innerWidth" format="dimension" />
+        <attr name="innerColor" format="color" />
+        <!--内圆背景色-->
+        <attr name="innerBgColor" format="color" />
+        <!--内边距-->
+        <attr name="innerPadding" format="dimension" />
+        <!--当前的值-->
+        <attr name="rotation" format="integer" />
+        <!--总的值-->
+        <attr name="sumRotation" format="integer" />
+        <!--thumb-->
+        <attr name="tecThumb" format="reference" />
+        <!--顺时针还是逆时针-->
+        <attr name="clockWise" format="boolean" />
+        <!--纠正角度-->
+        <attr name="correctAngle" format="integer" />
+        <!--该控件是多少度的圆-->
+        <attr name="sweepAngle" format="integer" />
+        <!--文本-->
+        <attr name="tec_textValues" format="string" />
+        <attr name="tec_textSize" format="dimension" />
+        <attr name="tec_textColor" format="color" />
+        <!--单位-->
+        <attr name="tec_hintText" format="string" />
+        <attr name="tec_hintSize" format="dimension" />
+        <attr name="tec_hintColor" format="color" />
+        <!--提示-->
+        <attr name="tec_curSpeedText" format="string" />
+        <attr name="tec_curSpeedSize" format="dimension" />
+        <attr name="tec_curSpeedColor" format="dimension" />
+
+    </declare-styleable>
+
+    <declare-styleable name="TecCircleSeekBarTheme">
+        <attr name="tecCircleSeekBarStyle" format="reference" />
+    </declare-styleable>
+
+
+</resources>

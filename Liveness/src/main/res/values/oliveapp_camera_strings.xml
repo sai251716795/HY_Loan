@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources>
+    <string name="oliveapp_camera_setting_off_value" translatable="false">off</string>
+    <string name="oliveapp_camera_setting_on_value" translatable="false">on</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_default" translatable="false">auto</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_no_flash" translatable="false">no_flash</string>
+    <string name="oliveapp_camera_pref_exposure_default" translatable="false">0</string>
+    <string name="oliveapp_camera_pref_camera_id_default" translatable="false">0</string>
+    <string name="oliveapp_camera_pref_camera_timer_default" translatable="false">0</string>
+    <string name="oliveapp_camera_pref_camera_video_flashmode_default" translatable="false">off</string>
+    <string name="oliveapp_camera_pref_camera_whitebalance_default" translatable="false">auto</string>
+    <string name="oliveapp_camera_pref_camera_timer_sound_default">@string/oliveapp_camera_setting_on_value</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_title">Flash mode</string>
+    <string name="oliveapp_camera_image_file_name_format" translatable="false">"'IMG'_yyyyMMdd_HHmmss"</string>
+
+    <string name="oliveapp_camera_pref_camera_hdr_default">@string/oliveapp_camera_setting_off_value</string>
+    <string name="oliveapp_camera_pref_camera_hdr_plus_default">@string/oliveapp_camera_setting_off_value</string>
+
+    <string name="oliveapp_camera_app_name">相机SDK</string>
+    <string name="oliveapp_camera_find_faces">五官已找到</string>
+    <string name="oliveapp_camera_find_no_faces">没找到五官,来个正脸!</string>
+    <string name="oliveapp_camera_flash_on">使用了闪光灯</string>
+    <string name="oliveapp_camera_flash_off">未使用闪光灯</string>
+    <string name="oliveapp_camera_camera_error_title">相机发生错误</string>
+    <string name="oliveapp_camera_cannot_connect_camera">无法连接到相机。</string>
+    <string name="oliveapp_camera_camera_disabled">由于安全政策的限制，相机已被禁用。</string>
+    <string name="oliveapp_camera_out_of_memory_warning">内存不足，请清理其他程序后重试。</string>
+    <string name="oliveapp_camera_sd_cannot_used">手机存储无法使用，请检查后重试！</string>
+    <string name="oliveapp_camera_pref_camera_id_title">选择摄像头</string>
+    <string name="oliveapp_camera_pref_camera_id_entry_back">后置</string>
+    <string name="oliveapp_camera_pref_camera_id_entry_front">前置</string>
+    <string name="oliveapp_camera_pref_camera_timer_title">倒计时器</string>
+    <plurals name="oliveapp_camera_pref_camera_timer_entry">
+        <item quantity="one" msgid="8919878087230098328">"1秒"</item>
+        <item quantity="other" msgid="5782794798884172289">"%d秒"</item>
+    </plurals>
+    <string name="oliveapp_camera_pref_camera_timer_sound_title">倒计时过程中发出提示音</string>
+    <string name="oliveapp_camera_setting_off">关</string>
+    <string name="oliveapp_camera_setting_on">开</string>
+    <string name="oliveapp_camera_pref_camera_settings_category">相机设置</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_title">照片尺寸</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_13mp">1300万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_8mp">800万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_5mp">500万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_4mp">400万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_3mp">300万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_2mp">200万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_2mp_wide">200万像素 (16:9)</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_1_5mp">150万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_1_3mp">130万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_1mp">100万像素</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_vga">VGA</string>
+    <string name="oliveapp_camera_pref_camera_picturesize_entry_qvga">QVGA</string>
+    <string name="oliveapp_camera_pref_camera_focusmode_title">对焦方式</string>
+    <string name="oliveapp_camera_pref_camera_focusmode_entry_auto">自动</string>
+    <string name="oliveapp_camera_pref_camera_focusmode_entry_infinity">无限远</string>
+    <string name="oliveapp_camera_pref_camera_focusmode_entry_macro">微距</string>
+    <string name="oliveapp_camera_pref_camera_focusmode_label_auto">自动</string>
+    <string name="oliveapp_camera_pref_camera_focusmode_label_infinity">无限远</string>
+    <string name="oliveapp_camera_pref_camera_focusmode_label_macro">微距</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_label">闪光灯模式</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_entry_auto">自动</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_entry_on">开</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_entry_off">关</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_label_auto">自动闪光灯</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_label_on">打开闪光灯</string>
+    <string name="oliveapp_camera_pref_camera_flashmode_label_off">关闭闪光灯</string>
+    <string name="oliveapp_camera_pref_camera_scenemode_title">取景模式</string>
+    <string name="oliveapp_camera_pref_camera_countdown_label_off">关闭倒计时器</string>
+    <string name="oliveapp_camera_pref_camera_countdown_label_one">1秒</string>
+    <string name="oliveapp_camera_pref_camera_countdown_label_three">3秒</string>
+    <string name="oliveapp_camera_pref_camera_countdown_label_ten">10秒</string>
+    <string name="oliveapp_camera_pref_camera_countdown_label_fifteen">15秒</string>
+    <string name="oliveapp_camera_pref_exposure_title">曝光</string>
+    <string name="oliveapp_camera_pref_exposure_label">曝光</string>
+    <string name="oliveapp_camera_pref_camera_hdr_label">HDR</string>
+    <string name="oliveapp_camera_pref_camera_id_label_back">前置摄像头</string>
+    <string name="oliveapp_camera_pref_camera_id_label_front">后置摄像头</string>
+    <string name="oliveapp_camera_dialog_ok">确定</string>
+    <string name="oliveapp_camera_tap_to_focus">触摸即可对焦</string>
+    <string name="oliveapp_camera_effect_none">无</string>
+    <string name="oliveapp_camera_time_lapse_seconds">秒</string>
+    <string name="oliveapp_camera_time_lapse_minutes">分钟</string>
+    <string name="oliveapp_camera_time_lapse_hours">小时</string>
+    <string name="oliveapp_camera_time_lapse_interval_set">完成</string>
+    <string name="oliveapp_camera_set_duration">设置倒数时间（秒）</string>
+    <string name="oliveapp_camera_count_down_title_text">拍照倒计时中</string>
+    <string name="oliveapp_camera_camera_menu_more_label">更多选项</string>
+</resources>

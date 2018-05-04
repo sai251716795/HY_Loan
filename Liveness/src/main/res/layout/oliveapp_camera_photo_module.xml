@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- This layout is shared by phone and tablet in both landscape and portrait
+ orientation. The purpose of having this layout is to eventually not manually
+ recreate views when the orientation changes, by migrating the views that do not
+ need to be recreated in onConfigurationChanged from old oliveapp_camera_photo_module to this
+ layout. -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/oliveapp_camera_camera_app_root"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+    <!--<include layout="@layout/oliveapp_camera_count_down_to_capture"/>-->
+    <!--<include layout="@layout/photo_module_content"/>-->
+    <com.oliveapp.camerasdk.ui.PreviewFrameLayout
+        android:id="@+id/oliveapp_camera_preview_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.oliveapp.camerasdk.ui.PreviewSurfaceView
+            android:id="@+id/oliveapp_camera_preview_surface_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
+
+        <View
+            android:id="@+id/oliveapp_camera_preview_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:visibility="gone"/>
+    </com.oliveapp.camerasdk.ui.PreviewFrameLayout>
+
+    <com.oliveapp.camerasdk.ui.base.ResizeableImageView
+        android:id="@+id/oliveapp_camera_review_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:clickable="true"
+        android:background="@android:color/black"
+        android:scaleType="fitCenter"/>
+
+    <View
+        android:id="@+id/oliveapp_camera_flash_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone" />
+
+    <ViewStub
+        android:id="@+id/oliveapp_camera_face_view_stub"
+        android:inflatedId="@+id/oliveapp_camera_face_view"
+        android:layout="@layout/oliveapp_camera_face_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <com.oliveapp.camerasdk.ui.RenderOverlay
+        android:id="@+id/oliveapp_camera_render_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ViewStub
+        android:id="@+id/oliveapp_camera_face_guide_stub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout="@layout/oliveapp_camera_face_guide"/>
+
+    <include
+        layout="@layout/oliveapp_camera_controls"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>

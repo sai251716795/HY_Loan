@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="app_bg">#f5f5f5</color>
+    <color name="transparent">#00000000</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="red">#FF0000</color>
+    <color name="select">#04f128</color>
+    <!-- 红色 -->
+    <color name="white">#FFFFFF</color>
+    <!-- 白色 -->
+    <color name="black">#000000</color>
+    <!-- 黑色 -->
+    <color name="yellow">#f6bf0a</color>
+    <!-- 黄色 -->
+    <color name="bt_yellow">#fdd83a</color>
+    <color name="bt_yellow_press">#c0ecbe08</color>
+    <color name="blue">#007AFF</color>
+    <!-- 蓝色 -->
+    <color name="green">#2ed22e</color>
+    <color name="blue_1">#2057e1</color>
+    <!-- 绿色 -->
+    <color name="reseda">#00ff99</color>
+    <!-- 浅绿色 -->
+    <color name="violet">#6600FF</color>
+    <!--紫色  -->
+    <color name="brown">#714f16</color>
+    <!--褐色  -->
+    <color name="gray">#808a87</color>
+    <!-- 灰色 -->
+    <color name="orange">#ff8800</color>
+    <color name="loan_notice_bg">#faf6d6</color>
+    <color name="account_white_layout_bg">#fff8f6f3</color>
+    <color name="holo_blue">#1af002</color>
+    <color name="blue_green">#119FA9</color>
+    <!-- 蓝绿色-菜单/标题背景色 -->
+    <color name="lightgray">#ffd1d6da</color>
+    <color name="darkgray">#ff676d72</color>
+
+    <color name="textblack">#ff3f4245</color>
+    <color name="regBackGround">#ffd2d6d7</color>
+    <color name="grayline">#ffb1b6bb</color>
+    <color name="LKblue">#ff00a8ea</color>
+    <color name="content_title">#ff3f4245</color>
+    <color name="regBlue">#ff005a7e</color>
+    <color name="green_color">#009688</color>
+    <color name="tab_bg_color">#666C72</color>
+    <color name="color_line">#bdbdbd</color>
+    <color name="line_color">#dadada</color>
+    <color name="btn_press_color_gray">#e0e0e0</color>
+    <color name="tab_text_color">#56abe4</color>
+    <color name="tab_text_gray">#a9b7b7</color>
+    <color name="btn_blue_normal">#56abe4</color>
+    <color name="btn_blue_press">#4182AD</color>
+
+    <color name="text_color">#A6ffffff</color>
+
+    <color name="line_bottom_color">#26000000</color>
+    <color name="card_num_color">#d9000000</color>
+
+
+    <color name="viewfinder_frame">#ffcc00</color>
+    <!-- 绿色 -->
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="loan_textC">#d8441f</color>
+    <!-- 红色 -->
+
+    <color name="viewfinder_mask">#60000000</color>
+    <!-- 灰度 -->
+    <color name="result_view">#b0000000</color>
+    <!-- 透明 -->
+    <color name="new_color">#12d4dc</color>
+    <!-- 透明 -->
+    <color name="white_color">#ffffffff</color>
+
+    <item name="gray_holo_dark" type="color">#ff464646</item>
+    <item name="gray_holo_light" type="color">#ffd0d0d0</item>
+
+    <color name="color_font">#5381F7</color>
+    <color name="color_font_item">#878787</color>
+    <color name="color_line_r">#E3E3E3</color>
+</resources>

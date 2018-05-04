@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/layout_line_bg"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical">
+            <!--android:drawableRight="@drawable/title_check"-->
+            <CheckBox
+                android:id="@+id/title_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:button="@null"
+                android:gravity="center"
+                android:enabled="false"
+                android:text="贷款记录"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:id="@+id/right_date_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:visibility="gone"
+                android:src="@drawable/date_icon" />
+
+            <TextView
+                android:id="@+id/left_loan_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/right_date_image"
+                android:visibility="gone"
+                android:layout_marginEnd="10dp"
+                android:text="我要贷款" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnableHeaderTranslationContent="false"
+        app:srlEnableLoadmore="false">
+
+        <com.scwang.smartrefresh.header.MaterialHeader
+            android:id="@+id/fresh_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:wshPrimaryColor="@color/yellow" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/order_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:layout_marginTop="10dp"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/not_order_lay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:clickable="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:src="@drawable/no_trade_record_pic" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="一单交易都没有哦~~"
+                    android:textColor="@color/textblack"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/filter_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="#fcfcfc"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/filter_tx1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/btn_check_press"
+                        android:text="全部"
+                        android:textColor="#0078d6" />
+
+                    <TextView
+                        android:id="@+id/filter_tx2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/btn_check_default"
+                        android:text="小额贷"
+                        android:textColor="@color/textblack" />
+
+                    <TextView
+                        android:id="@+id/filter_tx3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/btn_check_default"
+                        android:text="房贷"
+                        android:textColor="@color/textblack" />
+
+                    <TextView
+                        android:id="@+id/filter_tx4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/btn_check_default"
+                        android:text="工薪贷"
+                        android:textColor="@color/textblack" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

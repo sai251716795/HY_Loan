@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:layout_marginTop="10dp">
+
+    <RelativeLayout
+        android:id="@+id/bank_item"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/bank_manage_pic_blue">
+
+        <ImageView
+            android:id="@+id/bank_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/white_circular"
+            android:padding="5dp"
+            android:src="@drawable/take_money_logo_banck_minsheng" />
+
+        <TextView
+            android:id="@+id/bank_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:text="中国民生银行"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/bank_logo" />
+
+        <TextView
+            android:id="@+id/bank_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bank_name"
+            android:layout_below="@+id/bank_name"
+            android:layout_marginTop="5dp"
+            android:text="储蓄卡"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/bank_card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/bank_type"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:text="*** **** **** 8888"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

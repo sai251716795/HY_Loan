@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">永鸿兴</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="prompt_email">用户名</string>
+    <string name="prompt_password">请输入6-11位登录密码</string>
+    <string name="confirm_password">请再次确认您的密码</string>
+    <string name="action_sign_in_short">登录</string>
+    <string name="ent_register">确定注册</string>
+
+    <string name="error_invalid_email">无效电子邮件地址</string>
+    <string name="error_login_tel">请输入有效手机号</string>
+    <string name="login_name"></string>
+    <string name="error_invalid_password">密码太短了</string>
+    <string name="error_incorrect_password">此密码不正确</string>
+    <string name="error_field_required">此处不能为空</string>
+    <string name="permission_rationale">"提供电子邮件完成所需的联系人权限。" </string>
+</resources>

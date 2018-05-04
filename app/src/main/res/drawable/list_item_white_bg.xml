@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="0dp" />
+            <solid android:color="#aad3d0ae" />
+        </shape>
+    </item>
+    <!-- 点击之前 -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="0dp" />
+            <solid android:color="#FFFFFF" />
+            <!-- 描边 -->
+        </shape>
+    </item>
+</selector>

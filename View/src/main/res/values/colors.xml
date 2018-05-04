@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="title_cl">#29a6ef</color>
+    <color name="sliderBack">#4227395a</color>
+    <array name="progressGradientColors">
+    <item>#b5fff6</item>
+    <item>#00ffdf</item>
+    <item>#00bfa4</item>
+    <item>#007c6a</item>
+    </array>
+
+    <!--TecCircleSeekBar进度条颜色-->
+    <color name="colorTecCircleSeekBarProgress">#2fa83e</color>
+    <!--TecCircleSeekBar内圆进度条背景色-->
+    <color name="colorTecCircleSeekBarProgressInnerBg">#2fa83e</color>
+    <!--TecCircleSeekBar内圆进度条颜色-->
+    <color name="colorTecCircleSeekBarProgressInner">#18d62e</color>
+    <!--TecCircleSeekBar内文本颜色-->
+    <color name="colorTecCircleSeekBarProgressInnerText">#f2cf06</color>
+</resources>

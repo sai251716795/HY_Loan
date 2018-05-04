@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hx.view.widget.ObservableScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                android:paddingBottom="25dp"
+                android:background="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/my_top_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/titleName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="永鸿兴"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/view" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/corners_bj"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/titleName">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:text="小额消费分期贷" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp">
+                        <TextView
+                            android:id="@+id/loan_Range"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textColor="#fa5102"
+                            android:text="10000~50000" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@color/black"
+                            android:text="元" />
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/loan_small_btn"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/bt_select_green"
+                        android:padding="5dp"
+                        android:text="测试贷款"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <cn.bingoogolapple.bgabanner.BGABanner
+                android:id="@+id/banner_home_zoomFade"
+                style="@style/BannerDefaultStyle"
+                app:banner_transitionEffect="zoomFade" />
+
+           <include layout="@layout/menu_grid_layout"
+               android:visibility="gone"/>
+            <com.hx.view.widget.MyGridView
+                android:id="@+id/loan_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:horizontalSpacing="1dp"
+                android:verticalSpacing="1dp"
+                android:scrollbars="none"
+                android:layout_marginBottom="5dp"
+                android:numColumns="2"/>
+
+        </LinearLayout>
+
+    </com.hx.view.widget.ObservableScrollView>
+
+
+</LinearLayout>

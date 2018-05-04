@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="google_colors">
+        <item>@color/red</item>
+        <item>@color/blue</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+    </integer-array>
+
+    <string-array name="loan_marry">
+        <item>请选择</item>
+        <item>未婚</item>
+        <item>已婚</item>
+        <item>分居</item>
+        <item>丧偶</item>
+    </string-array>
+    <string-array name="loan_education">
+        <item>请选择</item>
+        <item>高中及以下</item>
+        <item>大专</item>
+        <item>本科</item>
+        <item>硕士</item>
+        <item>博士</item>
+        <item>博士后</item>
+    </string-array>
+    <string-array name="loan_company_type">
+        <item>请选择</item>
+        <item>政府机关</item>
+        <item>宗教、民间组织</item>
+        <item>科研、设计院所</item>
+        <item>教育行业</item>
+        <item>金融行业</item>
+        <item>医疗卫生系统</item>
+        <item>邮政、快递(非物流)</item>
+        <item>水电煤、通讯、石油、石化、烟草</item>
+        <item>专业事务所、公估公司</item>
+        <item>交通系统</item>
+        <item>百货商超、商店门店</item>
+        <item>酒店、餐饮、娱乐、美容、健身</item>
+        <item>大众传媒</item>
+        <item>500强、上市公司、国有企业</item>
+        <item>私营、外资、集体企业(注册资本50万以上)</item>
+        <item>小微企业(个人注册资本50万以下)</item>
+        <item>个体工商户</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="loan_contact_rela">
+        <item>本人</item>
+        <item>父母</item>
+        <item>子女及兄弟姐妹</item>
+        <item>亲属</item>
+        <item>同事</item>
+        <item>朋友</item>
+        <item>同学</item>
+        <item>配偶</item>
+        <item>其他</item>
+    </string-array>
+
+
+    <string-array name="loan_contact_rela_first">
+        <item>本人</item>
+        <item>父母</item>
+        <item>子女及兄弟姐妹</item>
+        <item>亲属</item>
+        <item>同事</item>
+        <item>朋友</item>
+        <item>同学</item>
+        <item>配偶</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="loan_now_living_state">
+        <item>请选择</item>
+        <item>亲戚拥有</item>
+        <item>租赁</item>
+        <item>宿舍</item>
+        <item>自有</item>
+    </string-array>
+    <string-array name="loan_work_state">
+        <item>请选择</item>
+        <item>离职</item>
+        <item>在职</item>
+        <item>兼职</item>
+        <item>挂靠</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="salary_range">
+        <item>请选择</item>
+        <item>2000以下</item>
+        <item>2000-5000</item>
+        <item>5000-10000</item>
+        <item>10000-15000</item>
+        <item>15000-50000</item>
+        <item>50000以上</item>
+
+    </string-array>
+</resources>
