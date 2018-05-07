@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.legukeydemo2.MainActivity">
+
+    <com.example.legusafekeyboard.SafeEditText xmlns:mobile="http://www.legu.qq.com"
+        android:id="@+id/legu_text_password1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入密码"
+        android:password="true"
+        mobile:numTextSize="0.8" />
+
+    <Button
+        android:id="@+id/button_get_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取密码1" />
+
+    <com.example.legusafekeyboard.SafeEditText xmlns:mobile="http://www.legu.qq.com"
+        android:id="@+id/legu_text_password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/legu_text_password2"
+        android:hint="请输入hash1"
+        android:password="true"
+        mobile:numTextSize="0.8" />
+
+
+    <Button
+        android:id="@+id/button_gethash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="41dp"
+        android:text="获取hash1" />
+
+</LinearLayout>

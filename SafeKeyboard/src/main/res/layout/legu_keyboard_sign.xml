@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="horizontal">
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_1"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_2"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_3"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign4_button_color"
+            android:id="@+id/legu_keyboard_button_sign_4"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign5_button_color"
+            android:id="@+id/legu_keyboard_button_sign_5"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign6_button_color"
+            android:id="@+id/legu_keyboard_button_sign_6"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign7_button_color"
+            android:id="@+id/legu_keyboard_button_sign_7"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" 
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_8"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_9"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_10"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+
+    </LinearLayout>
+    
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="horizontal">
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_11"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_12"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_13"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign14_button_color"
+            android:id="@+id/legu_keyboard_button_sign_14"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign15_button_color"
+            android:id="@+id/legu_keyboard_button_sign_15"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign16_button_color"
+            android:id="@+id/legu_keyboard_button_sign_16"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign17_button_color"
+            android:id="@+id/legu_keyboard_button_sign_17"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_18"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_19"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_20"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+
+    </LinearLayout>
+    
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="horizontal">
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_21"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_22"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_23"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign24_button_color"
+            android:id="@+id/legu_keyboard_button_sign_24"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign25_button_color"
+            android:id="@+id/legu_keyboard_button_sign_25"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign26_button_color"
+            android:id="@+id/legu_keyboard_button_sign_26"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign27_button_color"
+            android:id="@+id/legu_keyboard_button_sign_27"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_28"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_29"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_image_sign_delete"
+            android:id="@+id/legu_keyboard_sign_button_delete"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+
+    </LinearLayout>
+    
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="horizontal">
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_30"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_31"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_32"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1.0"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_33"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign34_button_color"
+            android:id="@+id/legu_keyboard_button_sign_34"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign35_button_color"
+            android:id="@+id/legu_keyboard_button_sign_35"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize" />
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_36"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_sign_button_color"
+            android:id="@+id/legu_keyboard_button_sign_37"
+            android:layout_weight="1.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        <Button
+            android:background="@drawable/legu_keyboard_image_sign_ok"
+            android:id="@+id/legu_keyboard_sign_button_ok"
+            android:layout_weight="2.0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:textSize="@dimen/keyboard_fontsize"
+            />
+        
+        
+
+    </LinearLayout>
+
+</LinearLayout>
