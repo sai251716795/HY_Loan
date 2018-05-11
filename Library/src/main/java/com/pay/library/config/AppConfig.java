@@ -16,7 +16,6 @@ public class AppConfig {
     public static final String HOST_SIGN_URL = "http://" + IP_PORT + "/vtmp/Sign/Api";
     public static final String HOST_BR_URL = "http://" + IP_PORT + "/vtmp/BR/Api";
 
-
     /**
      * TODO 登录
      */
@@ -79,7 +78,7 @@ public class AppConfig {
     /**
      * TODO 还款计划表
      */
-    public static final String GetRepayPlan_url = HOST_APP_URL + "/GetRepayPlan";
+    public static final String GetRepayPlan_url = HOST_APP_URL + "/queryRepayPlan";
 
     /**
      * TODO 获取短信验证码
@@ -124,6 +123,11 @@ public class AppConfig {
      * TODO 兴业还款记录请求
      */
     public static final String queryRepayList_url = HOST_APP_URL + "/queryRepayList";
+
+    /**
+     * TODO 更新下载
+     */
+    public static final String updateAPP_url = HOST_APP_URL + "/queryRepayList";
 
     ///////////////////////////////////////////////////////////////////////////////
     /**
