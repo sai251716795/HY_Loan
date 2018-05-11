@@ -13,12 +13,18 @@ import com.yhx.loan.R;
 import com.yhx.loan.base.BaseCompatActivity;
 import com.yhx.loan.bean.xybank.RepayHistoryList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.yhx.loan.adapter.RepayHistoryAdapter.dataChange;
 
+/**
+ * 还款记录详情
+ */
 public class RepayHDetailsActivity extends BaseCompatActivity {
 
     @BindView(R.id.tv_title)
@@ -44,29 +50,48 @@ public class RepayHDetailsActivity extends BaseCompatActivity {
         ButterKnife.bind(this);
         initData();
     }
+
     RepayHistoryList history;
+
     private void initData() {
         tvTitle.setText("还款记录详情");
-        history = (RepayHistoryList) getIntent().getSerializableExtra("");
+        history = (RepayHistoryList) getIntent().getSerializableExtra("history");
+        try {
 
-        transSeq.setText(history.getTransSeq());
-        mtdamt.setText(history.getMtdamt() + "元");
-        repayDate.setText(dataChange(history.getRepayDate()));
-        remark.setText("还款");
-        if (history.getRepayStatus().equals("0")) {
-            repayStatus.setText("成功");
-            repayStatus.setTextColor(0xffFF0000);
+            transSeq.setText(history.getTransSeq());
+            mtdamt.setText(history.getMtdamt() + "元");
+            repayDate.setText(dataChange(history.getRepayDate()));
+            remark.setText("还款");
+            if (history.getRepayStatus().equals("0")) {
+                repayStatus.setText("成功");
+                repayStatus.setTextColor(0xffFF0000);
 
+            }
+            if (history.getRepayStatus().equals("1")) {
+                repayStatus.setText("失败");
+                repayStatus.setTextColor(0xffFF0000);
+                remark.setText("还款失败，请到还款界面重新发起还款");
+                remark.setTextColor(0xffFF0000);
+            }
+            if (history.getRepayStatus().equals("2")) {
+                repayStatus.setText("处理中");
+                repayStatus.setTextColor(0xff2ed22e);
+            }
+
+            if(history.getMtdmodel().equals("TQ")){
+                remark.setText("部分还款");
+
+            }else if (history.getMtdmodel().equals("NM")){
+             remark.setText("归还欠款");
+
+            }else if (history.getMtdmodel().equals("FS")){
+                remark.setText("全部还款");
+            }
+            getActiveRepaStatus();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (history.getRepayStatus().equals("1")) {
-            repayStatus.setText("失败");
-            repayStatus.setTextColor(0xffFF0000);
-        }
-        if (history.getRepayStatus().equals("2")) {
-            repayStatus.setText("处理中");
-            repayStatus.setTextColor(0xff2ed22e);
-        }
-        getActiveRepaStatus();
     }
 
 
@@ -78,7 +103,37 @@ public class RepayHDetailsActivity extends BaseCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        Log.e("activeRepaStatus", "1.1.3主动还款交易状态查询: " + response.body());
+                        Logger.e("activeRepaStatus", "1.1.3主动还款交易状态查询: " + response.body());
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response.body());
+                            if (jsonObject.getString("respCode").equals("000000")) {
+                                JSONObject result = jsonObject.getJSONObject("result");
+                                String issuccess = result.getString("issuccess");     //是否接收成功 0:成功  1:失败 2:处理中
+                                String serno = result.getString("serno");//主动还款请求流水号
+                                String message = result.getString("message");//响应消息
+                                Double setlrecvamt = result.getDouble("setlrecvamt");//收到金额
+
+                                if (issuccess.equals("0")) {
+                                    repayStatus.setText("成功");
+                                    repayStatus.setTextColor(0xffFF0000);
+                                }
+                                if (issuccess.equals("1")) {
+                                    repayStatus.setText("失败");
+                                    repayStatus.setTextColor(0xffFF0000);
+                                    remark.setText("还款失败，请到还款界面重新发起还款");
+                                    remark.setTextColor(0xffFF0000);
+                                }
+                                if (issuccess.equals("2")) {
+                                    repayStatus.setText("处理中");
+                                    repayStatus.setTextColor(0xff2ed22e);
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
                     @Override
@@ -98,7 +153,6 @@ public class RepayHDetailsActivity extends BaseCompatActivity {
                     }
                 });
     }
-
 
     @OnClick(R.id.btn_back)
     public void onViewClicked() {

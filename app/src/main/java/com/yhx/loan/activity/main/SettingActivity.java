@@ -14,6 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.text.style.UpdateAppearance;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,14 +28,20 @@ import com.hx.view.widget.CustomDialog;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.view.CropImageView;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+import com.pay.library.uils.GsonUtil;
 import com.pay.library.uils.PhotoUtils;
 import com.pay.library.uils.StringUtils;
 import com.yhx.loan.R;
 import com.yhx.loan.activity.login.LoginActivity;
 import com.yhx.loan.activity.login.ModifyActivity;
 import com.yhx.loan.base.BaseCompatActivity;
+import com.yhx.loan.base.MyApplication;
 import com.yhx.loan.bean.UserIcon;
 import com.yhx.loan.imageloader.GlideImageLoader;
+import com.yhx.loan.server.update.ApkSer;
+import com.yhx.loan.server.update.AppUpdateService;
 
 import org.litepal.crud.DataSupport;
 
@@ -65,6 +72,8 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
     TextView modifyPwd;
     @BindView(R.id.keFuTel)
     TextView keFuTel;
+    @BindView(R.id.updateView)
+    View updateView;
     @BindView(R.id.app_version)
     TextView appVersion;
     @BindView(R.id.about_app)
@@ -83,10 +92,12 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
         ButterKnife.bind(this);
         initImagePicker();
         initData();
+//        getUpdate();
     }
 
     private void initData() {
         tvTitle.setText("设置");
+        updateView.setVisibility(View.GONE);
         if (myApplication.getUserBeanData() != null) {
             String loginName = myApplication.getUserBeanData().getLoginName();
             userName.setText(StringUtils.hideString(loginName, 3, 4));
@@ -137,7 +148,7 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
 
     Intent intent;
 
-    @OnClick({R.id.btn_back, R.id.userIcon, R.id.modify_pwd, R.id.about_app, R.id.sign_out, R.id.app_feedback})
+    @OnClick({R.id.btn_back, R.id.userIcon, R.id.modify_pwd, R.id.about_app, R.id.sign_out, R.id.app_feedback, R.id.app_version_lay})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_back:
@@ -172,7 +183,16 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
                 intent = new Intent(this, FeedbackActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.app_version_lay:
+//                UpdateOrDownloadApp();
+                break;
         }
+    }
+
+    private void UpdateOrDownloadApp() {
+//        apkSer.getCommit();
+        String url = "http://downpack.baidu.com/appsearch_AndroidPhone_1012271b.apk";
+        AppUpdateService.getInstance(getContext()).CustomDialog("有性版本需要更新", 3, url);
     }
 
     private void signOut() {
@@ -229,29 +249,31 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
                     }
                 }
             }
-
         }
-        /* if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
-            if (data != null && requestCode == REQUEST_CODE_SELECT) {
-               images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                Log.e(TAG, "onActivityResult: Glide --------");
-                Glide.with(getContext())
-                        .load(images.get(0).path)
-                        .apply(new RequestOptions().placeholder(R.drawable.my_icon_head).error(R.drawable.my_icon_head).dontAnimate().centerCrop())
-                        .into(userIcon);
-                Bitmap bitmap = null;
-                bitmap = BitmapFactory.decodeFile(images.get(0).path);
-                if (bitmap != null) {
-                    if (saveIConBitmap(bitmap)) {
-                        userIcon.setImageBitmap(bitmap);
-                    } else {
-                        toast_short("头像上传失败！");
-                    }
-                } else {
-                    Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
-                }
+    }
+
+    ApkSer apkSer = new ApkSer();
+
+    public void getUpdate() {
+
+        MyApplication.getInstance().okGo.<String>post("http://www.baidu.com").execute(new StringCallback() {
+            @Override
+            public void onSuccess(Response<String> response) {
+                apkSer = new ApkSer();
+//                try {
+//                    apkSer = GsonUtil.fromJson(response.body(), ApkSer.class);
+                    //根据是否有新更新点，显示红点
+//                    if (getVersionCode() < apkSer.getVersionCode()) {
+                        updateView.setVisibility(View.VISIBLE);
+                        appVersion.setText("有新版本");
+//                    }
+//                } catch (InstantiationException e) {
+//                    e.printStackTrace();
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                }
             }
-        }*/
+        });
 
     }
 

@@ -42,7 +42,7 @@ public class SelectBankPopupWindow extends PopupWindow {
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
-    public SelectBankPopupWindow ddBank(AddBankListener addBankListener) {
+    public SelectBankPopupWindow addBank(AddBankListener addBankListener) {
         this.addBankListener = addBankListener;
         return this;
     }

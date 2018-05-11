@@ -9,12 +9,10 @@
 
     <include layout="@layout/layout_simple_title" />
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
+        android:layout_height="130dp"
+        android:background="@drawable/my_top_button"
         android:paddingBottom="20dp"
         android:paddingTop="20dp">
 
@@ -22,160 +20,126 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/allRepayMoneyTv"
-            android:layout_alignBottom="@+id/allRepayMoneyTv"
-            android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@+id/allRepayMoneyTv"
-            android:text="全部待还:" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="还款金额"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/submitMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:background="@null"
+                android:hint="请输入还款金额"
+                android:textColorHint="#ffffff"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/V_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/tipAmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:text="全部待还:"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/V_line"
+            app:layout_constraintTop_toBottomOf="@+id/V_line" />
 
         <TextView
             android:id="@+id/allRepayMoneyTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:textColor="#ff9249"
-            android:text="0.00" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textView7"
+            android:layout_marginBottom="8dp"
             android:layout_marginStart="5dp"
-            android:layout_toEndOf="@+id/allRepayMoneyTv"
-            android:text="元"
-            android:textColor="@color/textblack"
-            android:textSize="13sp" />
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_marginTop="5dp"
+            android:text="￥0.00"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/tipAmt"
+            app:layout_constraintStart_toEndOf="@+id/tipAmt"
+            app:layout_constraintTop_toTopOf="@+id/tipAmt" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="最近一期还款本金"
 
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/LatelyRepayMoney"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0.00"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="元"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    </android.support.constraint.ConstraintLayout>
+    <RadioGroup
+        android:id="@+id/RadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/NM_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="归还欠款"
+            android:textSize="14sp" />
+        <RadioButton
+            android:id="@+id/TQ_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="部分还款"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/FS_radio"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全部还款"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/feeLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
         android:padding="10dp">
 
-        <RadioGroup
-            android:id="@+id/RadioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/NM_radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="归还欠款"/>
-            <RadioButton
-                android:id="@+id/FS_radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="全部还款"/>
-        </RadioGroup>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="还款金额"
-                android:textColor="@color/black"
-                android:textSize="13sp" />
-            <EditText
-                android:id="@+id/submitMoney"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="填写还款金额"
-                android:gravity="right"
-                android:paddingRight="15dp"
-                android:inputType="numberDecimal"
-                android:paddingTop="5dp"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/textblack" />
-
-        <LinearLayout
-            android:id="@+id/select_bankCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="还款账号"
-                android:textColor="@color/black"
-                android:textSize="13sp" />
-
-            <ImageView
-                android:id="@+id/bankCard_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="@dimen/default_margin"
-                android:scaleType="fitXY"
-                android:src="@drawable/ccb" />
-
-            <TextView
-                android:id="@+id/bankCard_text"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                android:text="银行(8888)"
-                android:textColor="@color/textblack"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/textblack" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -205,11 +169,13 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="5dp"
             android:background="@color/textblack" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -238,6 +204,7 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -245,6 +212,7 @@
             android:background="@color/textblack" />
 
         <LinearLayout
+            android:id="@+id/psOdIntAmt_lay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -256,12 +224,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="还款总额"
+                android:text="逾期费"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
             <TextView
-                android:id="@+id/repayAllAmt_text"
+                android:id="@+id/psOdIntAmt"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -271,11 +239,49 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/textblack" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/select_bankCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="还款账号"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/bankCard_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:scaleType="fitXY"
+            android:src="@drawable/ccb" />
+
+        <TextView
+            android:id="@+id/bankCard_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="银行(8888)"
+            android:textColor="@color/textblack"
+            android:textSize="16sp" />
+
     </LinearLayout>
 
     <LinearLayout

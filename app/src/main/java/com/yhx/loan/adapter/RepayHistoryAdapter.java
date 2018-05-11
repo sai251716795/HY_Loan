@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.pay.library.uils.StringUtils;
 import com.yhx.loan.R;
 import com.yhx.loan.bean.xybank.RepayHistoryList;
 
@@ -64,12 +65,19 @@ public class RepayHistoryAdapter extends BaseAdapter {
         viewHolder.transSeq.setText(history.getTransSeq());
         viewHolder.mtdamt.setText(history.getMtdamt() + "元");
         viewHolder.repayDate.setText(dataChange(history.getRepayDate()));
-//        viewHolder.psDueDt.setText(history);
-        viewHolder.remark.setText("还款"+history.getRemark());
+       if(history.getMtdmodel().equals("TQ")){
+           viewHolder.remark.setText("部分还款");
+
+       }else if (history.getMtdmodel().equals("NM")){
+           viewHolder.remark.setText("归还欠款");
+
+       }else if (history.getMtdmodel().equals("FS")){
+           viewHolder.remark.setText("全部还款");
+       }
+
         if (history.getRepayStatus().equals("0")) {
             viewHolder.repayStatus.setText("成功");
             viewHolder.repayStatus.setTextColor(0xffFF0000);
-
         }
         if (history.getRepayStatus().equals("1")) {
             viewHolder.repayStatus.setText("失败");
@@ -103,8 +111,8 @@ public class RepayHistoryAdapter extends BaseAdapter {
     }
 
     public static String dataChange(String date) {
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         String dateStr = null;
         try {
             dateStr = sf.format(df.parse(date));

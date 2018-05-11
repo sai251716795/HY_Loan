@@ -206,7 +206,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="还款"
+                    android:text="贷款记录"
                     android:textColor="@color/textblack"
                     android:textSize="15sp" />
 

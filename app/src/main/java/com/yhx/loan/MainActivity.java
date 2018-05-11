@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -34,6 +35,7 @@ import com.yhx.loan.server.GetLocation;
 import com.yhx.loan.server.HouseAddress;
 import com.yhx.loan.server.LocationLister;
 import com.yhx.loan.server.UserDataServer;
+import com.yhx.loan.server.update.AppUpdateService;
 import com.yhx.loan.view.CustomViewPager;
 
 import java.util.ArrayList;
@@ -99,6 +101,7 @@ public class MainActivity extends BaseCompatActivity {
         buttonItem.check(R.id.home_radio);
 //        iniSystemData();
         getLocation();
+        handler.postDelayed(task,5000);
     }
 
     public void getLocation() {
@@ -262,5 +265,11 @@ public class MainActivity extends BaseCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }*/
-
+   //更新信息
+   Handler handler = new Handler();
+   private Runnable task = new Runnable() {
+       public void run() {
+//           AppUpdateService.getInstance(getContext()).getUpdate();
+       }
+   };
 }

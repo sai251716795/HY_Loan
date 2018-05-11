@@ -36,6 +36,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yhx.loan.R;
 import com.yhx.loan.activity.login.LoginActivity;
 import com.yhx.loan.activity.order.LoanDetailsActivity;
+import com.yhx.loan.activity.order.repay.RepayTableActivity;
 import com.yhx.loan.adapter.LoanOrderAdapter;
 import com.yhx.loan.adapter.OrderAdapter;
 import com.yhx.loan.base.BaseCompatActivity;
@@ -145,13 +146,23 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
                     @Override
                     public void ReceiveMessage(List<LoanApplyBasicInfo> list) {
                         datalist = list;
-                        orderAdapter = new LoanOrderAdapter(getContext(), datalist);
-                        orderList.setAdapter(orderAdapter);
-                        orderAdapter.notifyDataSetChanged();
+
+                        //移除不属于还款条件的订单
+                        for(int i=0;i<datalist.size();i++){
+                           LoanApplyBasicInfo loan = datalist.get(i);
+                           if(!loan.getApplyStatus().equals("400")){
+                               datalist.remove(i);
+                               i--;
+                           }
+                        }
+
                         if (datalist.size() > 0) {
+                            orderAdapter = new LoanOrderAdapter(getContext(), datalist);
+                            orderList.setAdapter(orderAdapter);
+                            orderAdapter.notifyDataSetChanged();
                             notOrderLay.setVisibility(View.GONE);
                         } else {
-                            Toast.makeText(getContext(),"无记录",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"无还款条件订单",Toast.LENGTH_SHORT).show();
                             notOrderLay.setVisibility(View.VISIBLE);
                         }
                     }
@@ -232,9 +243,9 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(getApplicationContext(), LoanDetailsActivity.class);
+        Intent intent = new Intent(getContext(), RepayTableActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("LoanDetails", datalist.get(position));
+        bundle.putSerializable("loanOrder",  datalist.get(position));
         intent.putExtras(bundle);
         startActivity(intent);
     }

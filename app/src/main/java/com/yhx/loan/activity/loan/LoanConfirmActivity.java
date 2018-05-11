@@ -206,21 +206,6 @@ public class LoanConfirmActivity extends BaseCompatActivity {
         }
     }
 
-    public String getPurposeKey(String s) {
-        Map<String, String> map = new HashMap<>();
-        map.put("装修", "DEC");
-        map.put("教育", "EDU");
-        map.put("贬值耐用", "FLI");
-        map.put("家用电器", "JYDQ");
-        map.put("婚庆", "MAR");
-        map.put("旅游", "TRA");
-        map.put("保值耐用", "STO");
-        map.put("手机数码", "SJSM");
-        map.put("其他", "OTH");
-        return map.get(s);
-    }
-
-
     private void addLoanRequsetData() {
         UserBean userBean = myApplication.getUserBeanData();                                            //获取本地用户数据
         myApplication.getLoanRequest().setBankCardNumber(bankCard.getBankCardNumber());
@@ -389,7 +374,7 @@ public class LoanConfirmActivity extends BaseCompatActivity {
                 pop.dismiss();
 
             }
-        }).ddBank(new SelectBankPopupWindow.AddBankListener() {
+        }).addBank(new SelectBankPopupWindow.AddBankListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AddBankActivity.class);

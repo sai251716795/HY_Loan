@@ -13,13 +13,13 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 import com.pay.library.config.AppConfig;
+import com.pay.library.tool.Logger;
 import com.pay.library.uils.GsonUtil;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yhx.loan.R;
-import com.yhx.loan.activity.order.repay.EarlyRepaymentActivity;
 import com.yhx.loan.activity.order.repay.PaymentHistoryActivity;
 import com.yhx.loan.adapter.RepayPlanAdapter;
 import com.yhx.loan.base.BaseCompatActivity;
@@ -38,6 +38,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 废弃的还款计划表查询界面
+ */
 public class RepayPlanActivity extends BaseCompatActivity implements AdapterView.OnItemClickListener {
 
     @BindView(R.id.tv_title)
@@ -75,7 +78,7 @@ public class RepayPlanActivity extends BaseCompatActivity implements AdapterView
         order = (LoanApplyBasicInfo) getIntent().getSerializableExtra("loanOrder");
         if (order == null)
             return;
-        loanAllAmt.setText("" + new DecimalFormat("#.00").format(Double.valueOf(order.getLoanMoneyAmount())) + "");
+        loanAllAmt.setText("" +Double.valueOf(order.getLoanMoneyAmount()) + "");
 
         repayPlanArray = new ArrayList<>();
         repayPlanAdapter = new RepayPlanAdapter(getContext(), repayPlanArray);
@@ -114,11 +117,11 @@ public class RepayPlanActivity extends BaseCompatActivity implements AdapterView
                 break;
             //提前还款
             case R.id.repay_btn: {
-                intent = new Intent(getContext(), EarlyRepaymentActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("loanOrder", order);
-                intent.putExtras(bundle);
-                startActivity(intent);
+//                intent = new Intent(getContext(), EarlyRepaymentActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("loanOrder", order);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
             }
             break;
             //还款记录
@@ -132,12 +135,12 @@ public class RepayPlanActivity extends BaseCompatActivity implements AdapterView
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         XYRepayPlan xyRepayPlan = repayPlanArray.get(position);
-        Intent intent = new Intent(getContext(), RepayPlanDetailsActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("RepayPlanDetails", xyRepayPlan);
-        bundle.putSerializable("loanOrder", order);
-        intent.putExtras(bundle);
-        startActivity(intent);
+//        Intent intent = new Intent(getContext(), RepayPlanDetailsActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("RepayPlanDetails", xyRepayPlan);
+//        bundle.putSerializable("loanOrder", order);
+//        intent.putExtras(bundle);
+//        startActivity(intent);
 
     }
 
@@ -147,6 +150,7 @@ public class RepayPlanActivity extends BaseCompatActivity implements AdapterView
         requstMap.putAll(myApplication.getHttpHeader());
         requstMap.put("customerCode", order.getCustomerCode());
         requstMap.put("customerCardNo", myApplication.getUserBeanData().getIdCardNumber());
+        requstMap.put("chnseq", order.getTransSeq());
 
         okGo.<String>post(AppConfig.GetRepayPlan_url)
                 .upJson(new Gson().toJson(requstMap))
@@ -154,16 +158,18 @@ public class RepayPlanActivity extends BaseCompatActivity implements AdapterView
                     @Override
                     public void onSuccess(Response<String> response) {
                         try {
+                            Logger.json(response.body());
+
                             JSONObject jsonObject = new JSONObject(response.body());
-                            if (jsonObject.getBoolean("success")) {
+                            if ("000000".equals(jsonObject.getString("respCode"))) {
                                 String result = jsonObject.getString("result");
                                 repayPlanArray = GsonUtil.jsonToArrayList(result, XYRepayPlan.class);
-                                if (repayPlanArray.size() > 0)
+                                if (repayPlanArray.size() > 0) {
                                     setData();
-                                else
+                                } else
                                     toast_short("无更多信息...");
                             } else {
-                                toast_short("" + jsonObject.getString("message"));
+                                toast_short("" + jsonObject.getString("respMsg"));
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

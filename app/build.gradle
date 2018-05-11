@@ -57,6 +57,7 @@ dependencies {
     implementation project(':ocr_ui')
     implementation project(':View')
     implementation project(':BarCode')
+    implementation project(':SafeKeyboard')
     implementation 'com.google.code.gson:gson:2.2.4'
     implementation('com.android.support:appcompat-v7:27+') {
         exclude group: 'com.android.support:appcompat-v7:27.1.0'

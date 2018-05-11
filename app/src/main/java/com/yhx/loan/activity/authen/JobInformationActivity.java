@@ -290,11 +290,19 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
             toast_short("请输入公司电话区号");
             return;
         }
+        if(!checkTextEmptyLenth(etJobInfoCompanyTelCode,4)){
+            toast_short("公司电话区号长度不符");
+            return;
+        }
         if (!checkTextEmpty(etJobInfoCompanyTelNum)) {
             toast_short("请输入公司电话号码");
             return;
         }
 
+        if(!checkTextEmptyLenth(etJobInfoCompanyTelNum,8)){
+            toast_short("公司电话区号不符");
+            return;
+        }
         if (!checkTextEmpty(spLoanWorkState)) {
             toast_short("请选择工作状态");
             return;

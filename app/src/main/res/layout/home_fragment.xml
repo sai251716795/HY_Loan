@@ -110,7 +110,7 @@
             <cn.bingoogolapple.bgabanner.BGABanner
                 android:id="@+id/banner_home_zoomFade"
                 style="@style/BannerDefaultStyle"
-                app:banner_transitionEffect="zoomFade" />
+                app:banner_transitionEffect="zoom" />
 
            <include layout="@layout/menu_grid_layout"
                android:visibility="gone"/>

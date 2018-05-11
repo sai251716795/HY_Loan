@@ -52,7 +52,8 @@ import okhttp3.OkHttpClient;
  */
 
 public class MyApplication extends LitePalApplication {
-   public static  long OKGO_TIMEOUT = 2*60000;
+    public   Double PSREMPRCP = 0.0;
+    public static  long OKGO_TIMEOUT = 2*60000;
     public static OkGo okGo;
     public static MySharedPreferences mSharedPref ;
     public static List<BaseCompatActivity> activityList = new ArrayList<>();

@@ -205,7 +205,7 @@ public class ChangeRepayNumberActivity extends BaseCompatActivity {
                 pop.dismiss();
 
             }
-        }).ddBank(new SelectBankPopupWindow.AddBankListener() {
+        }).addBank(new SelectBankPopupWindow.AddBankListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AddBankActivity.class);

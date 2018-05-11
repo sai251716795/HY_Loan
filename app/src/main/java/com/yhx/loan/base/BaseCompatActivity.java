@@ -156,6 +156,10 @@ public class BaseCompatActivity extends AppCompatActivity {
         return !TextUtils.isEmpty(string) && string.trim().length() > 0;
     }
 
+    protected boolean checkTextEmptyLenth(TextView text,int lenth){
+        String string = text.getText().toString().trim();
+        return !TextUtils.isEmpty(string) && string.trim().length() >= lenth;
+    }
     /**
      * 隐藏状态栏
      */
@@ -237,7 +241,7 @@ public class BaseCompatActivity extends AppCompatActivity {
 
     }
 
-    protected void showDialog(String msg) {
+    protected void showDialog(String title, String msg) {
         if (TextUtils.isEmpty(msg)) {
             msg = "交易失败";
         }
@@ -328,6 +332,18 @@ public class BaseCompatActivity extends AppCompatActivity {
         finishAll();
         Intent intent = new Intent(context, LoginActivity.class);
         startActivity(intent);
+    }
+
+    public  int getVersionCode() {
+        PackageManager packageManager = context.getPackageManager();
+        int versionCode = 0;
+        try {
+            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+            versionCode = packageInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionCode;
     }
 
 }

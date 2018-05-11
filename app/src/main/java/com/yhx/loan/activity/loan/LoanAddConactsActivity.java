@@ -157,9 +157,7 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
                 });
                 simplePopupWindow.showAtLocation(contactLay);
             }
-
             break;
-
         }
     }
 
@@ -239,7 +237,7 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
 
         //TODO  这里给以改变当前数据状态
         myApplication.getLoanRequest().setRelationInfos(relationInfos);//添加數據
-        Intent intent = new Intent(getContext(), LoanConfirmActivity.class);
+        Intent intent = new Intent(getContext(), LoanDataCreateActivity.class);
         startActivity(intent);
     }
 

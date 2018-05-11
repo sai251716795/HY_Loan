@@ -98,7 +98,6 @@ public class StringArray {
 
     public static List<String> loanContactRela() {
         List<String> list = new ArrayList<>();
-        list.add("本人");
         list.add("父母");
         list.add("子女及兄弟姐妹");
         list.add("亲属");
@@ -113,7 +112,6 @@ public class StringArray {
     public static Map<String, String> firstRelMap = new HashMap<>();
 
     static {
-        firstRelMap.put("00", "本人");
         firstRelMap.put("01", "父母");
         firstRelMap.put("02", "子女及兄弟姐妹");
         firstRelMap.put("03", "亲属");
@@ -124,7 +122,6 @@ public class StringArray {
     public static Map<String, String> relMap = new HashMap<>();
 
     static {
-        relMap.put("00", "本人");
         relMap.put("01", "父母");
         relMap.put("02", "子女及兄弟姐妹");
         relMap.put("03", "亲属");

@@ -75,6 +75,10 @@ public class LoanRequest implements Serializable {
     private String indivemptyp;                 //    现单位性质
     private String indivindtrytyp;              //    现单位行业性质
 
+    private ArrayList<RelationInfo> relationInfos;//List   是  联系人列表
+    private Double loanMoneyAmount = 0.0;//借款金额
+    private int loanTermCount = 7;//借款期数
+
     public String getNowlivingProvince() {
         return nowlivingProvince;
     }
@@ -219,12 +223,7 @@ public class LoanRequest implements Serializable {
         this.promno = promno;
     }
 
-    private ArrayList<RelationInfo> relationInfos;//List   是  联系人列表
 
-
-
-    private Double loanMoneyAmount = 0.0;//借款金额
-    private int loanTermCount = 7;//借款期数
 
     public String getLocationAddress() {
         return locationAddress;

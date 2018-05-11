@@ -53,6 +53,8 @@ public class LoanDetailsActivity extends BaseCompatActivity {
     TextView orderId;
     @BindView(R.id.repayPlan_bt)
     LinearLayout repayPlanBt;
+    @BindView(R.id.repayPlan_text)
+    TextView repayPlanText;
     @BindView(R.id.Doubt_bt)
     LinearLayout DoubtBt;
     LoanApplyBasicInfo order;
@@ -73,63 +75,69 @@ public class LoanDetailsActivity extends BaseCompatActivity {
         order = (LoanApplyBasicInfo) getIntent().getSerializableExtra("LoanDetails");
         if (order == null)
             return;
-        //到账银行卡信息
-        bankCardNumber.setText(order.getLoanBankName() + "(" + order.getLoanBankCardNO().substring(order.getLoanBankCardNO().length() - 4) + ")");
-        repayNumber.setText(order.getLoanBankName() + "(" + order.getLoanBankCardNO().substring(order.getLoanBankCardNO().length() - 4) + ")");
-        newRepayNumber.setText(order.getLoanBankName() + "(" + order.getLoanBankCardNO().substring(order.getLoanBankCardNO().length() - 4) + ")");
+        try {
+            //到账银行卡信息
+            bankCardNumber.setText(order.getLoanBankName() + "(" + order.getLoanBankCardNO().substring(order.getLoanBankCardNO().length() - 4) + ")");
+            repayNumber.setText(order.getLoanBankName() + "(" + order.getLoanBankCardNO().substring(order.getLoanBankCardNO().length() - 4) + ")");
+            newRepayNumber.setText(order.getLoanBankName() + "(" + order.getLoanBankCardNO().substring(order.getLoanBankCardNO().length() - 4) + ")");
 
-        //还款方式
-        returnMoneyMethod.setText(AppConfig.mtdcdeMap.get(order.getReturnMoneyMethod()));
-        if (order.getReturnMoneyMethodName() != null)
-            returnMoneyMethod.setText(AppConfig.mtdcdeMap.get(order.getReturnMoneyMethodName()));
+            //还款方式
+            returnMoneyMethod.setText(AppConfig.mtdcdeMap.get(order.getReturnMoneyMethod()));
+            if (order.getReturnMoneyMethodName() != null)
+                returnMoneyMethod.setText(AppConfig.mtdcdeMap.get(order.getReturnMoneyMethodName()));
 
-        //交易类型
-        String loan = AppConfig.applyProductType.get(order.getProductType());
-        detailsTypeTitle.setText(loan);
-
-        if (order.getLoanMoneyAmount() != null) {
-            transAmtText.setText(order.getLoanMoneyAmount() + "元");
-        } else if (order.getOriginalLoanMoneyAmount() != null || !order.getOriginalLoanMoneyAmount().equals("")) {
-            transAmtText.setText(order.getOriginalLoanMoneyAmount() + "元");
-        }
-        //期数
-        String applyCount = "";
-        if (order.getLoanTermCount() != null) {
-            applyCount = order.getLoanTermCount() + "期";
-        } else if (order.getOriginalLoanTermCount() != null || !order.getOriginalLoanTermCount().equals("")) {
-            applyCount = order.getOriginalLoanTermCount() + "期";
-        }
-
-        transAmtText.setText(transAmtText.getText().toString()+" "+applyCount);
-        // 交易金额
-        transAmtText.setText("" + new DecimalFormat("#.00").format(Double.valueOf(order.getLoanMoneyAmount())) + "");
-        // 交易时间
-        detailsDateText.setText(DateUtils.timersFormatStr(order.getOriginalLoanRegDate()));
-
-        // 交易状态
-        // 设置申请状态
-        detailsStatueText.setText(StringUtils.trimEmpty(AppConfig.applyStatusMap.get(order.getApplyStatus())));
-        if (!StringUtils.trimEmpty(order.getFlowStatus()).equals("")) {
-            detailsStatueText.setText(order.getFlowStatus());
-        }
-        //单号
-        orderId.setText(order.getCustomerCode());
-
-        if (order.getApplyStatus().equals("400") || order.getApplyStatus().equals("500")) {
-            repayPlanBt.setVisibility(View.VISIBLE);
-        } else {
-            repayPlanBt.setVisibility(View.GONE);
-        }
-
-        if (order.getChannel() == null) {
-            changeRepayNumberLay.setVisibility(View.GONE);
-        } else {
-            if (order.getChannel().equals(AppConfig.Channel.xingYe)) {
-                changeRepayNumberLay.setVisibility(View.VISIBLE);
-            } else {
-                changeRepayNumberLay.setVisibility(View.GONE);
+            //交易类型
+            String loan = AppConfig.applyProductType.get(order.getProductType());
+            detailsTypeTitle.setText(loan);
+            // 交易金额
+            if (order.getLoanMoneyAmount() != null) {
+                transAmtText.setText(order.getLoanMoneyAmount() + "");
+            } else if (order.getOriginalLoanMoneyAmount() != null || !order.getOriginalLoanMoneyAmount().equals("")) {
+                transAmtText.setText(order.getOriginalLoanMoneyAmount() + "");
             }
+            //期数
+            String applyCount = "";
+            if (order.getLoanTermCount() != null) {
+                applyCount = order.getLoanTermCount() + "期";
+            } else if (order.getOriginalLoanTermCount() != null || !order.getOriginalLoanTermCount().equals("")) {
+                applyCount = order.getOriginalLoanTermCount() + "期";
+            }
+
+            // 交易时间
+            detailsDateText.setText(DateUtils.timersFormatStr(order.getOriginalLoanRegDate()));
+
+            // 交易状态
+            // 设置申请状态
+            detailsStatueText.setText(StringUtils.trimEmpty(AppConfig.applyStatusMap.get(order.getApplyStatus())));
+            if (!StringUtils.trimEmpty(order.getFlowStatus()).equals("")) {
+                detailsStatueText.setText(order.getFlowStatus());
+            }
+            //单号
+            orderId.setText(order.getCustomerCode());
+
+            if (order.getApplyStatus().equals("400") || order.getApplyStatus().equals("500")) {
+                repayPlanBt.setVisibility(View.VISIBLE);
+            } else {
+                repayPlanBt.setVisibility(View.GONE);
+            }
+
+            if (order.getChannel() == null || order.getBusCode().equals("") || order.getTransSeq().equals("")) {
+                changeRepayNumberLay.setVisibility(View.GONE);
+            } else {
+                if (order.getChannel().equals(AppConfig.Channel.xingYe)) {
+                    changeRepayNumberLay.setVisibility(View.VISIBLE);
+                } else {
+                    changeRepayNumberLay.setVisibility(View.GONE);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        /**
+         * 进件版本，隐藏修改还款账号，还钱/******************************************
+         repayPlanText.setText("我的还款计划");
+         changeRepayNumberLay.setVisibility(View.GONE);
+         ***/
 
     }
 

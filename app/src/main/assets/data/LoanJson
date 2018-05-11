@@ -106,7 +106,7 @@
     "loanMoney": "最高2万",
     "url": "",
     "describe": "保单用户专道",
-    "state": true,
+    "state": false,
     "enable": false
   }
 ]

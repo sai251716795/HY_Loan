@@ -13,6 +13,7 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/sysLayBgColor"
         app:srlEnableHeaderTranslationContent="false"
         app:srlEnableLoadmore="false">
 
@@ -24,12 +25,14 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp">
 
             <ListView
                 android:id="@+id/historyList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:divider="@null"
                 android:layout_marginTop="5dp" />
 
             <LinearLayout

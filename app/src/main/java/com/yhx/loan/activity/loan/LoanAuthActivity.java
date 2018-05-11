@@ -187,9 +187,28 @@ public class LoanAuthActivity extends BaseCompatActivity {
                                 });
                         al.create().show();
                     } else {
-                        Intent intent = new Intent(getContext(), SelectLoanAmountActivity.class);
-                        startActivity(intent);
-                        finish();
+                        CustomDialog.Builder al = new CustomDialog.Builder(LoanAuthActivity.this);
+                        al.setCancelable(false).setCanceledOnTouchOutside(false);
+                        al.setTitle("操作提示")
+                                .setMessage("申请贷款需要填写常用联系人\n需要读取通讯录权限时请同意，并填写常用联系人！")
+                                .setOkBtn("明白", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int i) {
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(getContext(), LoanAddConactsActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                })
+                                .setCancelBtn("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int i) {
+                                        dialog.dismiss();
+                                        finish();
+                                    }
+                                });
+                        al.create().show();
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

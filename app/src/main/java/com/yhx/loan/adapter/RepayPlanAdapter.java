@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yhx.loan.R;
@@ -23,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by 25171 on 2017/11/20.
  */
 
-public class RepayPlanAdapter extends BaseAdapter {
+public class  RepayPlanAdapter extends BaseAdapter {
     private List<XYRepayPlan> arryList = new ArrayList<>();
     private Context context;
 
@@ -51,7 +54,7 @@ public class RepayPlanAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_repay_plan, null);
             viewHolder = new ViewHolder(convertView);
@@ -59,33 +62,57 @@ public class RepayPlanAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        XYRepayPlan plan = arryList.get(position);
-        //显示期数
-        viewHolder.psPerdNo.setText("第 " + plan.getPsPerdNo() + " 期");
-        //计算兴业利息
-        Double nowNormIntAmt = plan.getPsNormIntAmt() + plan.getPsOdIntAmt() + plan.getPsCommOdInt() + plan.getPsFee()
-                - (plan.getSetlNormInt() + plan.getSetlOdIntAmt() + plan.getSetlCommOdInt() + plan.getSetlFee() + plan.getPsWvNmInt() + plan.getPsWvOdInt() + plan.getPsWvCommInt());
-        //显示利息
-        viewHolder.psNormIntAmt.setText(new DecimalFormat("#.00").format(nowNormIntAmt + 0) + "元");
-        //计算手续费
-        Double psFeeAmt = plan.getPsFeeAmt2() - plan.getSetlFeeAmt2() - plan.getRdu01amt() + plan.getFeeAmt() - plan.getSetlFeeAmt() - plan.getRdu06amt() + plan.getPsCommAmt() - plan.getSetlCommAmt();
-        //显示还款本金
-        viewHolder.psInstmAmt.setText("" + plan.getPsInstmAmt() + "元");
-        //计算应还款金额
-        Double allAmt = plan.getPsInstmAmt() + nowNormIntAmt + psFeeAmt;
-        String allAmtStr = new DecimalFormat("#.00").format(allAmt + 0);
-        // 显示应还金额
-        viewHolder.psInstmAmtAll.setText(allAmtStr + "元");
         try {
-            if (plan.getSetlInd().equals("N"))
+            XYRepayPlan plan = arryList.get(position);
+            viewHolder.moreCheck.setChecked(false);
+            viewHolder.moreLayout.setVisibility(View.GONE);
+            viewHolder.yqIndView.setVisibility(View.GONE);
+            viewHolder.moreCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        viewHolder.moreLayout.setVisibility(View.VISIBLE);
+                    }else {
+                        viewHolder.moreLayout.setVisibility(View.GONE);
+                    }
+                }
+            });
+            //显示期数
+            viewHolder.psPerdNo.setText("第 " + plan.getPs_perd_no() + " 期");
+            //计算兴业利息
+            Double nowNormIntAmt = plan.getPs_norm_int_amt() + plan.getPs_od_int_amt() + plan.getPs_comm_od_int() + plan.getPs_fee()
+                    - (plan.getSetl_norm_int() + plan.getSetl_od_int_amt() + plan.getSetl_comm_od_int() + plan.getSetl_fee() + plan.getPs_wv_nm_int() + plan.getPs_wv_od_int() + plan.getPs_wv_comm_int());
+            //显示利息
+            viewHolder.psNormIntAmt.setText(new DecimalFormat("#.00").format(nowNormIntAmt + 0) + "元");
+            //计算手续费
+            Double psFeeAmt = plan.getPs_fee_amt2() - plan.getSetl_fee_amt2() - plan.getRdu01Amt() + plan.getFee_amt() - plan.getSetl_fee_amt() - plan.getRdu06Amt() + plan.getPs_comm_amt() - plan.getSetl_comm_amt();
+            //显示还款本金,期供金额4
+
+//            viewHolder.psInstmAmt.setText("" + plan.getPsInstmAmt() + "元");
+            viewHolder.psInstmAmt.setText("" + plan.getPs_prcp_amt() + "元");
+            //计算应还款金额
+            Double allAmt = plan.getPs_prcp_amt() + nowNormIntAmt + psFeeAmt;
+//            Double allAmt = plan.getPsInstmAmt() + nowNormIntAmt + psFeeAmt;
+            String allAmtStr = new DecimalFormat("#.00").format(allAmt + 0);
+            // 显示应还金额
+            viewHolder.psInstmAmtAll.setText(allAmtStr + "元");
+
+            if (plan.getSetl_ind().equals("N"))
                 viewHolder.setlInd.setText("待还");
-            if (plan.getSetlInd().equals("Y"))
+            if (plan.getSetl_ind().equals("Y"))
                 viewHolder.setlInd.setText("已还");
 
+            //计算逾期罚息金额
+            Double psOdIntAmts = plan.getPs_od_int_amt() - plan.getSetl_od_int_amt() - plan.getPs_wv_od_int();
+            if(psOdIntAmts>0){
+                viewHolder.yqIndView.setVisibility(View.VISIBLE);
+            }else {
+                viewHolder.yqIndView.setVisibility(View.GONE);
+            }
+            viewHolder.psDueDt.setText(dataChange(plan.getPs_due_dt()));
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        viewHolder.psDueDt.setText(dataChange(plan.getPsDueDt()));
         return convertView;
     }
 
@@ -102,6 +129,12 @@ public class RepayPlanAdapter extends BaseAdapter {
         TextView psInstmAmtAll;
         @BindView(R.id.psNormIntAmt)
         TextView psNormIntAmt;
+        @BindView(R.id.yqIndView)
+        TextView yqIndView;
+        @BindView(R.id.more_check)
+        CheckBox moreCheck;
+        @BindView(R.id.more_layout)
+        LinearLayout  moreLayout;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

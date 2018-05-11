@@ -157,4 +157,36 @@ public class BankCardAdapter extends BaseAdapter {
         static final int 农村信用社 = R.drawable.take_money_logo_banck_ncxinyongshe;
 
     }
+
+
+   public  static void setBankIcon(String bankName,ImageView view){
+       if(bankName.contains("工商"))
+           view.setImageResource(bankIcon.工商);
+       else if(bankName.contains("招商"))
+          view.setImageResource(bankIcon.招商);
+       else if(bankName.contains("人民"))
+          view.setImageResource(bankIcon.人民);
+       else if( bankName.contains("中信"))
+          view.setImageResource(bankIcon.中信);
+       else if(bankName.contains("中国银行"))
+          view.setImageResource(bankIcon.中国银行);
+       else if(bankName.contains("建设"))
+          view.setImageResource(bankIcon.建设);
+       else if(bankName.contains("广发"))
+          view.setImageResource(bankIcon.广发);
+       else if(bankName.contains("交通"))
+          view.setImageResource(bankIcon.交通);
+       else if(bankName.contains("兴业"))
+          view.setImageResource(bankIcon.兴业);
+       else if(bankName.contains("农业"))
+          view.setImageResource(bankIcon.农业);
+       else if(bankName.contains("邮政"))
+          view.setImageResource(bankIcon.邮政);
+       else if(bankName.contains("民生"))
+          view.setImageResource(bankIcon.民生);
+       else if(bankName.contains("农村信用社"))
+          view.setImageResource(bankIcon.农村信用社);
+       else
+          view.setVisibility(View.GONE);
+   }
 }

@@ -10,6 +10,6 @@
     <color name="sysBtColor">#24a4ee</color>
     <color name="bacGout">#f4f4f4</color>
     <color name="sysColor_green">#29a6ef</color>
-
+    <color name="sysLayBgColor">#f2f6f8</color>
 
 </resources>

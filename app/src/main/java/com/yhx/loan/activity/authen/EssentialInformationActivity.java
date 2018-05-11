@@ -35,6 +35,7 @@ import com.yhx.loan.bean.WorkInfo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,7 +103,8 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
 
             try {
                 UserBasicInfo base = userBean.getUserBasicInfo();
-                String LivingAddress = base.getNowlivingProvince() + " " + base.getNowlivingCity() + " " + base.getNowlivingArea();
+                String LivingAddress = StringUtils.trimEmpty(base.getNowlivingProvince()) + " "
+                        + StringUtils.trimEmpty(base.getNowlivingCity()) + " " + StringUtils.trimEmpty(base.getNowlivingArea());
                 etLoanResidenceAddress.setText(LivingAddress);
                 etLoanResidenceAddressRoad.setText(base.getNowlivingAddress());
             } catch (Exception e) {
@@ -142,8 +144,10 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
             break;
             //居住性质
             case R.id.sp_loan_NowLivingState: {
-                final List<String> list =  StringArray.getMapValues(nowLivingStateMap);
-
+                final List<String> list =  new ArrayList<>();
+                list.add("自有");
+                list.add("租赁");
+                list.add("宿舍");
                 simplePopupWindow = new SimplePopupWindow(this, list, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

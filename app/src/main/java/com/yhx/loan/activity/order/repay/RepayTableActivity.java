@@ -1,5 +1,6 @@
 package com.yhx.loan.activity.order.repay;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.hx.view.widget.CustomDialog;
 import com.hx.view.widget.MyListView;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 import com.pay.library.bean.BankCardItem;
 import com.pay.library.config.AppConfig;
+import com.pay.library.tool.Logger;
 import com.pay.library.uils.DateUtils;
 import com.pay.library.uils.GsonUtil;
 import com.scwang.smartrefresh.header.MaterialHeader;
@@ -85,7 +88,6 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
         initdata();
     }
 
-
     @OnClick({R.id.btn_back, R.id.repayAllBt, R.id.right_menu_text, R.id.allRepayMoneyText, R.id.repayNumber, R.id.repay_bank})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -114,11 +116,24 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
             case R.id.repayNumber:
                 break;
             case R.id.repay_bank: {//修改还款账号
-                Intent intent = new Intent(getContext(), ChangeRepayNumberActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("loanOrder", order);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if (order.getChannel() == null || order.getBusCode().equals("") || order.getTransSeq().equals("")) {
+                    CustomDialog.Builder builder = new CustomDialog.Builder(this);
+                    builder.setTitle("提示")
+                            .setMessage("该笔交易不支持修改银行卡服务")
+                            .setOkBtn("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int i) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    builder.create().show();
+                } else {
+                    Intent intent = new Intent(getContext(), ChangeRepayNumberActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("loanOrder", order);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
             break;
             case R.id.repayAllBt://部分还款
@@ -148,17 +163,17 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
             for (int i = 0; i < repayPlanArray.size(); i++) {
                 XYRepayPlan xplan = repayPlanArray.get(i);
                 Log.e(TAG, "setData: " + i);
-                if (xplan.getPsPerdNo().equals("0")) {
+                if (xplan.getPs_perd_no().equals("0")) {
                     repayPlanArray.remove(i);
                     i--;
                 } else {
-                    if (xplan.getSetlInd().equals("N")) {
+                    if (xplan.getSetl_ind().equals("N")) {
                         waitRepay++;
-                        psRemPrcp += xplan.getPsInstmAmt();
+                        psRemPrcp += xplan.getPs_instm_amt();
                     }
                     //当前时间未逾期数据提示还款。
                     //当前时间后面账单
-                    if (DateUtils.compare_date(nowMonth, xplan.getPsDueDt(), "yyyyMMdd")) {
+                    if (DateUtils.compare_date(nowMonth, xplan.getPs_due_dt(), "yyyyMMdd")) {
                         LatelyPlan = xplan;
                     }
                 }
@@ -166,7 +181,7 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
 
             repayNumber.setText("剩余" + waitRepay + "期");
             allRepayMoneyText.setText(new DecimalFormat("#.00").format(psRemPrcp));
-
+            myApplication.PSREMPRCP = psRemPrcp;
             repayPlanAdapter = new RepayPlanAdapter(getContext(), repayPlanArray);
             repayPlanList.setAdapter(repayPlanAdapter);
             repayPlanAdapter.notifyDataSetChanged();
@@ -196,7 +211,6 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
         repayPlanList.setAdapter(repayPlanAdapter);
         repayPlanList.setOnItemClickListener(this);
         refreshLayout.setOnRefreshListener(onRefreshListene);
-
     }
 
     //刷新操作
@@ -217,11 +231,13 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
         getRepayPlanLsit();
     }
 
+    //获取还款计划表
     private void getRepayPlanLsit() {
         Map<String, Object> requstMap = new HashMap<>();
         requstMap.putAll(myApplication.getHttpHeader());
         requstMap.put("customerCode", order.getCustomerCode());
         requstMap.put("customerCardNo", myApplication.getUserBeanData().getIdCardNumber());
+        requstMap.put("chnseq", order.getTransSeq());
 
         okGo.<String>post(AppConfig.GetRepayPlan_url)
                 .upJson(new Gson().toJson(requstMap))
@@ -229,8 +245,10 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
                     @Override
                     public void onSuccess(Response<String> response) {
                         try {
+                            Logger.json(response.body());
+
                             JSONObject jsonObject = new JSONObject(response.body());
-                            if (jsonObject.getBoolean("success")) {
+                            if ("000000".equals(jsonObject.getString("respCode"))) {
                                 String result = jsonObject.getString("result");
                                 repayPlanArray = GsonUtil.jsonToArrayList(result, XYRepayPlan.class);
                                 if (repayPlanArray.size() > 0) {
@@ -238,7 +256,7 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
                                 } else
                                     toast_short("无更多信息...");
                             } else {
-                                toast_short("" + jsonObject.getString("message"));
+                                toast_short("" + jsonObject.getString("respMsg"));
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

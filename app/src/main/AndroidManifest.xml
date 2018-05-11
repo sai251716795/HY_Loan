@@ -200,7 +200,9 @@
         <activity android:name=".activity.order.repay.EarlyRepaymentActivity" />
         <activity android:name=".activity.order.repay.PaymentHistoryActivity" />
         <activity android:name=".activity.order.repay.RepayTableActivity" />
-        <activity android:name=".activity.order.repay.RepayHDetailsActivity"></activity>
+        <activity android:name=".activity.order.repay.RepayHDetailsActivity" />
+        <activity android:name=".activity.order.repay.RepayResultActivity" />
+        <activity android:name=".activity.loan.LoanDataCreateActivity"></activity>
     </application>
 
 </manifest>

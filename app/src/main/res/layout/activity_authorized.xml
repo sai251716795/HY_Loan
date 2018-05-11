@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/authorization_image"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/authorization_success" />
 
@@ -21,12 +21,13 @@
         android:text="恭喜您！\n申请已提交"
         android:lineSpacingExtra="5dp"
         android:textColor="#fe8956"
-        android:textSize="22sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/finish_bt"
         style="@style/button_green_style"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
         android:text="返回" />
 </LinearLayout>

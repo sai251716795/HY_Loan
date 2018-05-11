@@ -37,13 +37,12 @@ public class AuthorizedActivity extends BaseCompatActivity {
         initSystemBarTint();
         setContentView(R.layout.activity_authorized);
         ButterKnife.bind(this);
-        tvTitle.setText("申请结果");
+        tvTitle.setText("申请提交完成");
         initData();
     }
 
     private void initData() {
         btnBack.setVisibility(View.GONE);
-        tvTitle.setText("授权结果");
     }
 
     @OnClick({R.id.finish_bt, R.id.btn_back})
