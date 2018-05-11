@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.hx.view.widget.CustomDialog;
-import com.hx.view.widget.SimplePopupWindow;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
@@ -29,7 +28,6 @@ import com.yhx.loan.view.SelectBankPopupWindow;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.nio.file.Watchable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,7 +69,7 @@ public class ChangeRepayNumberActivity extends BaseCompatActivity {
             toast_short("订单不存在");
             finish();
             return;
-        }else {
+        } else {
             //交易类型
             String loan = AppConfig.applyProductType.get(order.getProductType());
             loanName.setText(loan);
@@ -122,7 +120,7 @@ public class ChangeRepayNumberActivity extends BaseCompatActivity {
             map.put("realName", "" + bankCard.getRealName());
             map.put("idCard", "" + bankCard.getIdCardNumber());
             map.put("acctbankcde", "" + BankMap.bankCode(bankCard.getBankName()));
-            map.put("chnseq", "" + order.getBusCode());
+            map.put("chnseq", "" + order.getTransSeq());
             map.put("cardno", "" + bankCard.getBankCardNumber());
             map.put("phoneno", "" + bankCard.getBankCardPLMobile());
 
@@ -134,7 +132,13 @@ public class ChangeRepayNumberActivity extends BaseCompatActivity {
                                      JSONObject jsonObject = null;
                                      try {
                                          jsonObject = new JSONObject(response.body());
-                                         showCustomDialog("响应信息", jsonObject.getString("respMsg"), false);
+                                         String msg = "修改失败";
+                                         if (jsonObject.getString("respCode").equals("000000")) {
+                                             msg = "修改成功，点击返回！";
+                                         } else {
+                                             msg = jsonObject.getString("respMsg");
+                                         }
+                                         showCustomDialog("处理结果", msg, true);
                                      } catch (JSONException e) {
                                          e.printStackTrace();
                                      }
