@@ -1,5 +1,9 @@
 package com.yhx.loan.activity.change;
 
+/**
+ *  请求失败或者成功时后，提示用户后点击都关闭当前界面
+ */
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
