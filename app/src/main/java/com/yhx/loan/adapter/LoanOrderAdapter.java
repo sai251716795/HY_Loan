@@ -37,7 +37,6 @@ public class LoanOrderAdapter extends BaseAdapter {
         this.context = context;
     }
 
-
     @Override
     public int getCount() {
         return arryList.size();
@@ -64,8 +63,14 @@ public class LoanOrderAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         LoanApplyBasicInfo loanApplyBasicInfo = arryList.get(position);
-        String loan = AppConfig.applyProductType.get(loanApplyBasicInfo.getProductType());
-        viewHolder.loanName.setText(loan);
+        if(loanApplyBasicInfo.getProductType()!=null)
+        if(!loanApplyBasicInfo.getProductType().equals("")) {
+            String loan = AppConfig.applyProductType.get(loanApplyBasicInfo.getProductType());
+            viewHolder.loanName.setText(loan);
+        }else {
+            viewHolder.loanName.setText(AppConfig.applyProductType.get("1001"));
+        }
+
         try {
             viewHolder.loanItenApplyDate.setText("" + DateUtils.timersFormatStr(loanApplyBasicInfo.getOriginalLoanRegDate()) + "");//申请时间
 
@@ -89,7 +94,6 @@ public class LoanOrderAdapter extends BaseAdapter {
         }
 
         switch (loanApplyBasicInfo.getApplyStatus())
-
         {
             case "006":
             case "200":

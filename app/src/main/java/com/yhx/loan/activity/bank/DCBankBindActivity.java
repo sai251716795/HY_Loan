@@ -119,7 +119,7 @@ public class DCBankBindActivity extends BaseCompatActivity {
         map.putAll(myApplication.getHttpHeader());
         UserBean userBean = myApplication.getUserBeanData();
         map.put("mobile", userBean.getLoginName());//String	是	手机号(登录名)
-        map.put("OperateType", BankMap.Binding);//String	绑定银行卡操作类型
+        map.put("operateType", BankMap.Binding);//String	绑定银行卡操作类型
         map.put("realName", userBean.getRealName());//  String(50)	是	真实姓名
         map.put("idCardNumber", userBean.getIdCardNumber());//  String(50)	是	身份证号
         map.put("bankName", bankName.getText().toString().trim());//  String	是	开户行

@@ -76,16 +76,14 @@ public class RepayHistoryAdapter extends BaseAdapter {
        }
 
         if (history.getRepayStatus().equals("0")) {
-            viewHolder.repayStatus.setText("成功");
-            viewHolder.repayStatus.setTextColor(0xffFF0000);
-        }
-        if (history.getRepayStatus().equals("1")) {
-            viewHolder.repayStatus.setText("失败");
-            viewHolder.repayStatus.setTextColor(0xffFF0000);
-        }
-        if (history.getRepayStatus().equals("2")) {
+            viewHolder.repayStatus.setText("还款成功");
+            viewHolder.repayStatus.setTextColor(0xff666666);
+        }else if (history.getRepayStatus().equals("1")) {
+            viewHolder.repayStatus.setText("还款失败");
+            viewHolder.repayStatus.setTextColor(0xffea0606);
+        }else if (history.getRepayStatus().equals("2")) {
             viewHolder.repayStatus.setText("处理中");
-            viewHolder.repayStatus.setTextColor(0xff2ed22e);
+            viewHolder.repayStatus.setTextColor(0xff126aff);
         }
 
         return convertView;

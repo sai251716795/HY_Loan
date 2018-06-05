@@ -43,6 +43,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import static com.yhx.loan.adapter.StringArray.*;
 
 /**
@@ -95,14 +96,25 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
     private void initViewData() {
         userBean = myApplication.getUserBeanData();
         if (userBean.isBasicInfoState()) {
-            spLoanNowLivingState.setText(getMapValue(nowLivingStateMap,userBean.getUserBasicInfo().getNowLivingState()));
-            etLoanMaritalStatus.setText(getMapValue(marryMap,userBean.getUserBasicInfo().getMaritalStatus()));
-            etLoanEnducationDegree.setText(getMapValue(loanEducationMap,userBean.getUserBasicInfo().getEnducationDegree()));
+//            spLoanNowLivingState.setText(getMapValue(nowLivingStateMap,userBean.getUserBasicInfo().getNowLivingState()));
+//            etLoanMaritalStatus.setText(getMapValue(marryMap,userBean.getUserBasicInfo().getMaritalStatus()));
+//            etLoanEnducationDegree.setText(getMapValue(loanEducationMap,userBean.getUserBasicInfo().getEnducationDegree()));
+
+            spLoanNowLivingState.setText(userBean.getUserBasicInfo().getNowLivingState());
+            etLoanMaritalStatus.setText(userBean.getUserBasicInfo().getMaritalStatus());
+            etLoanEnducationDegree.setText(userBean.getUserBasicInfo().getEnducationDegree());
+
             etLoanSupportCount.setText(userBean.getUserBasicInfo().getSupportCount() + ""); //供养人数
             etLoanEmail.setText(userBean.getUserBasicInfo().getEmail());//邮件
 
             try {
+
                 UserBasicInfo base = userBean.getUserBasicInfo();
+
+                nowlivingProvince = base.getNowlivingProvince();//现居住地址省份
+                nowlivingCity = base.getNowlivingCity();//现居住地址市
+                nowlivingArea = base.getNowlivingArea();//现居住地址区
+
                 String LivingAddress = StringUtils.trimEmpty(base.getNowlivingProvince()) + " "
                         + StringUtils.trimEmpty(base.getNowlivingCity()) + " " + StringUtils.trimEmpty(base.getNowlivingArea());
                 etLoanResidenceAddress.setText(LivingAddress);
@@ -144,7 +156,7 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
             break;
             //居住性质
             case R.id.sp_loan_NowLivingState: {
-                final List<String> list =  new ArrayList<>();
+                final List<String> list = new ArrayList<>();
                 list.add("自有");
                 list.add("租赁");
                 list.add("宿舍");
@@ -208,7 +220,7 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
             toast_short("请输入正确的邮箱地址");
             return;
         }
-        if(nowlivingProvince.equals("")||nowlivingCity.equals("")){
+        if (nowlivingProvince.equals("") || nowlivingCity.equals("")) {
             etLoanResidenceAddress.setText("");
             etLoanResidenceAddressRoad.setText("");
             toast_long("居住地址已过期，请重新选择");
@@ -216,13 +228,22 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
         }
 
         String supportCountedit = etLoanSupportCount.getText().toString().trim();
-        /*****************************************************************/
+        /****************************************************************
+         String email = etLoanEmail.getText().toString().trim();//String(50)	是	电子邮箱
+         String maritalStatus = StringArray.getMapKey(StringArray.marryMap, etLoanMaritalStatus.getText().toString());//	String(5) 	是	婚姻状态  key
+         int supportCount = Integer.valueOf((!supportCountedit.equals(null) ? supportCountedit : "0"));//Int	是	供养人数
+         String enducationDegree = StringArray.getMapKey(loanEducationMap,etLoanEnducationDegree.getText().toString());//String(10) 	是	教育程度
+         String nowlivingAddress = nowlivingStreet + etLoanResidenceAddressRoad.getText().toString().trim();//现居住地址详细
+         String nowLivingState = StringArray.getMapKey(nowLivingStateMap,spLoanNowLivingState.getText().toString().trim());//String(50)	是	现居住房性质
+         ***************************************************************/
+
         String email = etLoanEmail.getText().toString().trim();//String(50)	是	电子邮箱
-        String maritalStatus = StringArray.getMapKey(StringArray.marryMap, etLoanMaritalStatus.getText().toString());//	String(5) 	是	婚姻状态  key
+        String maritalStatus = etLoanMaritalStatus.getText().toString();//	String(5) 	是	婚姻状态  key
         int supportCount = Integer.valueOf((!supportCountedit.equals(null) ? supportCountedit : "0"));//Int	是	供养人数
-        String enducationDegree = StringArray.getMapKey(loanEducationMap,etLoanEnducationDegree.getText().toString());//String(10) 	是	教育程度
+        String enducationDegree = etLoanEnducationDegree.getText().toString();//String(10) 	是	教育程度
         String nowlivingAddress = nowlivingStreet + etLoanResidenceAddressRoad.getText().toString().trim();//现居住地址详细
-        String nowLivingState = StringArray.getMapKey(nowLivingStateMap,spLoanNowLivingState.getText().toString().trim());//String(50)	是	现居住房性质
+        String nowLivingState = spLoanNowLivingState.getText().toString().trim();//String(50)	是	现居住房性质
+
         //拼接请求数据
         Map<String, Object> objectMap = new HashMap<>();
         objectMap.putAll(myApplication.getHttpHeader());
@@ -233,9 +254,9 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
         objectMap.put("enducationDegree", enducationDegree);             //是	教育程度
         objectMap.put("nowlivingAddress", nowlivingAddress);             ///现居住地址详细
         objectMap.put("nowLivingState", nowLivingState);             //是	现居住房性质
-        objectMap.put("nowlivingProvince",  nowlivingProvince);       ////现居住地址省份
-        objectMap.put("nowlivingCity",      nowlivingCity);             ////现居住地址市
-        objectMap.put("nowlivingArea",      nowlivingArea);             ////现居住地址区
+        objectMap.put("nowlivingProvince", nowlivingProvince);       ////现居住地址省份
+        objectMap.put("nowlivingCity", nowlivingCity);             ////现居住地址市
+        objectMap.put("nowlivingArea", nowlivingArea);             ////现居住地址区
 
         //建立请求连接
         okGo.<String>post(AppConfig.EssentialInfo_url)

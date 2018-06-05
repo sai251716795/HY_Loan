@@ -114,7 +114,7 @@ public class MeFragment extends Fragment {
                     }
                 };
                 dataServer.RefreshUThread();
-            }else {
+            } else {
                 startActivity(LoginActivity.class);
             }
             refreshlayout.finishRefresh(1000);
@@ -157,9 +157,12 @@ public class MeFragment extends Fragment {
                     startActivity(BankCardManageActivity.class);
                 }
                 break;
-            case R.id.loan_order_layout:
-                startActivity(LoanListActivity.class);
-                break;
+            case R.id.loan_order_layout: {
+                Intent intent = new Intent(getActivity(), LoanListActivity.class);
+                intent.putExtra("loanType", LoanListActivity.type_repay);
+                startActivity(intent);
+            }
+            break;
             case R.id.my_message_layout:
                 startActivity(NoticeActivity.class);
                 break;
@@ -188,7 +191,7 @@ public class MeFragment extends Fragment {
             UserIcon icon = DataSupport.where("loginName=?", userBean.getLoginName()).findFirst(UserIcon.class);
             if (icon != null) {
                 userIcon.setBackgroundResource(R.drawable.oval_icon_bg);
-                userIcon.setPadding(5,5,5,5);
+                userIcon.setPadding(5, 5, 5, 5);
                 userIcon.setImageBitmap(icon.getBitmap());
             }
 

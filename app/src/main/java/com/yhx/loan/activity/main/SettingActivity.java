@@ -190,9 +190,9 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
     }
 
     private void UpdateOrDownloadApp() {
-//        apkSer.getCommit();
+
         String url = "http://downpack.baidu.com/appsearch_AndroidPhone_1012271b.apk";
-        AppUpdateService.getInstance(getContext()).CustomDialog("有性版本需要更新", 3, url);
+        AppUpdateService.getInstance(getContext()).CustomDialog("有新版本需要更新", 3, url);
     }
 
     private void signOut() {

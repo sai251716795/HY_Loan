@@ -249,6 +249,7 @@ public class ContactCreditActivity extends BaseCompatActivity {
                             //去除区号 +86 ....0591 ，读取后11位有效号码
                             String tel = phoneNumber.substring(phoneNumber.length() - 11);
                             //判断是否是一个正确的手机号
+
                             if (!StringUtils.compTele(tel)) {
                                 toast_short("手机号有误");
                                 return;

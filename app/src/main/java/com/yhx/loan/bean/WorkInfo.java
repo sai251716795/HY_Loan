@@ -24,8 +24,8 @@ public class WorkInfo extends DataSupport {
     private String indivempcity;               //现单位地址（市）
     private String indivemparea;               //现单位地址（区）
     private String indivempaddr;               //现单位地址（详细信息）
-    private String indivemptyp;                 //    现单位性质
-    private String indivindtrytyp;              //    现单位行业性质
+    private String indivemptyp;                 //现单位性质
+    private String indivindtrytyp;              //现单位行业性质
 
 
     public String getIndivemptyp() {

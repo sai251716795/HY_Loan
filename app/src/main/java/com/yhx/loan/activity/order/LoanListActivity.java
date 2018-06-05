@@ -85,6 +85,9 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
     LoanOrderAdapter orderAdapter = null;
     List<LoanApplyBasicInfo> datalist = null;
 
+    int loanType = 0;
+    public static  int type_List = 0;
+    public static  int type_repay = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +99,8 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
     }
 
     private void initViewData() {
+        loanType = getIntent().getIntExtra("loanType",0);
+
         titleCheck.setChecked(false);
         titleCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -146,16 +151,17 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
                     @Override
                     public void ReceiveMessage(List<LoanApplyBasicInfo> list) {
                         datalist = list;
+                        if(loanType==type_repay) {
+                            //移除不属于还款条件的订单
+                            for (int i = 0; i < datalist.size(); i++) {
+                                LoanApplyBasicInfo loan = datalist.get(i);
 
-                        //移除不属于还款条件的订单
-                        for(int i=0;i<datalist.size();i++){
-                           LoanApplyBasicInfo loan = datalist.get(i);
-                           if(!loan.getApplyStatus().equals("400")){
-                               datalist.remove(i);
-                               i--;
-                           }
+                                if (!loan.getApplyStatus().equals("400")) {
+                                    datalist.remove(i);
+                                    i--;
+                                }
+                            }
                         }
-
                         if (datalist.size() > 0) {
                             orderAdapter = new LoanOrderAdapter(getContext(), datalist);
                             orderList.setAdapter(orderAdapter);
@@ -243,11 +249,13 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(getContext(), RepayTableActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("loanOrder",  datalist.get(position));
-        intent.putExtras(bundle);
-        startActivity(intent);
+       if( datalist.get(position).getApplyStatus().equals("400")) {
+           Intent intent = new Intent(getContext(), RepayTableActivity.class);
+           Bundle bundle = new Bundle();
+           bundle.putSerializable("loanOrder", datalist.get(position));
+           intent.putExtras(bundle);
+           startActivity(intent);
+       }
     }
 
     @Override

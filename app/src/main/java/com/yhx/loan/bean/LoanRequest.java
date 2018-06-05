@@ -1,11 +1,7 @@
 package com.yhx.loan.bean;
 
-import org.litepal.annotation.Column;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
-
 /**
  * 贷款数据申请字段
  */
@@ -59,21 +55,21 @@ public class LoanRequest implements Serializable {
     private String image3dcheck = "";//  String(MAX)    是  活体识别数据包BASE65
 
     /**新增字段*/
-    private String promno;//进件代码
-    private String purpose;//贷款用途
-    private String mtdcde = "DEBX";//还款方式
-    private String typfreqcde = "1M";//还款间隔
-    private String regprovince;//  户籍地址（省）
-    private String regcity;//户籍地址（市）
-    private String regarea;//户籍地址（区）
-    private String regaddr;//籍地址（详细地址
+    private String promno;                    //进件代码
+    private String purpose;                   //贷款用途
+    private String mtdcde = "DEBX";           //还款方式
+    private String typfreqcde = "1M";         //还款间隔
+    private String regprovince;               //  户籍地址（省）
+    private String regcity;                   //户籍地址（市）
+    private String regarea;                   //户籍地址（区）
+    private String regaddr;                   //籍地址（详细地址
     private String proftyp;                   //职业类型
-    private String indivempprovince;           //现单位地址（省）
-    private String indivempcity;               //现单位地址（市）
-    private String indivemparea;               //现单位地址（区）
-    private String indivempaddr;               //现单位地址（详细信息）
-    private String indivemptyp;                 //    现单位性质
-    private String indivindtrytyp;              //    现单位行业性质
+    private String indivempprovince;          //现单位地址（省）
+    private String indivempcity;              //现单位地址（市）
+    private String indivemparea;              //现单位地址（区）
+    private String indivempaddr;              //现单位地址（详细信息）
+    private String indivemptyp;               //现单位性质
+    private String indivindtrytyp;            //现单位行业性质
 
     private ArrayList<RelationInfo> relationInfos;//List   是  联系人列表
     private Double loanMoneyAmount = 0.0;//借款金额
@@ -222,8 +218,6 @@ public class LoanRequest implements Serializable {
     public void setPromno(String promno) {
         this.promno = promno;
     }
-
-
 
     public String getLocationAddress() {
         return locationAddress;

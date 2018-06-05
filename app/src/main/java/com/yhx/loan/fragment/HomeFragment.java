@@ -1,6 +1,7 @@
 package com.yhx.loan.fragment;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,7 +28,6 @@ import com.yhx.loan.activity.login.LoginActivity;
 import com.yhx.loan.adapter.LoanMenuAdapter;
 import com.yhx.loan.base.MyApplication;
 import com.yhx.loan.bean.LoanMenu;
-
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -68,6 +68,8 @@ public class HomeFragment extends Fragment implements BGABanner.Delegate<ImageVi
     BGABanner banner;
     @BindView(R.id.loan_menu)
     MyGridView gridView;
+    @BindView(R.id.linearLayout)
+    LinearLayout linearLayout;
 
 
     @Override
@@ -86,7 +88,8 @@ public class HomeFragment extends Fragment implements BGABanner.Delegate<ImageVi
         DisplayMetrics metric = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metric);
         int width = metric.widthPixels;     // 屏幕宽度（像素）
-        banner.setMinimumHeight(width/3);
+        banner.setMinimumHeight(width / 3);
+
         return rootView;
     }
 

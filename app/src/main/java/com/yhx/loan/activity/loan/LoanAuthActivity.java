@@ -7,10 +7,8 @@ import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.bairong.mobile.BrAgent;
@@ -18,7 +16,6 @@ import com.bairong.mobile.utils.CallBack;
 import com.hx.view.widget.CustomDialog;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-import com.oliveapp.liveness.sample.liveness.SampleStartActivity;
 import com.pay.library.config.AppConfig;
 import com.pay.library.uils.GsonUtil;
 import com.yhx.loan.R;
@@ -113,10 +110,11 @@ public class LoanAuthActivity extends BaseCompatActivity {
                         if (Integer.valueOf(loanApplyBasicInfo.getApplyStatus()) < 500) {
                             dismissLoadingDialog();
                             toast_long("您还有未完成的贷款记录");
-                            Intent intent = new Intent(getContext(), LoanListActivity.class);
-                            startActivity(intent);
-                            finish();
-                            return;
+//                            Intent intent = new Intent(getContext(), LoanListActivity.class);
+//                            intent.putExtra("loanType",LoanListActivity.type_List);
+//                            startActivity(intent);
+//                            finish();
+//                            return;
                         }
                     }
                     BrAgentAuth();
@@ -138,10 +136,10 @@ public class LoanAuthActivity extends BaseCompatActivity {
     }
 
     private void BrAgentAuth() {
+        showLoadingDialog("loading...");
         BrAgent.brInit(getApplicationContext(), "3100625", "", "", new CallBack() {
             @Override
             public void message(JSONObject jsonObject) {
-                dismissLoadingDialog();
                 try {
                     String gid = jsonObject.getString("gid");
                     if (gid != null) {

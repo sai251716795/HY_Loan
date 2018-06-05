@@ -20,7 +20,7 @@ public class StringArray {
         marryMap.put("22", "再婚");
         marryMap.put("30", "丧偶");
         marryMap.put("40", "离异");
-        marryMap.put("90", "其他");
+        marryMap.put("50", "分居");
     }
 
     /**
@@ -67,10 +67,11 @@ public class StringArray {
 
     public static Map<String, String> loanEducationMap = new  HashMap<>();
        static {
-          loanEducationMap.put( "01","高中及以下");
-          loanEducationMap.put( "02","大专");
-          loanEducationMap.put( "03","本科");
-          loanEducationMap.put( "04","硕士及以上");
+           loanEducationMap.put( "01","初中及以下");
+           loanEducationMap.put( "02","高中/中专");
+           loanEducationMap.put( "02","大专");
+           loanEducationMap.put( "03","本科");
+           loanEducationMap.put( "04","研究生及博士");
     }
 
     public static List<String> loanCompanyType() {
@@ -99,11 +100,11 @@ public class StringArray {
     public static List<String> loanContactRela() {
         List<String> list = new ArrayList<>();
         list.add("父母");
-        list.add("子女及兄弟姐妹");
+        list.add("子女" );
+        list.add("兄弟姐妹");
         list.add("亲属");
         list.add("同事");
         list.add("朋友");
-        list.add("同学");
         list.add("配偶");
         list.add("其他");
         return list;
@@ -113,8 +114,9 @@ public class StringArray {
 
     static {
         firstRelMap.put("01", "父母");
-        firstRelMap.put("02", "子女及兄弟姐妹");
-        firstRelMap.put("03", "亲属");
+        firstRelMap.put("02", "子女");
+        firstRelMap.put("03", "兄弟姐妹");
+        firstRelMap.put("04", "亲属");
         firstRelMap.put("10", "配偶");
         firstRelMap.put("99", "其他");
     }
@@ -123,11 +125,11 @@ public class StringArray {
 
     static {
         relMap.put("01", "父母");
-        relMap.put("02", "子女及兄弟姐妹");
-        relMap.put("03", "亲属");
-        relMap.put("04", "同事");
-        relMap.put("05", "朋友");
-        relMap.put("06", "同学");
+        relMap.put("02", "子女");
+        relMap.put("03", "兄弟姐妹");
+        relMap.put("04", "亲属");
+        relMap.put("05", "同事");
+        relMap.put("06", "朋友");
         relMap.put("10", "配偶");
         relMap.put("99", "其他");
     }

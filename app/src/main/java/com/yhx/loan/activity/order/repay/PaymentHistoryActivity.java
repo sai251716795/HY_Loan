@@ -122,6 +122,8 @@ public class PaymentHistoryActivity extends BaseCompatActivity implements Adapte
                             if (jsonObject.getString("respCode").equals("000000")) {
                                 arrayData = GsonUtil.jsonToArrayList(jsonObject.getString("result"), RepayHistoryList.class);
                                 setListData();
+                            }else {
+                                toast_short("加载失败");
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

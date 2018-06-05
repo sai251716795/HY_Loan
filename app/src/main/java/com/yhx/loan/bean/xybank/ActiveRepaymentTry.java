@@ -25,8 +25,16 @@ public class ActiveRepaymentTry implements Serializable {
     private Double rel_perd_cnt;    //相对缩期期数
     //费率汇总字段
     private Double  payFeeAmt;         //实际费用金额
-
+    private Double  thirdLiqAmt;         //违约金实际费用金额
     private List<FeeArrayList> feeArray;  //费用列表数组
+
+    public Double getThirdLiqAmt() {
+        return thirdLiqAmt;
+    }
+
+    public void setThirdLiqAmt(Double thirdLiqAmt) {
+        this.thirdLiqAmt = thirdLiqAmt;
+    }
 
     public Double getPayFeeAmt() {
         return payFeeAmt;
@@ -120,6 +128,7 @@ public class ActiveRepaymentTry implements Serializable {
                     ArrayList<FeeArrayList> jsonObjects = GsonUtil.jsonToArrayList(array, FeeArrayList.class);
                     model.setFeeArray(jsonObjects);
                     Double payFeeAmtd = 0.0;
+                    Double thirdLiqAmt = 0.0;  // 违约金
                     if(jsonObjects.size()>0){
                         for (FeeArrayList List:jsonObjects ) {
                            FeeArray feeArray = List.getStruct();
@@ -127,10 +136,12 @@ public class ActiveRepaymentTry implements Serializable {
                                Double pay_amt = Double.valueOf(feeArray.getPay_amt().equals("")?"0":feeArray.getPay_amt());         //实际费用金额
                                Double fee_waive = Double.valueOf(feeArray.getFee_waive().equals("")?"0":feeArray.getPay_amt());       //减免金额
                                payFeeAmtd += pay_amt;
+                              thirdLiqAmt += pay_amt;
                            }
                         }
                     }
                     model.setPayFeeAmt(payFeeAmtd);
+                    model.setThirdLiqAmt(thirdLiqAmt);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

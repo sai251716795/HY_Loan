@@ -72,6 +72,7 @@ public class LoanApplyBasicInfo implements Serializable, Cloneable {
     private String channel;                     // 渠道
     private String busCode;                     // 兴业进件单号
 
+
     public String getBusCode() {
         return busCode;
     }

@@ -72,9 +72,8 @@ public class RepayPlanDetailsActivity extends BaseCompatActivity {
         ButterKnife.bind(this);
         initData();
         /**
-         * 进件版本 ，隐藏还款功能
-        ActiveRepaymentBt.setVisibility(View.GONE);*/
-
+         * 进件版本 ，隐藏还款功能*/
+        ActiveRepaymentBt.setVisibility(View.GONE);
     }
 
     LoanApplyBasicInfo order;

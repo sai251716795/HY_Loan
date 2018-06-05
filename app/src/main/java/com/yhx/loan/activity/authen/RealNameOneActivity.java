@@ -110,10 +110,6 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
         initAccessTokenWithAkSk();
         initAccessToken();
     }
-
-    //          {"address":"云南省曲靖市陆良县板桥镇河东村委会北头村35号","birthday":"19930117","direction":0,
-//            "ethnic":"汉","expiryDate":"20271009","gender":"男","idNumber":"530322199301170732",
-//            "issueAuthority":"陆良县公安局","name":"牛赛兵","signDate":"20171009","wordsResultNumber":6}
     private void initData() {
         realNameEdit.setText(idCardBean.getName());
         etSex.setText(idCardBean.getGender());
@@ -197,10 +193,10 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
         map.put("realName", realNameEdit.getText().toString().trim());                      //真实姓名
         map.put("idCardNumber", editTxtID.getText().toString().trim());                     //身份证
         map.put("phoneNo", myApplication.getUserBeanData().getLoginName());                 //=loginName;//手机
-        map.put("sex", etSex.getText().toString().trim().equals("男") ? "10" : "20");         //性别
+        map.put("sex", etSex.getText().toString().trim().equals("男") ? "1" : "0");         //性别
         map.put("birthday", changeFormatDate(etBirthday.getText().toString().trim()));      //出生年月
         map.put("ethnic", etNation.getText().toString().trim());                            //民族
-        map.put("residenceAddress", loanResidenceAddress.getText().toString().trim());      //户籍地址
+        map.put("residenceAddress", regprovince+regcity+regarea+ regaddr+loanResidenceAddress.getText().toString().trim());      //户籍地址
         map.put("regprovince", regprovince);
         map.put("regcity", regcity);
         map.put("regarea", regarea);
@@ -351,7 +347,6 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
 
     }
 
-
     /***解析图片文字**/
     private void recIDCard(String idCardSide, String filePath) {
         IDCardParams param = new IDCardParams();
@@ -369,7 +364,7 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
                     //获得结果，设置，解析数据对象
                     idCardBean.insterIDCard(result);
                     initData();
-                    Log.e(TAG, "onResult: " + GsonUtil.objToJson(idCardBean));
+                    Logger.e(TAG, "onResult: " + GsonUtil.objToJson(idCardBean));
                 }
             }
 
@@ -413,7 +408,7 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
      */
     private void updateImageBASE64(final String imagePath, final ImageView iamgeView, final int whitch) {
         Bitmap bitmap1 = BitmapFactory.decodeFile(imagePath);
-        Bitmap capturedImage = BitmapUtil.matrixCompressBitmap(bitmap1, 50, 0.3f);
+        Bitmap capturedImage = BitmapUtil.matrixCompressBitmap(bitmap1, 90, 0.5f);
         String imageBase64 = BitmapUtil.convertIconToString(capturedImage);//图片Base64
         Log.e(TAG, "setBitmapToImageView: size:" + imageBase64.length() + ",data :" + imageBase64.substring(0, 10) + "...");
 

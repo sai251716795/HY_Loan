@@ -67,15 +67,6 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="7nB8i8hBW8jChQftSgdXu7Ihd1aNoTRi" />
-
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true"
-            android:process=":remote">
-            <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" />
-            </intent-filter>
-        </service>
         <!-- 本地 provider -->
 
         <provider
@@ -87,6 +78,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" />
+            </intent-filter>
+        </service>
 
         <activity
             android:name=".MainActivity"

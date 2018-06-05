@@ -107,16 +107,22 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
             try {
                 if (workInfo.getCompanyAddress() != null) {
                     String s[] = workInfo.getCompanyAddress().split("\t");
-                    etJobInfoCompanyAddress.setText("" + s[0] + "");//公司地址
-                    etJobInfoCompanyAddressDetailed.setText("" + s[1] + "");
+                    if(s.length==2) {
+                        etJobInfoCompanyAddressDetailed.setText("" + s[1] + "");
+                    }
+                    String address = workInfo.getIndivempprovince() +" "+workInfo.getIndivempcity() + " " +workInfo.getIndivemparea();
+                    etJobInfoCompanyAddress.setText(""+ address);//公司地址
                 }
+                indivempprovince = workInfo.getIndivempprovince();           //现单位地址（省）
+                indivempcity = workInfo.getIndivempcity();               //现单位地址（市）
+                indivemparea = workInfo.getIndivemparea();               //现单位地址（区）
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             etLoanJobYear.setText("" + workInfo.getJobYear() + "");//工作年限
             etLoanCompanyTotalWorkingTerms.setText("" + workInfo.getCompanyTotalWorkingTerms() + "");//总年限
-            spLoanWorkState.setText(workInfo.getWorkState() + "");////工作状态
+            spLoanWorkState.setText(workInfo.getWorkState() + "");//工作状态
 
             try {
                 String companyTel[] = workInfo.getCompanyTel().split("-");
@@ -126,10 +132,15 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
                 e.printStackTrace();
             }
         }
-        etJobInfoProftyp.setText(getMapValue(ProftypMap, workInfo.getProftyp()));//职业类型
         etJobInfoIndivbranch.setText(workInfo.getCompanyDept());//所在部门
+
+//        etJobInfoProftyp.setText(getMapValue(ProftypMap, workInfo.getProftyp()));//职业类型
         etJobInfoIndivemptyp.setText(getMapValue(indivemptypMap, workInfo.getIndivemptyp()));//单位性质
         etJobInfoIndivindtrytyp.setText(getMapValue(indivindtrytypMap, workInfo.getIndivindtrytyp()));//现单位行业性质
+
+        etJobInfoProftyp.setText(workInfo.getProftyp());//职业类型
+//        etJobInfoIndivemptyp.setText( workInfo.getIndivemptyp());//单位性质
+//        etJobInfoIndivindtrytyp.setText( workInfo.getIndivindtrytyp());//现单位行业性质
     }
 
     SimplePopupWindow simplePopupWindow;
@@ -239,8 +250,8 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
 
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
-        String s = (province == null ? "" : province.name) + (city == null ? "" : city.name) + (county == null ? "" : county.name) +
-                (street == null ? "" : street.name);
+        String s = (province == null ? "" : province.name) +" "+(city == null ? "" : city.name) +" "+ (county == null ? "" : county.name) +
+                " "+ (street == null ? "" : street.name);
         etJobInfoCompanyAddress.setText(s);
         indivempprovince = province == null ? "" : province.name;
         indivempcity = (city == null ? "" : city.name);                 //现单位地址（市）
@@ -290,7 +301,7 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
             toast_short("请输入公司电话区号");
             return;
         }
-        if(!checkTextEmptyLenth(etJobInfoCompanyTelCode,4)){
+        if (!checkTextEmptyLenth(etJobInfoCompanyTelCode, 4)) {
             toast_short("公司电话区号长度不符");
             return;
         }
@@ -299,7 +310,7 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
             return;
         }
 
-        if(!checkTextEmptyLenth(etJobInfoCompanyTelNum,8)){
+        if (!checkTextEmptyLenth(etJobInfoCompanyTelNum, 8)) {
             toast_short("公司电话区号不符");
             return;
         }
@@ -337,20 +348,25 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
         //拼接请求数据
         String companyName = etJobInfoCompanyName.getText().toString();//String(200) 	是	工作单位
         String companyType = "1";//String(50)	是	单位性质
-        String jobYear = etLoanJobYear.getText().toString();//String(20)	    是	工作年限
-        String workState = spLoanWorkState.getText().toString();//String(20)	是	工作状态：离职、在职、兼职、其他
-        String companyAddress = etJobInfoCompanyAddress.getText().toString().trim() + "\t"
-                + etJobInfoCompanyAddressDetailed.getText().toString();//公司地址
+        String jobYear = etLoanJobYear.getText().toString();                //工作年限
+        String workState = spLoanWorkState.getText().toString();            //作状态：离职、在职、兼职、其他
+        String pcaAddress = indivempprovince +" "+indivempcity + " " +indivemparea;//ss
+        String companyAddress = pcaAddress + "\t"
+                + indivempaddr +etJobInfoCompanyAddressDetailed.getText().toString();         //公司地址
         String companyTel = etJobInfoCompanyTelCode.getText().toString() + "-"
                 + etJobInfoCompanyTelNum.getText().toString();//公司电话;
         String companyDept = etJobInfoIndivbranch.getText().toString().trim() + "";//String(200) 	是	任职部门
         String companyDuty = etJobInfoJob.getText().toString();//职位
         Double companySalaryOfMonth = Double.valueOf(etJobInfoSalary.getText().toString().trim());//收入
         String companyTotalWorkingTerms = etLoanCompanyTotalWorkingTerms.getText().toString().trim();//总年限
-        String proftyp = StringArray.getMapKey(StringArray.ProftypMap, etJobInfoProftyp.getText().toString().trim());//职业类型
+
+//        String proftyp = StringArray.getMapKey(StringArray.ProftypMap, etJobInfoProftyp.getText().toString().trim());//职业类型
+        String proftyp = etJobInfoProftyp.getText().toString().trim();//职业类型
 
         String indivemptyp = StringArray.getMapKey(StringArray.indivemptypMap, etJobInfoIndivemptyp.getText().toString().trim()); //现单位性质
         String indivindtrytyp = StringArray.getMapKey(StringArray.indivindtrytypMap, etJobInfoIndivindtrytyp.getText().toString());//现单位行业性质
+
+
         Map<String, Object> objectMap = new HashMap<>();
         objectMap.putAll(myApplication.getHttpHeader());
         objectMap.put("companyName", companyName);//String(200) 	是	工作单位

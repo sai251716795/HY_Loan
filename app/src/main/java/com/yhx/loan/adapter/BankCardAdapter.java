@@ -3,7 +3,7 @@ package com.yhx.loan.adapter;
 /**
  * ===============================================
  *
- * @company 恒圆金服
+ * @company
  * @author niusaibing
  * 功能 ：银行卡列表适配器
  * @finish

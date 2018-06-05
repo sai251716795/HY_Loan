@@ -31,7 +31,7 @@
             android:text=""
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/repayStatus"
             android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:text="还款金额:"
                 android:textColor="@color/textblack"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
             <!--还款金额-->
             <TextView
                 android:id="@+id/mtdamt"
@@ -72,7 +72,7 @@
                 android:gravity="right"
                 android:text="0.0元"
                 android:textColor="@color/red"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="交易时间:"
                 android:textColor="@color/textblack"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/repayDate"
@@ -95,7 +95,7 @@
                 android:gravity="right"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,21 +110,21 @@
                 android:layout_height="wrap_content"
                 android:text="还款账号:"
                 android:textColor="@color/textblack"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/psDueDt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -132,14 +132,14 @@
                 android:layout_height="wrap_content"
                 android:text="还款摘要:"
                 android:textColor="@color/textblack"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
 

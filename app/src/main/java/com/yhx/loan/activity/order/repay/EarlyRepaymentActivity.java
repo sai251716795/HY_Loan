@@ -187,7 +187,7 @@ public class EarlyRepaymentActivity extends BaseCompatActivity implements androi
                 break;
         }
     }
-
+    ActiveRepaymentTry activeRepayment = new ActiveRepaymentTry();
     /**
      * 试算还款
      */
@@ -211,7 +211,7 @@ public class EarlyRepaymentActivity extends BaseCompatActivity implements androi
                             Logger.json("试算还款", response.body());
                             if (jsonObject.getString("respCode").equals("000000")) {
                                 feeLay.setVisibility(View.VISIBLE);
-                                ActiveRepaymentTry activeRepayment = ActiveRepaymentTry.setJsonFormData(jsonObject.getString("result"));
+                                 activeRepayment = ActiveRepaymentTry.setJsonFormData(jsonObject.getString("result"));
                                 if (activeRepayment != null) {
                                     Double prcp_amt = activeRepayment.getPrcp_amt();     // 应归还本金
                                     Double norm_int = activeRepayment.getNorm_int();      // 应归还正常利息
@@ -229,6 +229,7 @@ public class EarlyRepaymentActivity extends BaseCompatActivity implements androi
                                     String repayAmt = new DecimalFormat("#.00").format(maxRepayAmt);
                                     //归还总金额
                                     allRepayMoneyTv.setText("￥" + repayAmt);
+                                    submitMoney.setText(""+ new DecimalFormat("#.00").format(maxRepayAmt));
                                     //利息
                                     if (normIntAmt > 0) {
                                         psNormIntAmtText.setText("" + new DecimalFormat("#.00").format(normIntAmt));
@@ -251,6 +252,7 @@ public class EarlyRepaymentActivity extends BaseCompatActivity implements androi
                                     if (paymentmode.equals("FS")) {
                                         tipAmt.setText("应还金额：");
                                         //全部还款隐藏逾期费用
+
                                         psOdIntAmtLay.setVisibility(View.GONE);
                                     }
                                     feeLay.setVisibility(View.VISIBLE);
@@ -326,14 +328,14 @@ public class EarlyRepaymentActivity extends BaseCompatActivity implements androi
                             JSONObject jsonObject = new JSONObject(response.body());
 
                             Logger.json("主动还款", response.body());
-                            if (jsonObject.getBoolean("success")) {
+                            if (jsonObject.getString("respCode").equals("000000")) {
                                 String result = jsonObject.getString("result");
 
                                 Intent intent = new Intent(getContext(), RepayResultActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
-                                toast_short("" + jsonObject.getString("message"));
+                                toast_short("" + jsonObject.getString("respMsg"));
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -342,7 +344,7 @@ public class EarlyRepaymentActivity extends BaseCompatActivity implements androi
 
                     @Override
                     public void onStart(Request<String, ? extends Request> request) {
-                        showLoadingDialog("加载中...");
+                        showLoadingDialog("还款提交中，请稍等...");
                     }
 
                     @Override
@@ -395,6 +397,7 @@ public class EarlyRepaymentActivity extends BaseCompatActivity implements androi
                                         RadioGroup.check(R.id.NM_radio);
                                         tipAmt.setText("已欠款(含本金利息)：");
                                         maxRepayAmt = prcpamt + normint + odint + commint + feeamt;
+
                                         String repayAmt = new DecimalFormat("#.00").format(maxRepayAmt);
                                         allRepayMoneyTv.setText("￥" + new DecimalFormat("#.00").format(repayAmt));
                                         psNormIntAmtText.setText("" + new DecimalFormat("#.00").format(normint + commint));
@@ -449,7 +452,7 @@ public class EarlyRepaymentActivity extends BaseCompatActivity implements androi
                     submitMoney.setText("");
                     return;
                 }
-                activeRepayment(PAYMENTMODE, mtdamt, 0.0, "");
+                activeRepayment(PAYMENTMODE, mtdamt, activeRepayment.getPayFeeAmt(), "");
                 break;
         }
     }

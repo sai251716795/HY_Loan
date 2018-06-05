@@ -304,9 +304,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="10dp"
-                    android:text="去还钱"
+                    android:text="还款"
                     android:gravity="center"
-                    android:textColor="#000000"
+                    android:textColor="#FFFFFF"
                     android:textSize="15sp" />
 
             </LinearLayout>

@@ -81,6 +81,7 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initSystemBarTint();
         setContentView(R.layout.activity_loan_data_create);
         ButterKnife.bind(this);
         addLoanActivity(this);
@@ -131,7 +132,7 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
                 simplePopupWindow = new SimplePopupWindow(LoanDataCreateActivity.this, list, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        loanPurpose.setText(list.get(position));
+                        loanCount.setText(list.get(position));
                         simplePopupWindow.dismiss();
                     }
                 });
@@ -148,13 +149,13 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
                 final List<String> list = new ArrayList<>();
                 list.add("装修");
                 list.add("教育");
-                list.add("贬值耐用");
-                list.add("家用电器");
                 list.add("婚庆");
-                list.add("其他");
+                list.add("旅游");
+                list.add("家用电器");
+                list.add("贬值耐用");
                 list.add("手机数码");
                 list.add("保值耐用");
-                list.add("旅游");
+                list.add("其他");
                 simplePopupWindow = new SimplePopupWindow(LoanDataCreateActivity.this, list, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -168,8 +169,7 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
             case R.id.bankCard_text:    //银行卡选择
                 selectBankCard();
                 break;
-            case R.id.agreeBook1: {
-                addLoanRequsetData();
+            case R.id.agreeBook1: if(addLoanRequsetData()){
                 AgBookBean agBookBean = new AgBookBean();
                 agBookBean.setAgBookBean(myApplication.getLoanRequest());
                 Intent intent = new Intent(getApplicationContext(), AgrementBookActivity.class);
@@ -178,8 +178,7 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
                 startActivity(intent);
             }
             break;
-            case R.id.agreeBook2: {
-                addLoanRequsetData();
+            case R.id.agreeBook2: if(addLoanRequsetData()){
                 AgBookBean agBookBean = new AgBookBean();
                 agBookBean.setAgBookBean(myApplication.getLoanRequest());
                 Intent intent = new Intent(getApplicationContext(), AgrementBookActivity.class);
@@ -194,37 +193,40 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
                     break;
                 }
                 //成功时，进入结果展示
-                addLoanRequsetData();
+                if(addLoanRequsetData())
                 postLoanInfo(myApplication.getLoanRequest());
                 break;
         }
     }
 
-    private void addLoanRequsetData() {
+    private boolean addLoanRequsetData() {
         UserBean userBean = myApplication.getUserBeanData(); //获取本地用户数据
         //拼接用户其他数据内容其他
         if (!checkTextEmpty(loanMoney)) {
             toast_short("请填写贷款金额！");
-            return;
+            return false;
         }
         if (!checkTextEmpty(loanCount)) {
             toast_short("请选择贷款期数！");
-            return;
+            return false;
+
         }
         if (!checkTextEmpty(loanMtdcde)) {
             toast_short("请选择还款方式！");
-            return;
+            return false;
+
         }
         if (!checkTextEmpty(loanPurpose)) {
             toast_short("请选择贷款用途！");
-            return;
+            return false;
+
         }
 
         Double loanMoneyAmount = Double.valueOf(loanMoney.getText().toString().trim());
 
         if (loanMoneyAmount > maxLoanAmt) {
             toast_short("填写额度受限！");
-            return;
+            return false;
         }
 
         int loanTermCount = Integer.parseInt(loanCount.getText().toString().trim());
@@ -288,7 +290,7 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
         myApplication.getLoanRequest().setIndivemptyp(userBean.getWorkInfo().getIndivemptyp());                                //    现单位性质
         myApplication.getLoanRequest().setIndivindtrytyp(userBean.getWorkInfo().getIndivindtrytyp());                          //    现单位行业性质
         myApplication.getLoanRequest().setMtdcde("DEBX");//还款方式
-
+        return true;
     }
 
     private void postLoanInfo(LoanRequest loanRequest) {

@@ -5,6 +5,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
+import android.os.StrictMode;
 import android.os.Vibrator;
 import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatDelegate;
@@ -93,13 +95,18 @@ public class MyApplication extends LitePalApplication {
         mApplication = this;
         mSharedPref = MySharedPreferences.getInstance(SharedPrefConstant.PREF_NAME, this); // 单例sp
         //FULL 打印所有log信息；NONE 关闭所有log信息
-        Logger.init().hideThreadInfo().setLogLevel(LogLevel.FULL);
+        Logger.init().hideThreadInfo().setLogLevel(LogLevel.NONE);
         initOkGo();
         Connector.getDatabase();
 //        registerReceiver();
         houseAddress = HouseAddress.getInstance();
         mLoanRequest = new LoanRequest();
         loanApplyBasicInfo = new LoanApplyBasicInfo();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
         initX5SDK();
         initBaiduLocation();
     }

@@ -3,6 +3,7 @@ package com.yhx.loan.server.update;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,7 +11,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -56,15 +60,15 @@ public class AppUpdateService {
     public void getUpdate() {
 
         MyApplication.getInstance().okGo.<String>post(AppConfig.updateAPP_url)
-               .upJson("{'package':'包名'}")
+                .upJson("{'package':'包名'}")
                 .execute(new StringCallback() {
-            @Override
-            public void onSuccess(Response<String> response) {
-                ApkSer apkSer = new ApkSer();
-                    apkSer = new Gson().fromJson(response.body(), ApkSer.class);
-                CustomDialog("有新版本需要更新", 3, apkSer.getUpdatePath());
-            }
-        });
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        ApkSer apkSer = new ApkSer();
+                        apkSer = new Gson().fromJson(response.body(), ApkSer.class);
+                        CustomDialog("有新版本需要更新", 3, apkSer.getUpdatePath());
+                    }
+                });
 
     }
 
@@ -87,7 +91,7 @@ public class AppUpdateService {
         dialog.setCancelBtn("重点更新", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                Toast.makeText(context,"已添加到下载任务",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "已添加到下载任务", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 download(url, "path");
             }
@@ -119,25 +123,34 @@ public class AppUpdateService {
                 File file = response.body();
                 Log.e("update", "onSuccess: 下载完成" + file.getPath() + file.getName());
                 builder.setContentTitle("下载完成")
-                        .setContentText("点击安装")
+                        .setContentText("")
                         .setAutoCancel(true);//设置通知被点击一次是否自动取消
-
+/*
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setDataAndType(Uri.parse("file://" + file.toString()), "application/vnd.android.package-archive");
+                Uri data;
+                // 判断版本大于等于7.0
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    // "com.yhx.loan.fileprovider"即是在清单文件中配置的authorities
+                    data = FileProvider.getUriForFile(context, "com.yhx.loan.fileprovider", file);
+                    // 给目标应用一个临时授权
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                } else {
+                    data = Uri.fromFile(file);
+                }
+                intent.setDataAndType(data, "application/vnd.android.package-archive");
                 PendingIntent pi = PendingIntent.getActivity(context, 0, intent, 0);
+
                 notification = builder.setContentIntent(pi).build();
                 notificationManager.notify(1, notification);
-
+*/
                 //自动安装
-//              installApk(file);
+                installApk(file);
             }
 
             //下载进度
             @Override
             public void downloadProgress(Progress progress) {
                 super.downloadProgress(progress);
-                Log.e("update", "downloadProgress: " + progress.fraction);
                 builder.setProgress(100, (int) (progress.fraction * 100), false);
                 builder.setContentText("下载进度:" + (int) (progress.fraction * 100) + "%");
                 notification = builder.build();
@@ -165,10 +178,18 @@ public class AppUpdateService {
      */
     private void installApk(File file) {
         //新下载apk文件存储地址
-        File apkFile = file;
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        Uri data;
+        // 判断版本大于等于7.0
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            // "com.yhx.loan.fileprovider"即是在清单文件中配置的authorities
+            data = FileProvider.getUriForFile(context, "com.yhx.loan.fileprovider", file);
+            // 给目标应用一个临时授权
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else {
+            data = Uri.fromFile(file);
+        }
+        intent.setDataAndType(data, "application/vnd.android.package-archive");
         context.startActivity(intent);
         notificationManager.cancel(1);//取消通知
 
@@ -179,7 +200,7 @@ public class AppUpdateService {
      *
      * @return
      */
-    public  int getVersionCode() {
+    public int getVersionCode() {
         PackageManager packageManager = context.getPackageManager();
         int versionCode = 0;
         try {

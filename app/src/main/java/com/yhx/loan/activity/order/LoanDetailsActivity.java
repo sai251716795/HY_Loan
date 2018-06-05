@@ -134,10 +134,8 @@ public class LoanDetailsActivity extends BaseCompatActivity {
             e.printStackTrace();
         }
         /**
-         * 进件版本，隐藏修改还款账号，还钱/******************************************
+         * 进件版本，隐藏修改还款账号，还钱*****************************************/
          repayPlanText.setText("我的还款计划");
-         changeRepayNumberLay.setVisibility(View.GONE);
-         ***/
 
     }
 

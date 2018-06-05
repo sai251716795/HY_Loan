@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -53,7 +54,7 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.repayPlan_list)
-    MyListView repayPlanList;
+    ListView repayPlanList;
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.back_image)
@@ -83,7 +84,7 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
         initSystemBarTint();
         setContentView(R.layout.activity_repay_table);
         ButterKnife.bind(this);
-        tvTitle.setText("还款");
+        tvTitle.setText("还款计划");
         order = (LoanApplyBasicInfo) getIntent().getSerializableExtra("loanOrder");
         initdata();
     }
@@ -211,6 +212,8 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
         repayPlanList.setAdapter(repayPlanAdapter);
         repayPlanList.setOnItemClickListener(this);
         refreshLayout.setOnRefreshListener(onRefreshListene);
+        getRepayPlanLsit();
+        repayAllBt.setVisibility(View.GONE);
     }
 
     //刷新操作
@@ -218,17 +221,16 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
         @Override
         public void onRefresh(RefreshLayout refreshlayout) {
             getRepayPlanLsit();
-            refreshlayout.finishRefresh(1000);
+            refreshlayout.finishRefresh(2000);
         }
     };
-
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (order == null)
-            return;
-        getRepayPlanLsit();
+//        if (order == null)
+//            return;
+//        getRepayPlanLsit();
     }
 
     //获取还款计划表
@@ -246,7 +248,6 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
                     public void onSuccess(Response<String> response) {
                         try {
                             Logger.json(response.body());
-
                             JSONObject jsonObject = new JSONObject(response.body());
                             if ("000000".equals(jsonObject.getString("respCode"))) {
                                 String result = jsonObject.getString("result");
@@ -270,6 +271,7 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
 
                     @Override
                     public void onFinish() {
+                        refreshLayout.finishRefresh();
                         dismissLoadingDialog();
                     }
 

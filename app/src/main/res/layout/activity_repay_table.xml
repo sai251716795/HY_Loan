@@ -66,11 +66,13 @@
                 android:layout_centerVertical="true"
                 android:padding="10dp"
                 android:text="还款记录"
+                android:visibility="gone"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </RelativeLayout>
 
     </LinearLayout>
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
@@ -83,80 +85,83 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:wshPrimaryColor="@color/yellow" />
-    <com.hx.view.widget.ObservableScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/sysLayBgColor">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <!--<com.hx.view.widget.ObservableScrollView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/sysLayBgColor">-->
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/home_bg"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_height="match_parent"
+                android:background="@color/sysLayBgColor"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="未还金额(元)"
-                    android:textColor="@color/white" />
+                    android:background="@drawable/home_bg"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                <TextView
-                    android:id="@+id/allRepayMoneyText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0.00"
-                    android:textColor="@color/white"
-                    android:textSize="25sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="未还金额(元)"
+                        android:textColor="@color/white" />
 
-                <TextView
-                    android:id="@+id/repayNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    <TextView
+                        android:id="@+id/allRepayMoneyText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/repayNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/repay_bank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginTop="5dp"
+                        android:text="还款账号"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/repayAllBt"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-20dp"
+                    android:background="@drawable/bt_select_white"
+                    android:text="提前还款"
+                    android:textColor="@color/colorPrimary" />
+
+                <ListView
+                    android:id="@+id/repayPlan_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/repay_bank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    android:layout_marginTop="5dp"
-                    android:text="还款账号"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
+                    android:layout_weight="1"
+                    android:divider="@null"
+                    android:background="@color/sysLayBgColor"
+                    android:dividerHeight="5dp" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/repayAllBt"
-                android:layout_width="200dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="-20dp"
-                android:background="@drawable/bt_select_white"
-                android:text="提前还款"
-                android:textColor="@color/colorPrimary" />
-
-            <com.hx.view.widget.MyListView
-                android:id="@+id/repayPlan_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:divider="@null"
-                android:dividerHeight="5dp" />
-        </LinearLayout>
-
-    </com.hx.view.widget.ObservableScrollView>
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
-    </LinearLayout>
+        <!--</com.hx.view.widget.ObservableScrollView>-->
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

@@ -1,47 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--对应Environment.getExternalStorageDirectory()。-->
+    <!--<external-path-->
+    <!--name="images"-->
+    <!--path="yhx/images/" />-->
+    <!--&lt;!&ndash;&lt;!&ndash;相机相册裁剪&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;对应getExternalFilesDir()。&ndash;&gt;-->
+    <!--<external-files-path-->
+    <!--name="camera_has_sdcard"-->
+    <!--path="yhx/external/files/" />-->
+    <!--&lt;!&ndash;对应getFilesDir()。&ndash;&gt;-->
     <external-path
-        name="images"
-        path="yhx/images/"/>
-    <!--&lt;!&ndash;相机相册裁剪&ndash;&gt;-->
-    <external-files-path
-        name="camera_has_sdcard"
-        path="yhx/images/" />
+        name="name"
+        path="download" />
     <files-path
-    name="camera_no_sdcard"
-    path="yhx/images/" />
-</resources>
-<!--<paths>-->
-    <!--&lt;!&ndash;        xml文件是唯一设置分享的目录 ，不能用代码设置-->
-
-         <!--1.<files-path>        getFilesDir()  /data/data//files目录-->
-         <!--2.<cache-path>        getCacheDir()  /data/data//cache目录-->
-
-         <!--3.<external-path>     Environment.getExternalStorageDirectory()-->
-
-         <!--SDCard/Android/data/你的应用的包名/files/ 目录-->
-         <!--4.<external-files-path>     Context#getExternalFilesDir(String) Context.getExternalFilesDir(null).-->
-         <!--5.<external-cache-path>      Context.getExternalCacheDir().-->
-     <!--&ndash;&gt;-->
-
-    <!--&lt;!&ndash;    path :代表设置的目录下一级目录 eg：<external-path path="images/"-->
-                <!--整个目录为Environment.getExternalStorageDirectory()+"/images/"-->
-            <!--name: 代表定义在Content中的字段 eg：name = "myimages" ，并且请求的内容的文件名为default_image.jpg-->
-                <!--则 返回一个URI   content://com.example.myapp.fileprovider/myimages/default_image.jpg-->
-    <!--&ndash;&gt;-->
-
-
-    <!--&lt;!&ndash;当path 为空时 5个全配置就可以解决&ndash;&gt;-->
-    <!--&lt;!&ndash;下载apk&ndash;&gt;-->
-    <!--<external-path-->
-        <!--name="sdcard_files"-->
-        <!--path="" />-->
-
-    <!--<external-path-->
-        <!--name="camera_photos"-->
-        <!--path="" />-->
-    <!--<external-path-->
-        <!--name="images"-->
-        <!--path="" />-->
-
-<!--</paths>-->
+        name="files_path"
+        path="." />
+    <!--&lt;!&ndash;对应getCacheDir()。&ndash;&gt;-->
+    <cache-path
+        name="cache"
+        path="cache" />
+    <!--对应getExternalCacheDir()。-->
+    <external-cache-path
+        name="cache_download"
+        path="." />
+</paths>
