@@ -73,5 +73,9 @@
         <attr name="tecCircleSeekBarStyle" format="reference" />
     </declare-styleable>
 
+    <attr name="cbd_calendar_row" format="integer"/>
 
+    <declare-styleable name="CalendarDateView">
+        <attr name="cbd_calendar_row"/>
+    </declare-styleable>
 </resources>
