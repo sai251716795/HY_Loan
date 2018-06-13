@@ -58,7 +58,6 @@
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="10dp"
             app:srcCompat="@drawable/ic_add" />
     </LinearLayout>
 

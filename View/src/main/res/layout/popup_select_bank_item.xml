@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/bank_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center_vertical"/>
+
     <TextView
         android:id="@+id/bankName"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/textblack"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:maxLines="1"
-        android:textSize="16sp"
-        android:text="建设银行（**** 1720）"
-        android:drawableRight="@drawable/right32"
-        android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:layout_weight="1"
         android:paddingLeft="10dp"
-        android:paddingRight="5dp"/>
+        android:paddingRight="5dp"
+        android:paddingTop="10dp"
+        android:text="建设银行（**** 1720）"
+        android:textColor="@color/textblack"
+        android:textSize="16sp" />
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:scaleType="fitXY"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/right32"/>
 
 </LinearLayout>
