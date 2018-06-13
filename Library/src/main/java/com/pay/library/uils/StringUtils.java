@@ -1,9 +1,16 @@
 package com.pay.library.uils;
 
+import android.util.Log;
+
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.regex.Pattern;
 
 /**
@@ -22,111 +29,6 @@ public class StringUtils {
         return number.replaceAll("[^0-9]", "");
     }
 
-    private final static ThreadLocal<SimpleDateFormat> dateFormater = new ThreadLocal<SimpleDateFormat>() {
-        @Override
-        protected SimpleDateFormat initialValue() {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        }
-    };
-
-    private final static ThreadLocal<SimpleDateFormat> dateFormater2 = new ThreadLocal<SimpleDateFormat>() {
-        @Override
-        protected SimpleDateFormat initialValue() {
-            return new SimpleDateFormat("yyyy-MM-dd");
-        }
-    };
-
-    /**
-     * 将字符串转位日期类型
-     *
-     * @param sdate
-     * @return
-     */
-    public static Date toDate(String sdate) {
-        try {
-            return dateFormater.get().parse(sdate);
-        } catch (ParseException e) {
-            return null;
-        }
-    }
-    public static boolean isNumber(String var0) {
-        try {
-            Float.parseFloat(var0);
-            return true;
-        } catch (Exception var2) {
-            return false;
-        }
-    }
-    /**
-     * 以友好的方式显示时间
-     *
-     * @param sdate
-     * @return
-     */
-    public static String friendly_time(String sdate) {
-        Date time = toDate(sdate);
-        if (time == null) {
-            return "Unknown";
-        }
-        String ftime = "";
-        Calendar cal = Calendar.getInstance();
-
-        // 判断是否是同一天
-        String curDate = dateFormater2.get().format(cal.getTime());
-        String paramDate = dateFormater2.get().format(time);
-        if (curDate.equals(paramDate)) {
-            int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
-            if (hour == 0)
-                ftime = Math.max(
-                        (cal.getTimeInMillis() - time.getTime()) / 60000, 1)
-                        + "分钟前";
-            else
-                ftime = hour + "小时前";
-            return ftime;
-        }
-
-        long lt = time.getTime() / 86400000;
-        long ct = cal.getTimeInMillis() / 86400000;
-        int days = (int) (ct - lt);
-        if (days == 0) {
-            int hour = (int) ((cal.getTimeInMillis() - time.getTime()) / 3600000);
-            if (hour == 0)
-                ftime = Math.max(
-                        (cal.getTimeInMillis() - time.getTime()) / 60000, 1)
-                        + "分钟前";
-            else
-                ftime = hour + "小时前";
-        } else if (days == 1) {
-            ftime = "昨天";
-        } else if (days == 2) {
-            ftime = "前天";
-        } else if (days > 2 && days <= 10) {
-            ftime = days + "天前";
-        } else if (days > 10) {
-            ftime = dateFormater2.get().format(time);
-        }
-        return ftime;
-    }
-
-    /**
-     * 判断给定字符串时间是否为今日
-     *
-     * @param sdate
-     * @return boolean
-     */
-    public static boolean isToday(String sdate) {
-        boolean b = false;
-        Date time = toDate(sdate);
-        Date today = new Date();
-        if (time != null) {
-            String nowDate = dateFormater2.get().format(today);
-            String timeDate = dateFormater2.get().format(time);
-            if (nowDate.equals(timeDate)) {
-                b = true;
-            }
-        }
-        return b;
-    }
 
     /**
      * 判断给定字符串是否空白串。 空白串是指由空格、制表符、回车符、换行符组成的字符串 若输入字符串为null或空字符串，返回true
@@ -145,6 +47,14 @@ public class StringUtils {
             }
         }
         return true;
+    }
+
+    public static boolean isEmpty(Object strObj) {
+        if (strObj == null || strObj.toString().trim().length() < 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
@@ -309,6 +219,39 @@ public class StringUtils {
 
     public static boolean filterDoublie(String number) {
         return number.matches("^[1-9][0-9]*(\\.[0-9]{1,10})?$");
+    }
+
+    /**
+     * 获取ip地址
+     * @return
+     */
+    public static String getHostIP() {
+
+        String hostIp = null;
+        try {
+            Enumeration nis = NetworkInterface.getNetworkInterfaces();
+            InetAddress ia = null;
+            while (nis.hasMoreElements()) {
+                NetworkInterface ni = (NetworkInterface) nis.nextElement();
+                Enumeration<InetAddress> ias = ni.getInetAddresses();
+                while (ias.hasMoreElements()) {
+                    ia = ias.nextElement();
+                    if (ia instanceof Inet6Address) {
+                        continue;// skip ipv6
+                    }
+                    String ip = ia.getHostAddress();
+                    if (!"127.0.0.1".equals(ip)) {
+                        hostIp = ia.getHostAddress();
+                        break;
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            Log.i("yao", "SocketException");
+            e.printStackTrace();
+        }
+        return hostIp;
+
     }
 
     public static void main(String s[]) {

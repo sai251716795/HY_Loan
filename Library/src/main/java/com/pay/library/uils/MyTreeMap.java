@@ -8,7 +8,6 @@ import java.net.URLEncoder;
 import java.util.*;
 
 public class MyTreeMap<K, V> extends TreeMap<K, V> implements java.io.Serializable {
-
     /**
      * URLEncoder  加密中文
      */
@@ -36,10 +35,44 @@ public class MyTreeMap<K, V> extends TreeMap<K, V> implements java.io.Serializab
     /*** 将所有的value值拼接在一起，获得字符串* @return */
     public String toValue() {
         String value = "";
-        Set<K> keys = this.keySet();
-        for (K key : keys)
-            value += this.get(key).toString();
+        List<Map.Entry<K, V>> entryArrayList = new ArrayList<>(this.entrySet());
+        for (Map.Entry<K, V> entry : entryArrayList) {
+            value += entry.getValue();
+        }
         return value;
+    }
+
+    private static String SIGN_PARAM_SEPARATOR = "&";
+
+    /**
+     * 签名数据格式
+     * @param dataMap
+     * @return
+     */
+    public String getSignData(Map<K, V> dataMap){
+
+        for(Map.Entry<K, V> entry : dataMap.entrySet()){
+            this.put(entry.getKey(), entry.getValue());
+        }
+        return signRule();
+    }
+
+    public  String signRule(){
+        if (this == null || this.isEmpty()) {
+            return null;
+        }
+        StringBuffer value = new StringBuffer();
+        for(Map.Entry<K, V> entry : this.entrySet()){
+            if (StringUtils.isEmpty(entry.getValue())) {
+                continue;
+            }
+            System.out.println(entry.getKey() +" = "+entry.getValue());
+            value.append(entry.getKey())
+                    .append("=")
+                    .append(entry.getValue())
+                    .append(SIGN_PARAM_SEPARATOR);
+        }
+        return value.substring(0,value.lastIndexOf(SIGN_PARAM_SEPARATOR));
     }
 
     public void base64Map() {
@@ -47,8 +80,6 @@ public class MyTreeMap<K, V> extends TreeMap<K, V> implements java.io.Serializab
         BASE64Encoder bs64 = new BASE64Encoder();
         for (K key : keys) ;
     }
-    /**/
-
     /**
      * JAVA自己带的算法
      */
@@ -61,13 +92,12 @@ public class MyTreeMap<K, V> extends TreeMap<K, V> implements java.io.Serializab
         }
         return h;
     }
-    /**/
 
     /**
-     * 改进�?2位FNV算法1
+     * 改进32位FNV算法1
      *
-     * @param data 字符�?
-     * @return int�?
+     * @param data 字符
+     * @return int sd
      */
     public static int FNVHash1(String data) {
         final int p = 16777619;
@@ -81,5 +111,4 @@ public class MyTreeMap<K, V> extends TreeMap<K, V> implements java.io.Serializab
         hash += hash << 5;
         return hash;
     }
-
 }

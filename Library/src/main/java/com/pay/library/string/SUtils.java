@@ -27,8 +27,8 @@ public class SUtils {
     }
 
     /***生成订单流水号***/
-    public static String createOrderId(int paramInt) {
-        String orderId = DateUtils.getMoreTimes() + RandomNumber(paramInt);
+    public static String createOrderId(int lenth) {
+        String orderId = DateUtils.getMoreTimes() + RandomNumber((int)Math.pow(10,lenth));
         return orderId;
     }
 

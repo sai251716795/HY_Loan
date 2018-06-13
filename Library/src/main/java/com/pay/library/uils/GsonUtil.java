@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 特殊JSon数据解析
@@ -51,5 +53,16 @@ public class GsonUtil {
         return arrayList;
     }
 
-
+    /**
+     * 将List Json数据串转换成Map集合
+     *
+     * @param json
+     * @return
+     */
+    public static Map jsonToHashMap(String json) throws Exception {
+        Type type = new TypeToken<HashMap>() {
+        }.getType();
+        HashMap jsonObjects = new Gson().fromJson(json, type);
+        return jsonObjects;
+    }
 }

@@ -129,6 +129,11 @@ public class AppConfig {
      */
     public static final String updateAPP_url = HOST_APP_URL + "/queryRepayList";
 
+    /**
+     * TODO 移动支付链接
+     */
+    public static final String payAPP_url ="http://218.66.56.2:12230/olps/route/index";
+
     ///////////////////////////////////////////////////////////////////////////////
     /**
      * 1 百融 -- 获取登录元素:1004
@@ -160,6 +165,7 @@ public class AppConfig {
     public static final String updateTask_url = HOST_BR_URL + "/updateTask";
 
     /******************************************************************************/
+
 
 
     /**
@@ -519,11 +525,8 @@ public class AppConfig {
     public static Map<String, String> mtdcdeMap = new HashMap<>();
 
     static {
-        mtdcdeMap.put("AYFX", "按月付息到期还本");
         mtdcdeMap.put("DEBX", "等额本息");
         mtdcdeMap.put("DEBJ", "等额本金");
-        mtdcdeMap.put("SYS001", "系统设置-利随本清");
-        mtdcdeMap.put("DEBXAY", "等额本息-按月");
     }
 
     public static Map<String, String> applyStatusMap = new HashMap<>();
