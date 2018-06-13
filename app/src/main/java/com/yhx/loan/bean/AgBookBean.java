@@ -75,7 +75,7 @@ public class AgBookBean {
         BigDecimal numberOfMoney = new BigDecimal(bookData.getLoanMoneyAmount());
         loanMoneyAmountCapital = NumberToCN.number2CNMontrayUnit(numberOfMoney);//设置大写
 
-        originalLoanRegDate = DateUtils.getYMD("yyyy年MM月dd日");
+        originalLoanRegDate = DateUtils.getNowDate("yyyy年MM月dd日");
         finishDate = DateUtils.MonthCalendar(originalLoanRegDate, bookData.getLoanTermCount(), "yyyy年MM月dd日");//止
     }
 

@@ -67,7 +67,7 @@
                         android:layout_marginTop="20dp"
                         android:text="小额消费分期贷"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                             android:layout_height="wrap_content"
                             android:text="10000~50000"
                             android:textColor="#fa5102"
-                            android:textSize="18sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -91,7 +91,6 @@
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
-
 
                     <Button
                         android:id="@+id/loan_small_btn"
@@ -105,7 +104,7 @@
                         android:elevation="5dp"
                         android:text="测试贷款"
                         android:textColor="@color/white"
-                        android:textSize="13sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 

@@ -282,12 +282,8 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
         if (!checkTextEmpty(etJobInfoSalary)) {
             toast_short("请填写收入");
             return;
-        } else {
-            if (!StringUtils.isNumber(etJobInfoSalary.getText().toString().trim())) {
-                toast_short("请填写正确的薪资");
-                return;
-            }
         }
+
         if (!checkTextEmpty(etJobInfoCompanyName)) {
             toast_short("请输入公司名");
             return;

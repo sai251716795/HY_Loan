@@ -202,7 +202,12 @@
         <activity android:name=".activity.order.repay.RepayTableActivity" />
         <activity android:name=".activity.order.repay.RepayHDetailsActivity" />
         <activity android:name=".activity.order.repay.RepayResultActivity" />
-        <activity android:name=".activity.loan.LoanDataCreateActivity"></activity>
+        <activity android:name=".activity.loan.LoanDataCreateActivity" />
+        <activity android:name=".activity.authen.MerchantActivity" />
+        <activity android:name=".activity.pay.ReceivablesActivity" />
+        <activity android:name=".activity.pay.SelectReciveTypeActivity" />
+        <activity android:name=".activity.pay.PayResultActivity" />
+        <activity android:name=".activity.pay.PayHistoryListActivity"></activity>
     </application>
 
 </manifest>

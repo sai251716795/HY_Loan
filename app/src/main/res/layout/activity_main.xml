@@ -57,7 +57,7 @@
             android:drawableTop="@drawable/tabar_loan"
             android:gravity="center"
             android:paddingBottom="5dp"
-            android:text="贷款记录"
+            android:text="我要收款"
             android:textColor="@color/color_radiobutton"
             android:textSize="12sp" />
 

@@ -7,13 +7,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="70dp"
         android:background="@drawable/layout_line_bg"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_marginTop="25dp"
             android:orientation="vertical">
             <!--android:drawableRight="@drawable/title_check"-->
@@ -24,9 +24,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:button="@null"
-                android:gravity="center"
                 android:enabled="false"
-                android:text="贷款记录"
+                android:gravity="center"
+                android:text="我要收款"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -37,23 +37,24 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
-                android:visibility="gone"
-                android:src="@drawable/date_icon" />
+                android:src="@drawable/date_icon"
+                android:visibility="gone" />
 
             <TextView
-                android:id="@+id/left_loan_btn"
+                android:id="@+id/pay_history_list"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:textSize="12sp"
-                android:textColor="@color/black"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/right_date_image"
-                android:visibility="gone"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="10dp"
-                android:text="我要贷款" />
+                android:textColor="@color/textblack"
+                android:textSize="13sp"
+                android:text="交易记录" />
+
         </RelativeLayout>
 
     </LinearLayout>
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
@@ -66,95 +67,88 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:wshPrimaryColor="@color/yellow" />
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ListView
-                android:id="@+id/order_list"
+            <LinearLayout
+                android:id="@+id/merchant_main_btn"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@null"
-                android:layout_marginTop="10dp"
-                android:background="@color/white" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/collection_icon_message" />
+
+                <TextView
+                    android:id="@+id/open_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="进入我的商户"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/open_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="可用"
+                    android:textColor="@color/textblack"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/right32" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/not_order_lay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                android:gravity="center_horizontal"
                 android:clickable="true"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="100dp"
-                    android:src="@drawable/no_trade_record_pic" />
+                    android:src="@drawable/collection_icon_message" />
 
                 <TextView
+                    android:id="@+id/merchant_status_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="一单交易都没有哦~~"
+                    android:text="完善信息后可以收款~~"
                     android:textColor="@color/textblack"
                     android:textSize="16sp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/filter_lay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:clickable="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="#fcfcfc"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:id="@+id/filter_tx1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/btn_check_press"
-                        android:text="全部"
-                        android:textColor="#0078d6" />
-
-                    <TextView
-                        android:id="@+id/filter_tx2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/btn_check_default"
-                        android:text="小额贷"
-                        android:textColor="@color/textblack" />
-
-                    <TextView
-                        android:id="@+id/filter_tx3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/btn_check_default"
-                        android:text="房贷"
-                        android:textColor="@color/textblack" />
-
-                    <TextView
-                        android:id="@+id/filter_tx4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/btn_check_default"
-                        android:text="工薪贷"
-                        android:textColor="@color/textblack" />
-
-                </LinearLayout>
+                <Button
+                    android:id="@+id/merchant_apply_btn"
+                    style="@style/button_green_style"
+                    android:layout_width="220dp"
+                    android:text="完善信息" />
 
             </LinearLayout>
+
 
         </FrameLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

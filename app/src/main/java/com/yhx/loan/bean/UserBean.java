@@ -40,11 +40,11 @@ public class UserBean extends DataSupport {
     private String regarea;//户籍地址（区）
     private String regaddr;//籍地址（详细地址
 
-
     private WorkInfo workInfo;//用户工作信息
     private UserBasicInfo userBasicInfo;//用户基础信息
     private List<BankCardModel> bankCardArray = new ArrayList<>();//银行卡集合
     private List<RelationInfo> relationArray = new ArrayList<>();//紧急联系人
+    private String merch_no; //商户号
 
     public List<RelationInfo> getRelationArray() {
         return relationArray;
@@ -244,6 +244,14 @@ public class UserBean extends DataSupport {
 
     public void setBankCardArray(List<BankCardModel> bankCardArray) {
         this.bankCardArray = bankCardArray;
+    }
+
+    public String getMerch_no() {
+        return merch_no;
+    }
+
+    public void setMerch_no(String merch_no) {
+        this.merch_no = merch_no;
     }
 
     /**

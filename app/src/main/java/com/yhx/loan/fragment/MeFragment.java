@@ -3,7 +3,6 @@ package com.yhx.loan.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hx.view.widget.CircularImageView;
-import com.hx.view.widget.ObservableScrollView;
+import com.pay.library.tool.Logger;
 import com.pay.library.uils.StringUtils;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -29,10 +30,14 @@ import com.yhx.loan.activity.main.SettingActivity;
 import com.yhx.loan.activity.order.LoanListActivity;
 import com.yhx.loan.activity.web.WebX5Activity;
 import com.yhx.loan.base.MyApplication;
+import com.yhx.loan.bean.EventbusMsg;
 import com.yhx.loan.bean.UserBean;
 import com.yhx.loan.bean.UserIcon;
 import com.yhx.loan.server.UserDataServer;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.litepal.crud.DataSupport;
 
 import butterknife.BindView;
@@ -73,10 +78,15 @@ public class MeFragment extends Fragment {
     MaterialHeader freshHeader;//刷新头部
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.pay_march_layout)
+    LinearLayout payMarchLayout;
+    @BindView(R.id.scrollview)
+    ScrollView scrollview;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
     }
 
     @Nullable
@@ -85,6 +95,7 @@ public class MeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.me_fragment, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         initUserDataToView();
+
         refreshLayout.setOnRefreshListener(onRefreshListene);
         return rootView;
     }
@@ -127,13 +138,20 @@ public class MeFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
 
     @OnClick({R.id.userName, R.id.user_icon, R.id.data_icon, R.id.author_layout, R.id.my_bankCard_layout,
-            R.id.loan_order_layout, R.id.my_message_layout, R.id.my_setting_layout, R.id.my_help_center_layout})
+            R.id.loan_order_layout, R.id.my_message_layout, R.id.my_setting_layout, R.id.my_help_center_layout
+            , R.id.pay_march_layout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.userName:
@@ -159,7 +177,7 @@ public class MeFragment extends Fragment {
                 break;
             case R.id.loan_order_layout: {
                 Intent intent = new Intent(getActivity(), LoanListActivity.class);
-                intent.putExtra("loanType", LoanListActivity.type_repay);
+                intent.putExtra("loanType", LoanListActivity.type_List);
                 startActivity(intent);
             }
             break;
@@ -169,11 +187,19 @@ public class MeFragment extends Fragment {
             case R.id.my_setting_layout:
                 startActivity(SettingActivity.class);
                 break;
-            case R.id.my_help_center_layout:
+            case R.id.my_help_center_layout: {
                 Intent intent = new Intent(getActivity(), WebX5Activity.class);
                 intent.putExtra("url", "file:///android_asset/html/common_problem.html");
                 startActivity(intent);
-                break;
+            }
+            break;
+            case R.id.pay_march_layout: {
+                //商户中心
+                Intent intent = new Intent(getActivity(), WebX5Activity.class);
+                intent.putExtra("url", "https://e.czrcb.net/p2bwx/wxacc/wxaccountCenter.do");
+                startActivity(intent);
+            }
+            break;
         }
     }
 
@@ -215,6 +241,20 @@ public class MeFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void eventBusMerchantStatus(EventbusMsg eventMsg) {
+        boolean bool = (eventMsg.getObject() instanceof Integer);
+        if (bool) {
+            if((int)eventMsg.getObject()==0){
+                payMarchLayout.setVisibility(View.VISIBLE);
+            }else {
+                payMarchLayout.setVisibility(View.GONE);
+
+            }
+        }
+
     }
 
     Intent intent;

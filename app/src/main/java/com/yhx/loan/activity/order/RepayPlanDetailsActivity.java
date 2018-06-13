@@ -102,7 +102,7 @@ public class RepayPlanDetailsActivity extends BaseCompatActivity {
             if (xyRepayPlan.getSetl_ind().equals("N")) {
                 setlInd.setText("待还");
                 //判断是否逾期
-                if (DateUtils.compare_date( DateUtils.getYMD("yyyyMMdd"),xyRepayPlan.getPs_due_dt(), "yyyyMMdd") ) {
+                if (DateUtils.compare_date( DateUtils.getNowDate("yyyyMMdd"),xyRepayPlan.getPs_due_dt(), "yyyyMMdd") ) {
                     psOdIntAmtLay.setVisibility(View.VISIBLE);
                     psOdIntDayLay.setVisibility(View.VISIBLE);
                     Date PsDueDtDate =format2.parse(xyRepayPlan.getPs_due_dt());

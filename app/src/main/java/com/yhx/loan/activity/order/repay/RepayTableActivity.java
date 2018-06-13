@@ -159,7 +159,7 @@ public class RepayTableActivity extends BaseCompatActivity implements AdapterVie
         try {
             psRemPrcp = 0.0;
             int waitRepay = 0;
-            String nowMonth = DateUtils.getYM("yyyyMMdd");
+            String nowMonth = DateUtils.getNowDate("yyyyMMdd");
 
             for (int i = 0; i < repayPlanArray.size(); i++) {
                 XYRepayPlan xplan = repayPlanArray.get(i);

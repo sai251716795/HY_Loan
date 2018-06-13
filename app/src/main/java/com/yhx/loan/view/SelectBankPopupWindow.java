@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.hx_view.R;
 import com.pay.library.uils.DensityUtil;
+import com.yhx.loan.adapter.BankCardAdapter;
 import com.yhx.loan.bean.BankCardModel;
 
 import java.util.List;
@@ -187,22 +188,102 @@ public class SelectBankPopupWindow extends PopupWindow {
             if (convertView == null) {
                 convertView = LayoutInflater.from(context).inflate(R.layout.popup_select_bank_item, null);
                 hodler = new ViewHodler();
+                hodler.icon = (ImageView)  convertView.findViewById(R.id.bank_icon);
                 hodler.bankName = (TextView) convertView.findViewById(R.id.bankName);
                 convertView.setTag(hodler);
             } else {
                 hodler = (ViewHodler) convertView.getTag();
             }
-            BankCardModel bankCardItem= data.get(position);
-            String cardNo = bankCardItem.getBankCardNumber();
-            hodler.bankName.setText(bankCardItem.getBankName()+"("+cardNo.substring(cardNo.length()-4)+")");
+            BankCardModel bank= data.get(position);
+            String cardNo = bank.getBankCardNumber();
+            hodler.bankName.setText(bank.getBankName()+"("+cardNo.substring(cardNo.length()-4)+")");
+
+            if(bank.getBankName().contains("工商"))
+                hodler.icon.setImageResource(bankIcon.工商);
+            else if( bank.getBankName().contains("招商"))
+                hodler.icon.setImageResource(bankIcon.招商);
+            else if( bank.getBankName().contains("人民"))
+                hodler.icon.setImageResource(bankIcon.人民);
+            else if(  bank.getBankName().contains("中信"))
+                hodler.icon.setImageResource(bankIcon.中信);
+            else if( bank.getBankName().contains("中国银行"))
+                hodler.icon.setImageResource(bankIcon.中国银行);
+            else if(bank.getBankName().contains("建设"))
+                hodler.icon.setImageResource(bankIcon.建设);
+            else if(bank.getBankName().contains("广发"))
+                hodler.icon.setImageResource(bankIcon.广发);
+            else if( bank.getBankName().contains("交通"))
+                hodler.icon.setImageResource(bankIcon.交通);
+            else if(bank.getBankName().contains("兴业"))
+                hodler.icon.setImageResource(bankIcon.兴业);
+            else if(bank.getBankName().contains("农业"))
+                hodler.icon.setImageResource(bankIcon.农业);
+            else if(bank.getBankName().contains("邮政"))
+                hodler.icon.setImageResource(bankIcon.邮政);
+            else if( bank.getBankName().contains("民生"))
+                hodler.icon.setImageResource(bankIcon.民生);
+            else if(bank.getBankName().contains("农村信用社"))
+                hodler.icon.setImageResource(bankIcon.农村信用社);
+            else
+                hodler.icon.setVisibility(View.GONE);
+
             return convertView;
         }
 
         public class ViewHodler {
+            ImageView icon;
             TextView bankName;
+
         }
     }
+    static class bankIcon {
+        static final int 工商 = com.yhx.loan.R.drawable.take_money_logo_banck_gongshang;
+        static final int 招商 = com.yhx.loan.R.drawable.take_money_logo_banck_zhaoshang;
+        static final int 人民 = com.yhx.loan.R.drawable.take_money_logo_banck_zgrenmin;
+        static final int 中信 = com.yhx.loan.R.drawable.take_money_logo_banck_zhongxin;
+        static final int 中国银行 = com.yhx.loan.R.drawable.take_money_logo_bank_of_china;
+        static final int 建设 = com.yhx.loan.R.drawable.take_money_logo_banck_jianhang;
+        static final int 广发 = com.yhx.loan.R.drawable.take_money_logo_banck_pufa;
+        static final int 交通 = com.yhx.loan.R.drawable.take_money_logo_bank_jiaotong;
+        static final int 兴业 = com.yhx.loan.R.drawable.take_money_logo_banck_xingye;
+        static final int 农业 = com.yhx.loan.R.drawable.take_money_logo_bank_nongye;
+        static final int 邮政 = com.yhx.loan.R.drawable.take_money_logo_banck_youzhen;
+        static final int 民生 = com.yhx.loan.R.drawable.take_money_logo_banck_minsheng;
+        static final int 农村信用社 = com.yhx.loan.R.drawable.take_money_logo_banck_ncxinyongshe;
 
+    }
+
+
+    public  static void setBankIcon(String bankName,ImageView view){
+        if(bankName.contains("工商"))
+            view.setImageResource(bankIcon.工商);
+        else if(bankName.contains("招商"))
+            view.setImageResource(bankIcon.招商);
+        else if(bankName.contains("人民"))
+            view.setImageResource(bankIcon.人民);
+        else if( bankName.contains("中信"))
+            view.setImageResource(bankIcon.中信);
+        else if(bankName.contains("中国银行"))
+            view.setImageResource(bankIcon.中国银行);
+        else if(bankName.contains("建设"))
+            view.setImageResource(bankIcon.建设);
+        else if(bankName.contains("广发"))
+            view.setImageResource(bankIcon.广发);
+        else if(bankName.contains("交通"))
+            view.setImageResource(bankIcon.交通);
+        else if(bankName.contains("兴业"))
+            view.setImageResource(bankIcon.兴业);
+        else if(bankName.contains("农业"))
+            view.setImageResource(bankIcon.农业);
+        else if(bankName.contains("邮政"))
+            view.setImageResource(bankIcon.邮政);
+        else if(bankName.contains("民生"))
+            view.setImageResource(bankIcon.民生);
+        else if(bankName.contains("农村信用社"))
+            view.setImageResource(bankIcon.农村信用社);
+        else
+            view.setVisibility(View.GONE);
+    }
     public interface AddBankListener {
         void onClick(View v);
     }

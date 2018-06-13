@@ -30,7 +30,7 @@
                 android:layout_margin="10dp"
                 android:text="职业"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/et_jobInfo_job"
@@ -42,7 +42,7 @@
                 android:hint="请选择"
                 android:inputType="text"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -62,7 +62,7 @@
                 android:layout_margin="10dp"
                 android:text="职业类型"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/et_jobInfo_proftyp"
@@ -74,7 +74,7 @@
                 android:hint="请选择"
                 android:inputType="text"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
         <View
@@ -93,7 +93,7 @@
                 android:layout_margin="10dp"
                 android:text="税后月薪"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/et_jobInfo_Salary"
@@ -104,9 +104,9 @@
                 android:background="@null"
                 android:entries="@array/loan_marry"
                 android:hint="请填写"
-                android:inputType="text"
+                android:inputType="numberDecimal"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -127,7 +127,7 @@
                 android:layout_margin="10dp"
                 android:text="公司全名"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/et_jobInfo_CompanyName"
@@ -140,7 +140,7 @@
                 android:hint="请输入公司全名"
                 android:inputType="text"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -161,7 +161,7 @@
                 android:layout_margin="10dp"
                 android:text="所在部门"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/et_jobInfo_indivbranch"
@@ -174,7 +174,7 @@
                 android:hint="请输入您所在部门"
                 android:inputType="text"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
         <View
@@ -193,7 +193,7 @@
                 android:layout_margin="10dp"
                 android:text="现单位性质"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/et_jobInfo_indivemptyp"
@@ -206,7 +206,7 @@
                 android:hint="请选择"
                 android:inputType="text"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
         <View
@@ -225,7 +225,7 @@
                 android:layout_margin="10dp"
                 android:text="现单位行业性质"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/et_jobInfo_indivindtrytyp"
@@ -238,7 +238,7 @@
                 android:hint="请选择"
                 android:inputType="text"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
         <View
@@ -257,7 +257,7 @@
                 android:layout_margin="10dp"
                 android:text="公司地址"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/et_jobInfo_CompanyAddress"
@@ -270,7 +270,7 @@
                 android:hint="请选择地址"
                 android:inputType="text"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -289,7 +289,7 @@
             android:padding="5dp"
             android:paddingRight="15dp"
             android:textColor="@color/textblack"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
 
         <View
@@ -309,7 +309,7 @@
                 android:layout_margin="10dp"
                 android:text="公司电话"
                 android:textColor="@color/textblack"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/et_jobInfo_CompanyTel_code"
@@ -323,7 +323,7 @@
                 android:maxLength="4"
                 android:inputType="number"
                 android:paddingRight="10dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -342,7 +342,7 @@
                 android:hint="电话"
                 android:inputType="number"
                 android:paddingRight="20dp"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -364,7 +364,7 @@
                 android:textColor="@color/textblack"
                 android:gravity="center_vertical"
                 android:text="工作状态"
-                android:textSize="@dimen/text_size_loan_titler" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/sp_loan_workState"
@@ -374,7 +374,7 @@
                 android:background="@drawable/right9"
                 android:entries="@array/loan_work_state"
                 android:text="在职"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -394,7 +394,7 @@
                 android:layout_margin="4dp"
                 android:text="现单位工作年限"
                 android:textColor="@color/textblack"
-                android:textSize="@dimen/text_size_loan_titler" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/et_loan_JobYear"
@@ -409,7 +409,7 @@
                 android:maxLines="1"
                 android:maxLength="2"
                 android:numeric="decimal"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View
@@ -429,7 +429,7 @@
                 android:layout_margin="4dp"
                 android:text="总工作年限"
                 android:textColor="@color/textblack"
-                android:textSize="@dimen/text_size_loan_titler" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/et_loan_CompanyTotalWorkingTerms"
@@ -443,7 +443,7 @@
                 android:inputType="number"
                 android:maxLength="2"
                 android:maxLines="1"
-                android:textSize="@dimen/text_size_loan_edit" />
+                android:textSize="15sp" />
         </LinearLayout>
         <View
             android:layout_width="match_parent"

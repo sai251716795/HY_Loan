@@ -107,7 +107,7 @@ public class  RepayPlanAdapter extends BaseAdapter {
             //状态
             if (plan.getSetl_ind().equals("N")) {
                 //判断是否逾期
-                if (DateUtils.compare_date( DateUtils.getYMD("yyyyMMdd"),plan.getPs_due_dt(), "yyyyMMdd") ) {
+                if (DateUtils.compare_date( DateUtils.getNowDate("yyyyMMdd"),plan.getPs_due_dt(), "yyyyMMdd") ) {
                     viewHolder.yqIndView.setVisibility(View.VISIBLE);
                 }else {
                     viewHolder.yqIndView.setVisibility(View.GONE);

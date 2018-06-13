@@ -67,8 +67,8 @@ public class MyApplication extends LitePalApplication {
     private static LoanRequest mLoanRequest;
     public static LoanApplyBasicInfo loanApplyBasicInfo;
     public static String OLIVE_STRING = "";
-
     public static String LOAN_PROMNO =  "0101";
+
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
