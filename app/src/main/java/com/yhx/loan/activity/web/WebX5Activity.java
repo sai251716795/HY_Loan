@@ -17,6 +17,7 @@ import android.webkit.JavascriptInterface;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,8 @@ public class WebX5Activity extends BaseCompatActivity {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     public Activity activity;
+    @BindView(R.id.nav_layout)
+    RelativeLayout navLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class WebX5Activity extends BaseCompatActivity {
         backImage.setImageResource(R.drawable.close_icon);
         tvTitle.setTextSize(14);
         tvTitle.setMaxLines(1);
+
 
         String url = getIntent().getStringExtra("url");
         CookieManager cookieManager = CookieManager.getInstance();
@@ -216,7 +220,7 @@ public class WebX5Activity extends BaseCompatActivity {
         // For Lollipop 5.0+ Devices
         @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         @Override
-        public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
+        public boolean onShowFileChooser(WebView mWebView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
             if (mUploadMessage5 != null) {
                 mUploadMessage5.onReceiveValue(null);
                 mUploadMessage5 = null;
