@@ -246,7 +246,7 @@ public class SelectReciveTypeActivity extends BaseCompatActivity implements Comp
                     return;
                 }
 
-                newOrder(new DecimalFormat("#.00").format(Double.valueOf(tr_amt)));
+                newOrder(String.format("%.2f",Double.valueOf(Double.valueOf(tr_amt))));
                 break;
             case R.id.right_date_image:
 

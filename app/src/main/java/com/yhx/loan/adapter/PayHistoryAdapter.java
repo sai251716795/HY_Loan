@@ -88,7 +88,10 @@ public class PayHistoryAdapter extends BaseAdapter {
             viewHolder.trStatus.setTextColor(0xffea0606);
         } else if (payList.getTr_status().equals("0")) {
             viewHolder.trStatus.setText("交易成功");
-            queryOrd(payList.getOrder_no(),viewHolder.clearState);
+            // 有清算过的就不要再去清算查询了
+            if(payList.getClear_state().equals("0")) {
+                queryOrd(payList.getOrder_no(), viewHolder.clearState);
+            }
         } else if (payList.getTr_status().equals("2")) {
             viewHolder.trStatus.setText("未支付");
         } else if (payList.getTr_status().equals("3")) {

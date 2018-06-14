@@ -249,13 +249,18 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-       if( datalist.get(position).getApplyStatus().equals("400")) {
-           Intent intent = new Intent(getContext(), RepayTableActivity.class);
-           Bundle bundle = new Bundle();
-           bundle.putSerializable("loanOrder", datalist.get(position));
-           intent.putExtras(bundle);
-           startActivity(intent);
-       }
+//       if( datalist.get(position).getApplyStatus().equals("400")) {
+//           Intent intent = new Intent(getContext(), RepayTableActivity.class);
+//           Bundle bundle = new Bundle();
+//           bundle.putSerializable("loanOrder", datalist.get(position));
+//           intent.putExtras(bundle);
+//           startActivity(intent);
+//       }
+        Intent intent = new Intent(getContext(), LoanDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("LoanDetails", datalist.get(position));
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

@@ -90,6 +90,11 @@ public class HomeFragment extends Fragment implements BGABanner.Delegate<ImageVi
         int width = metric.widthPixels;     // 屏幕宽度（像素）
         banner.setMinimumHeight(width / 3);
 
+        if(MyApplication.getInstance().getUserBeanData() != null){
+            loanSmallBtn.setText("测试贷款");
+        }else {
+            loanSmallBtn.setText("未登录");
+        }
         return rootView;
     }
 

@@ -111,6 +111,8 @@ public class MainFragment extends Fragment {
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
             return;
+        }else {
+
         }
         requestMerchantData();
     }

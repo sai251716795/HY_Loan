@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:hint="请输入密码"
         android:password="true"
+        android:inputType="numberDecimal"
         mobile:numTextSize="0.8" />
 
     <Button

@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.oliveapp.liveness.sample.liveness.SampleLivenessActivity;
@@ -22,7 +23,6 @@ public class oliveStartActivity extends BaseCompatActivity implements View.OnCli
     private static final String TAG = oliveStartActivity.class.getSimpleName();
 
     private Button startLivenessButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,12 @@ public class oliveStartActivity extends BaseCompatActivity implements View.OnCli
 
         startLivenessButton = (Button) findViewById(R.id.oliveappStartLivenessButton);
         startLivenessButton.setOnClickListener(this);
+        findViewById(R.id.btn_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private static final int PERMISSION_READ_EXTERNAL_STORAGE = 101;

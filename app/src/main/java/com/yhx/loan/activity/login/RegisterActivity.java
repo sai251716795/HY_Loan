@@ -84,11 +84,14 @@ public class RegisterActivity extends BaseCompatActivity {
 
     private void initData() {
         action = getIntent().getIntExtra("action", 1);
-        if (action == forget_pwd_action)
+        if (action == forget_pwd_action) {
             tvTitle.setText("忘记密码");
-        registerBtn.setText("修改密码");
-        if (action == register_action)
+            registerBtn.setText("修改密码");
+        } else if (action == register_action) {
             tvTitle.setText(getString(R.string.register));
+            registerBtn.setText("注册");
+        }
+
         setBtnEnabledBackgroundAlpha(registerBtn, R.drawable.bt_select_green, 50, false);
         password2.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -248,12 +251,19 @@ public class RegisterActivity extends BaseCompatActivity {
                             if (jsonObject.getString("respCode").equals("00")) {
                                 if (action == forget_pwd_action) {
                                     showCustomDialog("密码重置成功", "快去登录吧！");
-                                }
-                                if (action == register_action) {
+                                } else if (action == register_action) {
                                     showCustomDialog("注册成功", "你已成功注册，快去登录吧！");
                                 }
                             } else {
-                                toast_long(jsonObject.getString("respMsg"));
+                                if (jsonObject.getString("respMsg").contains("违反唯一约束条件")) {
+                                    toast_long("用户也存在，无需重复注册");
+                                } else {
+                                    if (action == forget_pwd_action) {
+                                        toast_long("密码修改失败");
+                                    } else if (action == register_action) {
+                                        toast_long("注册失败");
+                                    }
+                                }
                             }
                         } catch (JSONException e) {
                             Logger.e("LOGIN JSONException ", e);

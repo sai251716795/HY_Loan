@@ -110,11 +110,11 @@ public class LoanAuthActivity extends BaseCompatActivity {
                         if (Integer.valueOf(loanApplyBasicInfo.getApplyStatus()) < 500) {
                             dismissLoadingDialog();
                             toast_long("您还有未完成的贷款记录");
-//                            Intent intent = new Intent(getContext(), LoanListActivity.class);
-//                            intent.putExtra("loanType",LoanListActivity.type_List);
-//                            startActivity(intent);
-//                            finish();
-//                            return;
+                            Intent intent = new Intent(getContext(), LoanListActivity.class);
+                            intent.putExtra("loanType",LoanListActivity.type_List);
+                            startActivity(intent);
+                            finish();
+                            return;
                         }
                     }
                     BrAgentAuth();

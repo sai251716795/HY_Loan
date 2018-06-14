@@ -113,9 +113,9 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
             userIcon.setEnabled(false);
             modifyPwd.setVisibility(View.GONE);
             modifyPwd.setEnabled(false);
+            signOut.setText("登录");
         }
         appVersion.setText(getVersion());
-
     }
 
     private String getVersion() {
@@ -196,28 +196,34 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
     }
 
     private void signOut() {
-        CustomDialog.Builder al = new CustomDialog.Builder(SettingActivity.this);
-        al.setTitle("操作提示")
-                .setMessage(getResources().getString(R.string.sure_logout))
-                .setOkBtn("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        dialog.dismiss();
-                    }
-                })
-                .setCancelBtn("退出", new DialogInterface.OnClickListener() {
 
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        myApplication.initUserBeans(null);                                      //设置静态用户数据
-                        myApplication.mSharedPref.saveLoginState(getContext(), false);  //登录状态
-                        finishAll();
-                        intent = new Intent(context, LoginActivity.class);
-                        startActivity(intent);
-                    }
-                });
-        al.create().show();
+        if (myApplication.getUserBeanData() != null) {
+            CustomDialog.Builder al = new CustomDialog.Builder(SettingActivity.this);
+            al.setTitle("操作提示")
+                    .setMessage(getResources().getString(R.string.sure_logout))
+                    .setOkBtn("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setCancelBtn("退出", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            myApplication.initUserBeans(null);                                      //设置静态用户数据
+                            myApplication.mSharedPref.saveLoginState(getContext(), false);  //登录状态
+                            finishAll();
+                            intent = new Intent(context, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            al.create().show();
+        } else {
+            intent = new Intent(context, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     private static int SCAN_OPEN_PHONE = 102;//从相册图片后返回
@@ -262,10 +268,10 @@ public class SettingActivity extends BaseCompatActivity implements Serializable 
                 apkSer = new ApkSer();
 //                try {
 //                    apkSer = GsonUtil.fromJson(response.body(), ApkSer.class);
-                    //根据是否有新更新点，显示红点
+                //根据是否有新更新点，显示红点
 //                    if (getVersionCode() < apkSer.getVersionCode()) {
-                        updateView.setVisibility(View.VISIBLE);
-                        appVersion.setText("有新版本");
+                updateView.setVisibility(View.VISIBLE);
+                appVersion.setText("有新版本");
 //                    }
 //                } catch (InstantiationException e) {
 //                    e.printStackTrace();

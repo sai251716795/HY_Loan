@@ -2,8 +2,8 @@ package com.pay.library.config;
 
 public class URLConfig {
 
-    public static final String yhxBranchCode = "YHX0000002";
-    public static final String yhxsecretKey = "f79f65f1698da03d256edbdbf45599b4";
+    public static final String yhxBranchCode = "YHX0000003";
+    public static final String yhxsecretKey = "912e4e1b13971b0c3add9e4cebec31b3";
 
     public static  final String partnerId="180016" ;
     public static  final String partnerKey= "36B4D6A3FBF116B5D740AFC1C39FC314";
