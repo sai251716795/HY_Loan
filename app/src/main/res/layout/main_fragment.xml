@@ -68,41 +68,127 @@
             android:layout_height="wrap_content"
             app:wshPrimaryColor="@color/yellow" />
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <LinearLayout
                 android:id="@+id/merchant_main_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/collection_icon_message" />
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/collection_icon_online" />
 
-                <TextView
-                    android:id="@+id/open_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="进入我的商户"
-                    android:textColor="@color/black"
-                    android:textSize="17sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/open_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="线上收单"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/open_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="微信支付宝扫码收款"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/textblack"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/open_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="可用"
+                    android:text="未登录"
+                    android:textColor="@color/textblack"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/right32" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/quick_main_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/collection_icon_quick" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/quick_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="快捷钱包"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                    <TextView
+                        android:id="@+id/quick_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="信用卡提现充值，方便快捷"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/textblack"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/quick_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="未登录"
                     android:textColor="@color/textblack"
                     android:textSize="15sp" />
 
@@ -117,39 +203,18 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/not_order_lay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:clickable="true"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+            <!--<Button-->
+                <!--android:id="@+id/merchant_apply_btn"-->
+                <!--style="@style/button_green_style"-->
+                <!--android:layout_width="220dp"-->
+                <!--android:text="完善信息" />-->
+            <!--<Button-->
+                <!--android:id="@+id/quick_btn"-->
+                <!--style="@style/button_green_style"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--android:layout_width="220dp"-->
+                <!--android:text="完善信息" />-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="100dp"
-                    android:src="@drawable/collection_icon_message" />
-
-                <TextView
-                    android:id="@+id/merchant_status_msg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="完善信息后可以收款~~"
-                    android:textColor="@color/textblack"
-                    android:textSize="16sp" />
-
-                <Button
-                    android:id="@+id/merchant_apply_btn"
-                    style="@style/button_green_style"
-                    android:layout_width="220dp"
-                    android:text="完善信息" />
-
-            </LinearLayout>
-
-
-        </FrameLayout>
+        </LinearLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

@@ -28,6 +28,7 @@ import com.yhx.loan.activity.login.LoginActivity;
 import com.yhx.loan.activity.main.NoticeActivity;
 import com.yhx.loan.activity.main.SettingActivity;
 import com.yhx.loan.activity.order.LoanListActivity;
+import com.yhx.loan.activity.pay.PayHistoryListActivity;
 import com.yhx.loan.activity.web.WebX5Activity;
 import com.yhx.loan.base.MyApplication;
 import com.yhx.loan.bean.EventbusMsg;
@@ -151,9 +152,10 @@ public class MeFragment extends Fragment {
 
     @OnClick({R.id.userName, R.id.user_icon, R.id.data_icon, R.id.author_layout, R.id.my_bankCard_layout,
             R.id.loan_order_layout, R.id.my_message_layout, R.id.my_setting_layout, R.id.my_help_center_layout
-            , R.id.pay_march_layout})
+            , R.id.pay_march_layout,R.id.linearLayout2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.linearLayout2:
             case R.id.userName:
             case R.id.user_icon:
             case R.id.data_icon:
@@ -176,9 +178,15 @@ public class MeFragment extends Fragment {
                 }
                 break;
             case R.id.loan_order_layout: {
-                Intent intent = new Intent(getActivity(), LoanListActivity.class);
-                intent.putExtra("loanType", LoanListActivity.type_List);
-                startActivity(intent);
+                if (userBean == null) {
+                    startActivity(LoginActivity.class);
+                    break;
+                } else {
+                    startActivity(PayHistoryListActivity.class);
+                }
+//                Intent intent = new Intent(getActivity(), LoanListActivity.class);
+//                intent.putExtra("loanType", LoanListActivity.type_List);
+//                startActivity(intent);
             }
             break;
             case R.id.my_message_layout:
@@ -209,8 +217,10 @@ public class MeFragment extends Fragment {
         try {
             userBean = MyApplication.getInstance().getUserBeanData();
             if (userBean == null) {
-                userName.setText("去登录");
+                userName.setText("未登录");
                 userPhone.setVisibility(View.GONE);
+                authorState.setText("");
+                bankCardNumber.setText("");
                 return;
             }
 
@@ -254,7 +264,6 @@ public class MeFragment extends Fragment {
 
             }
         }
-
     }
 
     Intent intent;

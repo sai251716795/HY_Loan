@@ -37,9 +37,10 @@
             android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/maxHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="单笔交易不超过1,000元"
+            android:text="单笔交易不超过2,000元"
             android:textSize="12sp"
             android:textColor="@color/textblack"
             android:layout_marginTop="10dp"

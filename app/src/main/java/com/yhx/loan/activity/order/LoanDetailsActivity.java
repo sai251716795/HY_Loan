@@ -136,7 +136,7 @@ public class LoanDetailsActivity extends BaseCompatActivity {
             orderId.setText(order.getCustomerCode());
 
             if (order.getApplyStatus().equals("400") || order.getApplyStatus().equals("500")) {
-                repayPlanBt.setVisibility(View.VISIBLE);
+                repayPlanBt.setVisibility(View.GONE);
             } else {
                 repayPlanBt.setVisibility(View.GONE);
             }
@@ -145,7 +145,8 @@ public class LoanDetailsActivity extends BaseCompatActivity {
                 repayNumber.setEnabled(false);
             } else {
                 if (order.getChannel().equals(AppConfig.Channel.xingYe)) {
-                    repayNumber.setEnabled(true);
+//                    repayNumber.setEnabled(true);
+                    repayNumber.setEnabled(false);
                 } else {
                     repayNumber.setEnabled(false);
                 }

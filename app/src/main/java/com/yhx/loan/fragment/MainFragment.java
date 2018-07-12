@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,14 +27,15 @@ import com.yhx.loan.activity.authen.MerchantActivity;
 import com.yhx.loan.activity.login.LoginActivity;
 import com.yhx.loan.activity.pay.PayHistoryListActivity;
 import com.yhx.loan.activity.pay.SelectReciveTypeActivity;
+import com.yhx.loan.activity.qiuck.AQuickMianActivity;
+import com.yhx.loan.activity.qiuck.RegisterQuickActivity;
+import com.yhx.loan.activity.qiuck.RegisterQuickOneActivity;
 import com.yhx.loan.base.MyApplication;
 import com.yhx.loan.bean.EventbusMsg;
 import com.yhx.loan.bean.pay.MacObject;
 import com.yhx.loan.bean.pay.MacUtils;
 
-import org.feezu.liuli.timeselector.Utils.DateUtil;
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,10 +54,6 @@ public class MainFragment extends Fragment {
     CheckBox titleCheck;
     @BindView(R.id.fresh_header)
     MaterialHeader freshHeader;
-    @BindView(R.id.merchant_apply_btn)
-    Button merchantApplyBtn;
-    @BindView(R.id.not_order_lay)
-    LinearLayout notOrderLay;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
     @BindView(R.id.open_name)
@@ -68,19 +62,24 @@ public class MainFragment extends Fragment {
     TextView openStatusText;
     @BindView(R.id.merchant_main_btn)
     LinearLayout merchantMainBtn;
-    @BindView(R.id.merchant_status_msg)
-    TextView merchantStatusMsg;
 
     public int openStatusType = -1; // 0开放 其他不开放 ，-1 不存在，为开通商户
     @BindView(R.id.right_date_image)
     ImageView rightDateImage;
     @BindView(R.id.pay_history_list)
     TextView payHistoryList;
+    @BindView(R.id.quick_name)
+    TextView quickName;
+    @BindView(R.id.quick_status)
+    TextView quickStatus;
+    @BindView(R.id.quick_main_btn)
+    LinearLayout quickMainBtn;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -91,9 +90,10 @@ public class MainFragment extends Fragment {
     }
 
     private void initViewData() {
-        merchantMainBtn.setEnabled(false);
         payHistoryList.setVisibility(View.GONE);
         refreshLayout.setOnRefreshListener(onRefreshListene);
+        openStatusText.setText("未登录");
+
     }
 
     //刷新操作
@@ -111,7 +111,7 @@ public class MainFragment extends Fragment {
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
             return;
-        }else {
+        } else {
 
         }
         requestMerchantData();
@@ -126,6 +126,9 @@ public class MainFragment extends Fragment {
 
         Map<String, Object> map = new HashMap<>();
         map.put("phone", MyApplication.getInstance().getUserBeanData().getLoginName());   //联系电话
+        map.put("pay_channel", "0001");   //渠道
+
+
         macObject.setReqData(map);
 
         try {
@@ -146,43 +149,31 @@ public class MainFragment extends Fragment {
                                 JSONObject jsonObject = new JSONObject(response.body());
                                 if ("0000".equals(jsonObject.getString("res_code"))) {
 
-                                    notOrderLay.setVisibility(View.GONE);
                                     merchantMainBtn.setEnabled(false);
                                     String openStatus = jsonObject.getString("open_status");
-
                                     openStatusType = Integer.valueOf(openStatus);
                                     //发送广播到其他页面
                                     sendStatus(openStatusType);
                                     if ("0".equals(openStatus)) {
-//                                        merchantMainBtn.setEnabled(true);
+                                        merchantMainBtn.setEnabled(true);
                                         payHistoryList.setVisibility(View.VISIBLE);
-                                        openName.setText("我的商户");
-                                        openStatusText.setText("可用");
+                                        openStatusText.setText("使用中");
                                         MyApplication.getInstance().getUserBeanData().setMerch_no(jsonObject.getString("merch_no"));
-                                        notOrderLay.setVisibility(View.VISIBLE);
-                                        merchantStatusMsg.setText("可以使用商户收款啦~~");
-                                        merchantApplyBtn.setText("去收款");
                                     } else if ("1".equals(openStatus)) {
-                                        openName.setText("我的商户");
                                         openStatusText.setText("待审核");
                                     } else if ("2".equals(openStatus)) {
-                                        openName.setText("我的商户");
                                         openStatusText.setText("审核中");
                                     } else if ("3".equals(openStatus)) {
-                                        openName.setText("我的商户");
                                         openStatusText.setText("审核不通过");
                                     } else if ("4".equals(openStatus)) {
-                                        openName.setText("我的商户");
-                                        openStatusText.setText("停用");
+                                        openStatusText.setText("被停用");
                                     } else if ("5".equals(openStatus)) {
-                                        openName.setText("我的商户");
                                         openStatusText.setText("审批中");
                                     } else if ("6".equals(openStatus)) {
-                                        openName.setText("我的商户");
                                         openStatusText.setText("信息录入中");
                                     }
                                 } else {
-                                    notOrderLay.setVisibility(View.VISIBLE);
+                                    openStatusText.setText("未注册");
                                     openStatusType = -1;
                                 }
                             } catch (JSONException e) {
@@ -219,24 +210,23 @@ public class MainFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (MyApplication.getInstance().getUserBeanData() == null) {
-            merchantStatusMsg.setText("登录后才可以使用商户收款哦~~");
-            merchantApplyBtn.setText("未登录");
+            openStatusText.setText("未登录");
             return;
         } else {
             setData();
         }
     }
 
-    @OnClick({R.id.merchant_apply_btn, R.id.merchant_main_btn, R.id.pay_history_list})
+    @OnClick({R.id.merchant_main_btn, R.id.pay_history_list, R.id.quick_main_btn,R.id.quick_name})
     public void onViewClicked(View view) {
+        if (MyApplication.getInstance().getUserBeanData() == null) {
+            Toast.makeText(getActivity(), "登   录", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
         switch (view.getId()) {
-            case R.id.merchant_apply_btn: {
-                if (MyApplication.getInstance().getUserBeanData() == null) {
-                    Toast.makeText(getActivity(), "登   录", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
-                    break;
-                }
+            case R.id.merchant_main_btn: {
                 if (openStatusType == -1) {
                     Intent intent = new Intent(getActivity(), MerchantActivity.class);
                     startActivity(intent);
@@ -246,17 +236,20 @@ public class MainFragment extends Fragment {
                 }
             }
             break;
-            case R.id.merchant_main_btn: {
-                Intent intent = new Intent(getActivity(), SelectReciveTypeActivity.class);
-                startActivity(intent);
-            }
-            break;
             case R.id.pay_history_list: {
                 Intent intent = new Intent(getActivity(), PayHistoryListActivity.class);
                 startActivity(intent);
             }
             break;
+            case R.id.quick_main_btn: {
+                Intent intent = new Intent(getActivity(), RegisterQuickOneActivity.class);
+                startActivity(intent);
+            }
+            break;
+            case R.id.quick_name:
+                Intent intent = new Intent(getActivity(), AQuickMianActivity.class);
+                startActivity(intent);
+                break;
         }
-
     }
 }

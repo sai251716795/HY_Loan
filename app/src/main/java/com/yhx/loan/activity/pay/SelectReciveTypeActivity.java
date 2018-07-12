@@ -25,6 +25,7 @@ import com.pay.library.tool.Logger;
 import com.pay.library.uils.DateUtils;
 import com.pay.library.uils.StringUtils;
 import com.yhx.loan.R;
+import com.yhx.loan.activity.web.WebX5Activity;
 import com.yhx.loan.base.BaseCompatActivity;
 import com.yhx.loan.bean.pay.MacObject;
 import com.yhx.loan.bean.pay.MacUtils;
@@ -57,6 +58,8 @@ public class SelectReciveTypeActivity extends BaseCompatActivity implements Comp
     Button nextBtn;
     @BindView(R.id.right_date_image)
     ImageView rightDateImage;
+    @BindView(R.id.maxHint)
+    TextView maxHint;
 
     private String pay_channel = "0001";
     public static final String PAY_AMT = "tr_amt";
@@ -65,6 +68,7 @@ public class SelectReciveTypeActivity extends BaseCompatActivity implements Comp
     public static final String PAY_TYPE_WECHAT = "0001";
     public static final String PAY_TYPE_ZHIFUBAO = "0002";
 
+    public static final int maxAmt = 2000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,14 +95,14 @@ public class SelectReciveTypeActivity extends BaseCompatActivity implements Comp
                         clearDotStr = s.toString();
                     }
 
-                    if (Double.valueOf(clearDotStr) > 1000) {
-                        transAmtEdit.setText(String.valueOf(1000));
+                    if (Double.valueOf(clearDotStr) > maxAmt) {
+                        transAmtEdit.setText(String.valueOf(maxAmt));
                     }
 
                 }
             }
         });
-
+        maxHint.setText("单笔交易不超过"+maxAmt+"元");
     }
 
     @Override
@@ -131,9 +135,9 @@ public class SelectReciveTypeActivity extends BaseCompatActivity implements Comp
         map.put("tr_amt", tr_amt);                                //交易金额
         map.put("tr_class", "0002");                              //0001担保支付  0002即时到账 //默认：0002
         map.put("desc_info", "话费充值");                         //商品描述
-        map.put("show_url", "www.baidu.com?type=900001");         //商品展示的url地址
+        map.put("show_url", "http://www.fjrssc.com/goods/show-199.html");         //商品展示的url地址
         map.put("tr_channel", "mb");                              //移动端：mb
-        map.put("return_url", "www.baidu.com?type=900001");       //页面跳转url
+        map.put("return_url", "http://www.fjrssc.com/goosd.html"); //页面跳转url
         map.put("notify_url", "www.baidu.com?type=900001");       //后台异步通知url
         map.put("start_time", DateUtils.getMoreTimes());          //交易时间，格式： yyyyMMddHHmmss
         map.put("pay_channel", pay_channel);                    //0001微信  0002支付宝
@@ -249,7 +253,9 @@ public class SelectReciveTypeActivity extends BaseCompatActivity implements Comp
                 newOrder(String.format("%.2f",Double.valueOf(Double.valueOf(tr_amt))));
                 break;
             case R.id.right_date_image:
-
+                Intent intent = new Intent(getContext(), WebX5Activity.class);
+                intent.putExtra("url", "file:///android_asset/html/common_problem.html");
+                startActivity(intent);
                 break;
         }
     }

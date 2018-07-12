@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bacGout"
     android:orientation="vertical"
-    android:id="@+id/activity"
     tools:context="com.yhx.loan.activity.authen.MerchantActivity">
 
     <include layout="@layout/layout_simple_title" />
@@ -278,11 +278,14 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/questions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="到账银行卡"
                 android:textColor="@color/textGray"
+                android:drawableRight="@drawable/quick_icon_questions"
+                android:drawablePadding="10dp"
                 android:textSize="13sp" />
 
             <LinearLayout
@@ -296,18 +299,17 @@
                     android:id="@+id/bankIcon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    />
+                    android:layout_gravity="center_vertical" />
 
                 <TextView
                     android:id="@+id/bank_card_result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
                     android:text="收款银行卡"
                     android:textColor="@color/black"
-                    android:layout_marginLeft="5dp"
                     android:textSize="15sp" />
 
                 <TextView
@@ -328,8 +330,16 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/right32" />
 
-
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:text="提示：请选择一张预留电话为系统登录账户的银行。"
+                android:textColor="@color/red"
+                android:textSize="12sp" />
 
             <Button
                 android:id="@+id/submit_merchant"

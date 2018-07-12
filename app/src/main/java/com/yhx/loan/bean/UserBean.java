@@ -4,7 +4,9 @@ import android.util.Log;
 
 import com.pay.library.uils.GsonUtil;
 
+import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
  * 主表数据
  * Created by 25171 on 2018/1/4.
  */
-public class UserBean extends DataSupport {
+public class UserBean extends LitePalSupport {
 
     public String loginName;//用户名
     private String realName = "";//真实姓名
@@ -276,10 +278,10 @@ public class UserBean extends DataSupport {
      */
     @Override
     public boolean saveOrUpdate(String... where) {
-        if (DataSupport.where(where).findFirst(UserBean.class) == null) {
+        if (LitePal.where(where).findFirst(UserBean.class) == null) {
             return save();
         }
-        long objectId = DataSupport.where(where).findFirst(UserBean.class).getBaseObjId();//获取主键id
+        long objectId = LitePal.where(where).findFirst(UserBean.class).getBaseObjId();//获取主键id
         if (userBasicInfo != null)
             this.userBasicInfo.saveOrUpdate("userbean_id=?", String.valueOf(objectId));
         if (workInfo != null)
@@ -293,22 +295,22 @@ public class UserBean extends DataSupport {
         }
         super.saveOrUpdate(where);
 
-        DataSupport.deleteAll(BankCardModel.class, "userbean_id is null");
-        DataSupport.deleteAll(RelationInfo.class, "userbean_id is null");
+        LitePal.deleteAll(BankCardModel.class, "userbean_id is null");
+        LitePal.deleteAll(RelationInfo.class, "userbean_id is null");
         return true;
     }
 
     public UserBean findFirst(String... where) {
         UserBean userBean = new UserBean();
         try {
-            long objectId = DataSupport.where(where).findFirst(UserBean.class).getBaseObjId();//获取主键id
+            long objectId = LitePal.where(where).findFirst(UserBean.class).getBaseObjId();//获取主键id
             Log.e("login", "**:objectId : " + objectId);
             //根据主键id查询以下几个表
-            userBean = DataSupport.where(where).findFirst(UserBean.class);
-            WorkInfo dbWorkInfo = DataSupport.where("userbean_id=?", String.valueOf(objectId)).findFirst(WorkInfo.class);//用户工作信息
-            UserBasicInfo dbUserBasicInfo = DataSupport.where("userbean_id=?", String.valueOf(objectId)).findFirst(UserBasicInfo.class);//用户基础信息
-            List<BankCardModel> dbBankCardArray = DataSupport.where("userbean_id=?", String.valueOf(objectId)).find(BankCardModel.class);//银行卡集合
-            List<RelationInfo> dbRelationArray = DataSupport.where("userbean_id=?", String.valueOf(objectId)).find(RelationInfo.class);//紧急联系人
+            userBean = LitePal.where(where).findFirst(UserBean.class);
+            WorkInfo dbWorkInfo = LitePal.where("userbean_id=?", String.valueOf(objectId)).findFirst(WorkInfo.class);//用户工作信息
+            UserBasicInfo dbUserBasicInfo = LitePal.where("userbean_id=?", String.valueOf(objectId)).findFirst(UserBasicInfo.class);//用户基础信息
+            List<BankCardModel> dbBankCardArray = LitePal.where("userbean_id=?", String.valueOf(objectId)).find(BankCardModel.class);//银行卡集合
+            List<RelationInfo> dbRelationArray = LitePal.where("userbean_id=?", String.valueOf(objectId)).find(RelationInfo.class);//紧急联系人
             userBean.setUserBasicInfo(dbUserBasicInfo);
             userBean.setWorkInfo(dbWorkInfo);
             userBean.setBankCardArray(dbBankCardArray);

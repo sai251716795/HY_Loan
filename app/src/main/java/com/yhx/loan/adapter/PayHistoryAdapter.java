@@ -52,6 +52,9 @@ public class PayHistoryAdapter extends BaseAdapter {
         this.context = context;
     }
 
+    public void setArryList(List<PayListBean> arryList) {
+        this.arryList = arryList;
+    }
 
     @Override
     public int getCount() {
@@ -89,7 +92,7 @@ public class PayHistoryAdapter extends BaseAdapter {
         } else if (payList.getTr_status().equals("0")) {
             viewHolder.trStatus.setText("交易成功");
             // 有清算过的就不要再去清算查询了
-            if(payList.getClear_state().equals("0")) {
+            if (payList.getClear_state().equals("0")) {
                 queryOrd(payList.getOrder_no(), viewHolder.clearState);
             }
         } else if (payList.getTr_status().equals("2")) {
@@ -105,17 +108,17 @@ public class PayHistoryAdapter extends BaseAdapter {
         viewHolder.orderName.setText(payList.getOrder_name());
         // 时间
         Date date = DateUtils.dateWithString(payList.getStart_time(), "yyyyMMddHHmmss");
-        viewHolder.startTime.setText(TimeUtils.multiSendTimeToStr(date.getTime()));
+        if (date != null)
+            viewHolder.startTime.setText(TimeUtils.multiSendTimeToStr(date.getTime()));
         // 金额
-        viewHolder.trAmt.setText(String.format("%.2f",Double.valueOf(payList.getTr_amt()))+"元");
+        viewHolder.trAmt.setText(String.format("%.2f", Double.valueOf(payList.getTr_amt())) + "元");
         // payChannel 支付方式
-        viewHolder.payChannel.setText(payList.getPay_channel().equals("0001")?"微信支付":"支付宝支付");
-
+        viewHolder.payChannel.setText(payList.getPay_channel().equals("0001") ? "微信支付" : "支付宝支付");
 
         return convertView;
     }
 
-    private void queryOrd(String orderId,final TextView textView) {
+    private void queryOrd(String orderId, final TextView textView) {
         final MacObject macObject = new MacObject();
         macObject.setOrgCode(URLConfig.yhxBranchCode);
         macObject.setSecretKey(URLConfig.yhxsecretKey);
@@ -179,15 +182,17 @@ public class PayHistoryAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
     }
-    static Map<String ,String> clearStatusMap = new HashMap<>();
+
+    static Map<String, String> clearStatusMap = new HashMap<>();
+
     static {
-        clearStatusMap.put("0","未清算");
-        clearStatusMap.put("1","一级清算中");
-        clearStatusMap.put("2","一级清算失败");
-        clearStatusMap.put("3","一级清算完成");
-        clearStatusMap.put("4","二级清算中");
-        clearStatusMap.put("5","二级清算失败");
-        clearStatusMap.put("6","二级清算完成");
-        clearStatusMap.put("7","清算成功");
+        clearStatusMap.put("0", "未清算");
+        clearStatusMap.put("1", "一级清算中");
+        clearStatusMap.put("2", "一级清算失败");
+        clearStatusMap.put("3", "一级清算完成");
+        clearStatusMap.put("4", "二级清算中");
+        clearStatusMap.put("5", "二级清算失败");
+        clearStatusMap.put("6", "二级清算完成");
+        clearStatusMap.put("7", "清算成功");
     }
 }

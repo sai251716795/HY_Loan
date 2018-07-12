@@ -1,9 +1,10 @@
 package com.yhx.loan.bean;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
 
 
-public class RelationInfo extends DataSupport {
+public class RelationInfo extends LitePalSupport {
     public String rowNo = "";     //	String(4)	是	序号
     public String relationCustomerName = "";//   String(50)     是  联系人姓名
     public String relationCustomerMobile = "";// String(50)     是  手机号码

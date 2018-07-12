@@ -1,13 +1,14 @@
 package com.yhx.loan.bean;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
 
 /**
  * 用户银行卡信息基础表
  * Created by 25171 on 2018/4/13.
  */
 
-public class BankCardModel extends DataSupport {
+public class BankCardModel extends LitePalSupport {
 
     private String mobile;              //String	是	手机号(登录名)
     private String realName;            //  String(50)	是	真实姓名

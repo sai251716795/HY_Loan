@@ -22,8 +22,6 @@ public class AboutAppActivity extends BaseCompatActivity {
     TextView rightMenuText;
     @BindView(R.id.right_date_image)
     ImageView rightDateImage;
-    @BindView(R.id.qr_image)
-    ImageView qrImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

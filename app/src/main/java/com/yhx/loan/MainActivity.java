@@ -97,8 +97,8 @@ public class MainActivity extends BaseCompatActivity {
         mViewPager = (CustomViewPager) findViewById(R.id.central);
         mViewPager.setScanScroll(false);
         initView();
-        setSelect(0);
-        buttonItem.check(R.id.home_radio);
+        setSelect(1);
+        buttonItem.check(R.id.loan_radio);
 //        iniSystemData();
         getLocation();
         handler.postDelayed(task,5000);
@@ -154,9 +154,9 @@ public class MainActivity extends BaseCompatActivity {
 
     private void initView() {
         mfragments = new ArrayList<>();
-        homeFragment = new HomeFragment();
         mainFragment = new MainFragment();
         meFragment = new MeFragment();
+        homeFragment = new HomeFragment();
         mfragments.add(homeFragment);
         mfragments.add(mainFragment);
         mfragments.add(meFragment);

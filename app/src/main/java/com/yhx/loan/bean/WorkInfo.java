@@ -1,12 +1,13 @@
 package com.yhx.loan.bean;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
 
 /**
  * Created by 25171 on 2018/4/13.
  */
 
-public class WorkInfo extends DataSupport {
+public class WorkInfo extends LitePalSupport {
 
     private String companyName;                 //String(200) 	是	工作单位
     private String companyType;                 //String(50)	是	单位性质

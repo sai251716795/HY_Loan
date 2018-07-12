@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntRange;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -62,8 +63,9 @@ public class BaseCompatActivity extends AppCompatActivity {
         MyApplication.activityList.add(this);
     }
 
-    public static ArrayList<BaseCompatActivity> LoanActivityList = new ArrayList<BaseCompatActivity>();
+    public static ArrayList<BaseCompatActivity> LoanActivityList = new ArrayList<>();
 
+    public static ArrayList<BaseCompatActivity> waitClearAcList = new ArrayList<>();
     public void addLoanActivity(BaseCompatActivity activity) {
         LoanActivityList.add(activity);
     }
@@ -74,6 +76,15 @@ public class BaseCompatActivity extends AppCompatActivity {
         }
     }
 
+    public void addClearActivity(BaseCompatActivity activity) {
+        waitClearAcList.add(activity);
+    }
+
+    public void finishClearAll() {
+        for (Activity activity : waitClearAcList) {
+            activity.finish();
+        }
+    }
 
     protected Context getContext() {
         return context;
@@ -258,6 +269,20 @@ public class BaseCompatActivity extends AppCompatActivity {
                     }
                 });
         builder.create().show();
+    }
+    protected void showHitDialog(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create();
+        builder.show();
+
     }
 
 

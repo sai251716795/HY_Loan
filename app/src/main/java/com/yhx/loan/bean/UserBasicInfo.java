@@ -1,6 +1,7 @@
 package com.yhx.loan.bean;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.crud.LitePalSupport;
 
 import java.lang.annotation.Repeatable;
 
@@ -8,7 +9,7 @@ import java.lang.annotation.Repeatable;
  * 用户基础信息表 基础信息
  * Created by 25171 on 2018/4/13.
  */
-public class UserBasicInfo extends DataSupport {
+public class UserBasicInfo extends LitePalSupport {
     private String email;//String(50)	是	电子邮箱
     private String maritalStatus;//	String(5) 	是	婚姻状态 //婚姻状况	indivmtrital
     private int supportCount;//Int	是	供养人数

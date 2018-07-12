@@ -71,7 +71,6 @@ public class HomeFragment extends Fragment implements BGABanner.Delegate<ImageVi
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
