@@ -207,7 +207,16 @@
         <activity android:name=".activity.pay.ReceivablesActivity" />
         <activity android:name=".activity.pay.SelectReciveTypeActivity" />
         <activity android:name=".activity.pay.PayResultActivity" />
-        <activity android:name=".activity.pay.PayHistoryListActivity"></activity>
+        <activity android:name=".activity.pay.PayHistoryListActivity" />
+        <activity android:name=".activity.qiuck.RegisterQuickActivity" />
+        <activity android:name=".activity.qiuck.RegisterQuickOneActivity" />
+        <activity android:name=".activity.qiuck.RechargeActivity" />
+        <activity android:name=".activity.qiuck.AQuickMianActivity" />
+        <activity android:name=".activity.authen.MerchanRegisterResultActivity" />
+        <activity android:name=".activity.qiuck.MerchanDataActivity" />
+        <activity android:name=".activity.qiuck.QuickModifyBankActivity" />
+        <activity android:name=".activity.qiuck.QuickOrderListActivity" />
+        <activity android:name=".activity.qiuck.QuickWithdrawalsActivity"></activity>
     </application>
 
 </manifest>

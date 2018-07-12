@@ -2,7 +2,7 @@
   {
     "code": "0101",
     "icon": "file:///android_asset/image/icon_0101.png",
-    "name": "消费分期贷",
+    "name": "消费分期申请",
     "loanMoney": "最高2万",
     "url": "",
     "describe": "等额本息，还款无忧",
@@ -22,7 +22,7 @@
   {
     "code": "0103",
     "icon": "file:///android_asset/image/icon_0103.png",
-    "name": "房贷专案",
+    "name": "房贷专案申请",
     "loanMoney": "最高2万",
     "url": "",
     "describe": "房贷，月供分期",
@@ -42,7 +42,7 @@
   {
     "code": "0105",
     "icon": "file:///android_asset/image/icon_0106.png",
-    "name": "车贷专案",
+    "name": "车贷专案申请",
     "loanMoney": "最高2万",
     "url": "",
     "describe": "等额本息，还款无忧",
@@ -96,7 +96,7 @@
     "loanMoney": "最高2万",
     "url": "",
     "describe": "商户业主申请专道",
-    "state": true,
+    "state": false,
     "enable": false
   },
   {

@@ -21,6 +21,7 @@ public class GuideActivity extends AppCompatActivity {
         initView();
         setListener();
         processLogic();
+
     }
 
     private void initView() {
@@ -48,8 +49,7 @@ public class GuideActivity extends AppCompatActivity {
         BGALocalImageSize localImageSize = new BGALocalImageSize(720, 1280, 320, 640);
         // 设置数据源
        mBackgroundBanner.setData(localImageSize, ImageView.ScaleType.CENTER_CROP,
-                R.drawable.run1,
-                R.drawable.run2,
+                R.drawable.guide_page,
                 R.drawable.run3);
 
     }

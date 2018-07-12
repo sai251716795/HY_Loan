@@ -12,9 +12,51 @@
 
     <string name="error_invalid_email">无效电子邮件地址</string>
     <string name="error_login_tel">请输入有效手机号</string>
-    <string name="login_name"></string>
+    <string name="login_name"> </string>
     <string name="error_invalid_password">密码太短了</string>
     <string name="error_incorrect_password">此密码不正确</string>
     <string name="error_field_required">此处不能为空</string>
     <string name="permission_rationale">"提供电子邮件完成所需的联系人权限。" </string>
+
+    <string name="bankNameSuppor">（1）对私支持 15 家银行：工商银行、农业银行、招商银行、建设银行、交通银行、中信银行、光大银行、北京银行、深圳发展银行、中国银行、兴业银行、民生银行、
+华夏银行、上海浦东发展银行、广发银行。 \n（2）对公支持 9 家银行：工商银行、农业银行、建设银行、交通银行、深圳发展银行、中国银行、兴业银行、民生银行,平安银行请写成：深圳发展银行。</string>
+    <string name="signedName">（1）商户类型为个人时,保证签约名和开户名一致；\n（2）注册商户类型为企业时和个体工商户时，签约名传企业名称全称。</string>
+    <string name="accountName">银行卡开户名，在注册商户类型为个人时，请保证签约名和开户名一致。</string>
+
+    <string-array name="bankNameType">
+        <item>对私</item>
+        <item>对公</item>
+    </string-array>
+    <string-array name="bankNamePublic">
+        <item>工商银行</item>
+        <item>农业银行</item>
+        <item>招商银行</item>
+        <item>建设银行</item>
+        <item>交通银行</item>
+        <item>中信银行</item>
+        <item>光大银行</item>
+        <item>北京银行</item>
+        <item>深圳发展银行</item>
+        <item>中国银行</item>
+        <item>兴业银行</item>
+        <item>民生银行</item>
+        <item>华夏银行</item>
+        <item>上海浦东发展银行</item>
+        <item>广发银行</item>
+    </string-array>
+    <string-array name="bankNamePrivate">
+        <item>工商银行</item>
+        <item>农业银行</item>
+        <item>建设银行</item>
+        <item>交通银行</item>
+        <item>深圳发展银行(平安银行)</item>
+        <item>中国银行</item>
+        <item>兴业银行</item>
+        <item>民生银行</item>
+    </string-array>
+    <string-array name="customerType">
+        <item>个人</item>
+        <item>个体工商户</item>
+        <item>企业</item>
+    </string-array>
 </resources>

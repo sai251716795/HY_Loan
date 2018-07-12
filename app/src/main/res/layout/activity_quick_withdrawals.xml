@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yhx.loan.activity.qiuck.QuickWithdrawalsActivity">
+
+    <include layout="@layout/layout_simple_title" />
+
+    <LinearLayout
+        android:id="@+id/select_bankCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/layout_line_bg"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/bankCard_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:scaleType="fitXY"
+            android:src="@drawable/ccb" />
+
+        <TextView
+            android:id="@+id/bankCard_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="银行(8888)"
+            android:textColor="@color/textblack"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitXY"
+            android:src="@drawable/right32" />
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <TableRow android:background="@drawable/layout_line_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="可提现金额"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/withdraw_capital_all"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="0.00(元)"
+                android:textColor="@color/textblack"
+                android:textSize="14sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="-0.2dp"
+            android:background="@drawable/layout_line_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="提现金额"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/withdraw_capital_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="请输入提现金额"
+                android:inputType="numberDecimal"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/textblack"
+                android:textColorHint="#dfdfdf"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="-0.2dp"
+            android:background="@drawable/layout_line_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="手续费"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/withdraw_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:text="1.00元"
+                android:textColor="@color/textblack"
+                android:textSize="14sp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/fee_Prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="15dp"
+        android:text="每一笔提现收取手续费1.00元。\n提现金额 = 可提现金额-手续费。"
+        android:textColor="@color/yellow"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/withdraw_ent_btn"
+        style="@style/button_green_style"
+        android:text="确认提现" />
+
+</LinearLayout>

@@ -1,11 +1,14 @@
 package com.yhx.loan.activity.authen;
 
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -92,9 +95,13 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
         initSystemBarTint();
         setContentView(R.layout.activity_merchant);
         ButterKnife.bind(this);
+        addClearActivity(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initViewData();
-
-
     }
 
     private void initViewData() {
@@ -128,7 +135,8 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
         initBankList();
     }
 
-    @OnClick({R.id.btn_back, R.id.merchant_office_addr, R.id.select_bankCard, R.id.submit_merchant})
+    @OnClick({R.id.btn_back, R.id.merchant_office_addr, R.id.select_bankCard, R.id.submit_merchant,
+            R.id.questions})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_back:
@@ -142,6 +150,12 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
                 break;
             case R.id.submit_merchant:
                 merchantSubimt();
+                break;
+            case R.id.questions:
+                String title = "银行卡选择";
+                String message = "选择银行卡时，请选择预留电话为：" + merchantPhone.getText().toString()
+                        + "\n此银行卡将作为交易提现到账的银行卡。";
+                showHitDialog(title, message);
                 break;
         }
     }
@@ -187,7 +201,7 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
         macObject.setTrCode("01");
 
         Map<String, Object> map = new HashMap<>();
-        map.put("phone",merchantPhone.getText().toString());   //联系电话
+        map.put("phone", merchantPhone.getText().toString());   //联系电话
         map.put("real_name", realName.getText().toString());   //法定代表人
         map.put("id_no", merchantIdNo.getText().toString().trim());   //法人身份证号码
         map.put("merch_name", companyName.getText().toString().trim());   //商户名称
@@ -195,8 +209,8 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
         map.put("acc_type", "1");   //开户行
         map.put("account_no", bankCard.getBankCardNumber());   //结算账户
         map.put("each_limit", "2000");   //每笔限额
-        map.put("day_limit", "10000");   //每日限额
-        map.put("tr_rate", "0.28");   //费率
+        map.put("day_limit", "20000");   //每日限额
+        map.put("tr_rate", "0.38");   //费率
         map.put("is_spmerch", "0");   //是否是特约商户
         map.put("server_type", "0002");   //开通支付服务方
         map.put("license_no", licenseNo.getText().toString().trim());   //商户营业执照编号
@@ -206,7 +220,8 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
         map.put("province_code", provinceCode);   //省份编码
         map.put("city_code", cityCode);   //营业执照所在地编码
         map.put("county_code", areaCode);   //县区编码
-        map.put("acct_way", "T0");   //县区编码
+        map.put("acct_way", "0");   // 0-/->T0   1-/->T1
+        map.put("pay_channel", "0001");   //渠道编号 通道方式 0001微信 0002支付宝 0003银联 0004 快捷
         macObject.setReqData(map);
 
         try {
@@ -221,15 +236,19 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
 
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body());
-                                if("0000".equals(jsonObject.getString("res_code"))){
-                                    showCustomDialog("入驻提交成功", "商户入驻信息已提交，点击返回，请等待审核！",true);
-                                }else {
-                                    showCustomDialog("商户入驻信息提交失败", jsonObject.getString("res_msg"),true);
+                                if ("0000".equals(jsonObject.getString("res_code"))) {
+                                    Intent intent = new Intent(getContext(), MerchanRegisterResultActivity.class);
+                                    intent.putExtra(MerchanRegisterResultActivity.INTENT_NAME, "商户入驻信息已提交，请等待审核！");
+                                    startActivity(intent);
+//                                    showCustomDialog("入驻提交成功", "商户入驻信息已提交，点击返回，请等待审核！",true);
+                                } else {
+                                    showCustomDialog("商户入驻信息提交失败", jsonObject.getString("res_msg"), true);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
+
                         @Override
                         public void onStart(Request<String, ? extends Request> request) {
                             showLoadingDialog("提交中...");
@@ -280,8 +299,13 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
      */
     private void initBankList() {
         bankListData = myApplication.getUserBeanData().getBankCardArray();
-        if (bankListData.size() == 0) {
-            return;
+        //移除不符的银行卡
+        String loginName = myApplication.getUserBeanData().getLoginName();
+        for (int i = 0; i < bankListData.size(); i++) {
+            if ("CC".equals(bankListData.get(i).getCardType()) || !loginName.equals(bankListData.get(i).getBankCardPLMobile())) {
+                bankListData.remove(i);
+                i--;
+            }
         }
     }
 
@@ -328,6 +352,7 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
     private String cityCode = "";               //地址邮编（市）
     private String areaCode = "";               //地址邮编（区）
     private String address = "";               //地址
+
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
         String s = (province == null ? "" : province.name) + " " + (city == null ? "" : city.name) + " " + (county == null ? "" : county.name) +
@@ -352,7 +377,6 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
             dialog.dismiss();
         }
     }
-
 
 
 }
