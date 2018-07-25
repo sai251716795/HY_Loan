@@ -77,6 +77,17 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
     @BindView(R.id.essential_lay)
     LinearLayout essentialLay;
 
+    private static List<String> EnducationDegreeArray = StringArray.getMapValues(loanEducationMap);
+    private static List<String> MaritalStatusArray = StringArray.getMapValues(StringArray.marryMap);
+
+    private static List<String> NowLivingStateArray = new ArrayList<>();
+
+    static {
+        NowLivingStateArray.add("自有");
+        NowLivingStateArray.add("租赁");
+        NowLivingStateArray.add("宿舍");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,12 +153,10 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
                 break;
             //教育
             case R.id.et_loan_EnducationDegree: {
-                final List<String> list = StringArray.getMapValues(loanEducationMap);
-
-                simplePopupWindow = new SimplePopupWindow(this, list, new AdapterView.OnItemClickListener() {
+                simplePopupWindow = new SimplePopupWindow(this, EnducationDegreeArray, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        etLoanEnducationDegree.setText(list.get(position));
+                        etLoanEnducationDegree.setText(EnducationDegreeArray.get(position));
                         simplePopupWindow.dismiss();
                     }
                 });
@@ -156,29 +165,23 @@ public class EssentialInformationActivity extends BaseCompatActivity implements 
             break;
             //居住性质
             case R.id.sp_loan_NowLivingState: {
-                final List<String> list = new ArrayList<>();
-                list.add("自有");
-                list.add("租赁");
-                list.add("宿舍");
-                simplePopupWindow = new SimplePopupWindow(this, list, new AdapterView.OnItemClickListener() {
+                simplePopupWindow = new SimplePopupWindow(this, NowLivingStateArray, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        spLoanNowLivingState.setText(list.get(position));
+                        spLoanNowLivingState.setText(NowLivingStateArray.get(position));
                         simplePopupWindow.dismiss();
                     }
                 });
                 simplePopupWindow.showAtLocation(essentialLay);
             }
-
             break;
             //婚姻状态
             case R.id.et_loan_MaritalStatus: {
-                final List<String> list = StringArray.getMapValues(StringArray.marryMap);
 
-                simplePopupWindow = new SimplePopupWindow(this, list, new AdapterView.OnItemClickListener() {
+                simplePopupWindow = new SimplePopupWindow(this, MaritalStatusArray, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        etLoanMaritalStatus.setText(list.get(position));
+                        etLoanMaritalStatus.setText(MaritalStatusArray.get(position));
                         simplePopupWindow.dismiss();
                     }
                 });

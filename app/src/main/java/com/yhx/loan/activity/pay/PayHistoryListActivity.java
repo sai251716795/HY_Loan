@@ -81,6 +81,8 @@ public class PayHistoryListActivity extends BaseCompatActivity {
     String trDate = "";
     String nowDate = DateUtils.getNowDate("yyyyMMdd");
     TextView headView;
+    // 缓存数据池
+    Map<String, List<PayListBean>> cachedPayMap = new HashMap<>();
 
     @Subscribe
     @Override
@@ -157,11 +159,16 @@ public class PayHistoryListActivity extends BaseCompatActivity {
      */
     private void getListServer(String startDate) {
         String merch_no = myApplication.getUserBeanData().getMerch_no();
-        if(StringUtils.isEmpty(merch_no)){
+        if (StringUtils.isEmpty(merch_no)) {
             headView.setText("未注册商户~~");
             return;
         }
 
+        if (cachedPayMap.get(trDate) != null && !trDate.equals(DateUtils.getNowDate("yyyyMMdd"))) {
+            arrayData = cachedPayMap.get(trDate);
+            lsitViewChanged();
+            return;
+        }
         final MacObject macObject = new MacObject();
         macObject.setOrgCode(URLConfig.yhxBranchCode);
         macObject.setSecretKey(URLConfig.yhxsecretKey);
@@ -237,6 +244,7 @@ public class PayHistoryListActivity extends BaseCompatActivity {
                     }
                 }
 
+
                 //排序
                 Collections.sort(arrayData, new Comparator<PayListBean>() {
                     @Override
@@ -245,6 +253,8 @@ public class PayHistoryListActivity extends BaseCompatActivity {
                         return i;
                     }
                 });
+
+                cachedPayMap.put(trDate, arrayData);
                 EventBus.getDefault().post(arrayData);
             }
         }).start();
@@ -261,7 +271,6 @@ public class PayHistoryListActivity extends BaseCompatActivity {
     public void eventRcvMes(List<PayListBean> list) {
         dismissLoadingDialog();
         Log.e(TAG, "eventRcvMes: ok");
-        headView.setText(title.getText().toString() + arrayData.size() + "条交易记录");
         lsitViewChanged();
     }
 
@@ -269,6 +278,7 @@ public class PayHistoryListActivity extends BaseCompatActivity {
 //        myAdapter = new PayHistoryAdapter(getContext(), arrayData);
 //        payHistoryList.setAdapter(myAdapter);
         myAdapter.setArryList(arrayData);
+        headView.setText(title.getText().toString() + arrayData.size() + "条交易记录");
         myAdapter.notifyDataSetChanged();
     }
 
@@ -316,4 +326,10 @@ public class PayHistoryListActivity extends BaseCompatActivity {
         payHistoryList.addHeaderView(headView);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cachedPayMap.clear();
+        cachedPayMap = null;
+    }
 }

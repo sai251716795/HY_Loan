@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/uploadNameHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="上传其他附件材料"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="12sp"
+        android:textColor="@color/textblack"
+        android:text="包含以下材料信息：小于等于 9张（格式为：png、jpg）"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/transparent"
+        android:minHeight="60dp"
+        android:scrollbarStyle="outsideOverlay"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="3"
+        tools:listitem="@layout/list_item_image" />
+
+    <Button
+        style="@style/button_green_style"
+      android:id="@+id/upload_zipFile_btn"
+        android:text="开始上传"/>
+</LinearLayout>

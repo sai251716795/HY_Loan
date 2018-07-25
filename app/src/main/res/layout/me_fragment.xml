@@ -193,6 +193,43 @@
                 android:background="@color/line_color" />
 
             <LinearLayout
+                android:id="@+id/online_order_layout"
+                style="@style/style_layout_background"
+                android:layout_marginTop="0dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:src="@drawable/my_icon_list" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="收单记录"
+                    android:textColor="@color/textblack"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="22dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/right32" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/line_color" />
+
+            <LinearLayout
                 android:id="@+id/loan_order_layout"
                 style="@style/style_layout_background"
                 android:layout_marginTop="0dp">
@@ -210,7 +247,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="交易记录"
+                    android:text="贷款记录"
                     android:textColor="@color/textblack"
                     android:textSize="14sp" />
 

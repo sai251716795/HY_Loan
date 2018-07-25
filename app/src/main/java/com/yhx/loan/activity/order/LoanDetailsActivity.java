@@ -13,6 +13,7 @@ package com.yhx.loan.activity.order;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.pay.library.uils.DateUtils;
 import com.pay.library.uils.StringUtils;
 import com.yhx.loan.R;
 import com.yhx.loan.activity.change.ChangeRepayNumberActivity;
+import com.yhx.loan.activity.enclosure.EnclosureActivity;
 import com.yhx.loan.activity.main.FeedbackActivity;
 import com.yhx.loan.activity.order.repay.RepayTableActivity;
 import com.yhx.loan.base.BaseCompatActivity;
@@ -80,17 +82,17 @@ public class LoanDetailsActivity extends BaseCompatActivity {
             //还款方式
             returnMoneyMethod.setText(AppConfig.mtdcdeMap.get(order.getReturnMoneyMethod()));
             if (order.getReturnMoneyMethodName() != null)
-                returnMoneyMethod.setText(AppConfig.mtdcdeMap.get(order.getReturnMoneyMethodName()));
+                returnMoneyMethod.setText(order.getReturnMoneyMethodName());
 
             //交易类型
-            if (order.getProductType() != null)
+            if (order.getProductType() != null) {
                 if (!order.getProductType().equals("")) {
                     String loan = AppConfig.applyProductType.get(order.getProductType());
                     loanType.setText(loan);
                 } else {
                     loanType.setText(AppConfig.applyProductType.get("1001"));
                 }
-
+            }
             // 交易金额
             if (order.getLoanMoneyAmount() != null) {
                 transAmtText.setText(order.getLoanMoneyAmount() + "");
@@ -154,13 +156,12 @@ public class LoanDetailsActivity extends BaseCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /**
-         * 进件版本，隐藏修改还款账号，还钱*****************************************/
+        /*** 进件版本，隐藏修改还款账号，还钱*****************************************/
         repayPlanBt.setText("我的还款计划");
 
     }
 
-    @OnClick({R.id.btn_back, R.id.repayPlan_bt, R.id.Doubt_bt, R.id.repayNumber})
+    @OnClick({R.id.btn_back, R.id.repayPlan_bt, R.id.Doubt_bt, R.id.repayNumber, R.id.upload_enclosure})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_back:
@@ -187,6 +188,11 @@ public class LoanDetailsActivity extends BaseCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("loanOrder", order);
                 intent.putExtras(bundle);
+                startActivity(intent);
+            }
+            break;
+            case R.id.upload_enclosure: {
+                Intent intent = new Intent(getContext(), EnclosureActivity.class);
                 startActivity(intent);
             }
             break;

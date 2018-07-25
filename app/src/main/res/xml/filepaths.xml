@@ -10,9 +10,7 @@
     <!--name="camera_has_sdcard"-->
     <!--path="yhx/external/files/" />-->
     <!--&lt;!&ndash;对应getFilesDir()。&ndash;&gt;-->
-    <external-path
-        name="name"
-        path="download" />
+    <external-path name="external_files" path="."/>
     <files-path
         name="files_path"
         path="." />
@@ -24,4 +22,5 @@
     <external-cache-path
         name="cache_download"
         path="." />
+
 </paths>

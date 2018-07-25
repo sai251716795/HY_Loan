@@ -10,9 +10,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,7 +68,7 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
     @BindView(R.id.contacts_name1)
     EditText contactsName1;
     @BindView(R.id.mpf_phone_number1)
-    TextView mpfPhoneNumber1;
+    EditText mpfPhoneNumber1;
     @BindView(R.id.mpf_layout)
     LinearLayout mpfLayout;
     @BindView(R.id.contacts1_idCardNumber)
@@ -78,7 +80,7 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
     @BindView(R.id.contacts_name2)
     EditText contactsName2;
     @BindView(R.id.mpf_phone_number2)
-    TextView mpfPhoneNumber2;
+    EditText mpfPhoneNumber2;
     @BindView(R.id.contacts2_idCardNumber)
     EditText contacts2IdCardNumber;
 
@@ -95,6 +97,24 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
     Button nextMpfBt;
     @BindView(R.id.contact_lay)
     LinearLayout contactLay;
+    static List<String> firstRelMap = new ArrayList<>();
+
+    static {
+        firstRelMap.add("父母");
+        firstRelMap.add("子女");
+        firstRelMap.add("配偶");
+        firstRelMap.add("兄弟姐妹");
+        firstRelMap.add("其他");
+    }
+
+    static List<String> secondRelMap = new ArrayList<>();
+
+    static {
+        secondRelMap.add("亲属");
+        secondRelMap.add("朋友");
+        secondRelMap.add("同事");
+        secondRelMap.add("其他");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,27 +124,46 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
         addLoanActivity(this);
         ButterKnife.bind(this);
         tvTitle.setText("紧急联系人");
+
+        if (!myApplication.getLoanRequest().terminalCode.equals("APP002")) {
+            mpfPhoneNumber1.setFocusable(false);
+            mpfPhoneNumber2.setFocusable(false);
+            mpfPhoneNumber1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ContactsActivity(0);
+                }
+            });
+            mpfPhoneNumber2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ContactsActivity(1);
+                }
+            });
+        } else {
+            mpfPhoneNumber2.setClickable(false);
+            mpfPhoneNumber1.setClickable(false);
+            mpfPhoneNumber2.setFocusable(true);
+            mpfPhoneNumber1.setFocusable(true);
+        }
     }
 
     SimplePopupWindow simplePopupWindow;
 
+
     @OnClick({R.id.btn_back, R.id.select_Image1, R.id.select_Image2,
             R.id.agree_treaty_check, R.id.agreement_text, R.id.next_mpf_bt,
-            R.id.contacts_relationship2, R.id.contacts_relationship,
-            R.id.mpf_phone_number2, R.id.mpf_phone_number1})
+            R.id.contacts_relationship2, R.id.contacts_relationship
+    })
     public void onViewClicked(View view) {
 
         switch (view.getId()) {
             case R.id.btn_back:
                 finish();
                 break;
-            case R.id.mpf_phone_number1:
             case R.id.select_Image1:
-                ContactsActivity(0);
                 break;
-            case R.id.mpf_phone_number2:
             case R.id.select_Image2:
-                ContactsActivity(1);
                 break;
             case R.id.agree_treaty_check:
                 break;
@@ -134,11 +173,10 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
                 saveLoanRequest();
                 break;
             case R.id.contacts_relationship: {
-                final List<String> list = StringArray.getMapValues(StringArray.firstRelMap);
-                simplePopupWindow = new SimplePopupWindow(this, list, new AdapterView.OnItemClickListener() {
+                simplePopupWindow = new SimplePopupWindow(this, firstRelMap, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        contactsRelationship.setText(list.get(position));
+                        contactsRelationship.setText(firstRelMap.get(position));
                         simplePopupWindow.dismiss();
                     }
                 });
@@ -147,11 +185,10 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
 
             break;
             case R.id.contacts_relationship2: {
-                final List<String> list = StringArray.getMapValues(StringArray.relMap);
-                simplePopupWindow = new SimplePopupWindow(this, list, new AdapterView.OnItemClickListener() {
+                simplePopupWindow = new SimplePopupWindow(this, secondRelMap, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        contactsRelationship2.setText(list.get(position));
+                        contactsRelationship2.setText(secondRelMap.get(position));
                         simplePopupWindow.dismiss();
                     }
                 });
@@ -243,12 +280,10 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
 
     //选择联系人
     private void ContactsActivity(int code) {
-        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_CONTACTS};
-
+        String[] permissions = {Manifest.permission.READ_CONTACTS};
         int check = ContextCompat.checkSelfPermission(this, permissions[0]);
-        int check1 = ContextCompat.checkSelfPermission(this, permissions[1]);
 
-        if (check != PackageManager.PERMISSION_GRANTED && check1 != PackageManager.PERMISSION_GRANTED) {
+        if (check != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(permissions, 128);
             } else {
@@ -325,15 +360,35 @@ public class LoanAddConactsActivity extends BaseCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 128 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-        } else {
-            // 没有获取 到权限，从新请求，或者关闭app
-            AndPermission.defaultSettingDialog(this, 128)
-                    .setTitle("选择联系人失败")
-                    .setMessage("到设置中授权！")
-                    .setPositiveButton("去授权")
-                    .show();
+        switch (requestCode) {
+            case 128:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e(TAG, "onRequestPermissionsResult: agree");
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                        setPermissions();
+                    }
+                } else {
+                    setPermissions();
+                }
+                break;
         }
+    }
+
+    private void setPermissions(){
+        // 没有获取 到权限，从新请求，或者关闭app
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("选择联系人授权");
+        builder.setMessage("选择联系人需要您授权才能操作，请到到设置中授权！");
+        builder.setNegativeButton("去设置", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Intent intent =  new Intent(Settings.ACTION_SETTINGS );
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.create();
+        builder.show();
     }
 }

@@ -152,7 +152,7 @@ public class MeFragment extends Fragment {
 
     @OnClick({R.id.userName, R.id.user_icon, R.id.data_icon, R.id.author_layout, R.id.my_bankCard_layout,
             R.id.loan_order_layout, R.id.my_message_layout, R.id.my_setting_layout, R.id.my_help_center_layout
-            , R.id.pay_march_layout,R.id.linearLayout2})
+            , R.id.pay_march_layout, R.id.linearLayout2, R.id.online_order_layout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.linearLayout2:
@@ -178,15 +178,18 @@ public class MeFragment extends Fragment {
                 }
                 break;
             case R.id.loan_order_layout: {
+                Intent intent = new Intent(getActivity(), LoanListActivity.class);
+                intent.putExtra("loanType", LoanListActivity.type_List);
+                startActivity(intent);
+            }
+            break;
+            case R.id.online_order_layout: {
                 if (userBean == null) {
                     startActivity(LoginActivity.class);
                     break;
                 } else {
                     startActivity(PayHistoryListActivity.class);
                 }
-//                Intent intent = new Intent(getActivity(), LoanListActivity.class);
-//                intent.putExtra("loanType", LoanListActivity.type_List);
-//                startActivity(intent);
             }
             break;
             case R.id.my_message_layout:
@@ -257,9 +260,9 @@ public class MeFragment extends Fragment {
     public void eventBusMerchantStatus(EventbusMsg eventMsg) {
         boolean bool = (eventMsg.getObject() instanceof Integer);
         if (bool) {
-            if((int)eventMsg.getObject()==0){
+            if ((int) eventMsg.getObject() == 0) {
                 payMarchLayout.setVisibility(View.VISIBLE);
-            }else {
+            } else {
                 payMarchLayout.setVisibility(View.GONE);
 
             }

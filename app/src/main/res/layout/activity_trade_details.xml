@@ -16,13 +16,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:orientation="vertical">
 
@@ -30,9 +30,9 @@
                     android:id="@+id/detailsTypeTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
                     android:gravity="center"
                     android:textColor="@color/red"
-                    android:layout_marginTop="40dp"
                     android:textSize="20sp" />
 
                 <TextView
@@ -44,10 +44,11 @@
                     android:text=""
                     android:textColor="#999999"
                     android:textSize="14sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:orientation="horizontal"
                     android:paddingLeft="20dp">
 
@@ -62,9 +63,9 @@
                         android:id="@+id/loanType"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_marginRight="20dp"
                         android:text=""
                         android:textColor="@color/textblack"
                         android:textSize="14sp" />
@@ -89,14 +90,15 @@
                         android:id="@+id/transAmtText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_marginRight="20dp"
                         android:text="0.00"
                         android:textColor="@color/textblack"
                         android:textSize="14sp" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -115,9 +117,9 @@
                         android:id="@+id/loanTermCount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_marginRight="20dp"
                         android:text=""
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -143,9 +145,9 @@
                         android:id="@+id/bank_card_number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_marginRight="20dp"
                         android:text=""
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -170,9 +172,9 @@
                         android:id="@+id/repayNumber"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_marginRight="20dp"
                         android:text=""
                         android:textColor="#1b7bd4"
                         android:textSize="14sp" />
@@ -198,9 +200,9 @@
                         android:id="@+id/returnMoneyMethod"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_marginRight="20dp"
                         android:text=""
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -225,9 +227,9 @@
                         android:id="@+id/detailsDateText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_marginRight="20dp"
                         android:text=" "
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -237,9 +239,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="30dp"
                     android:paddingLeft="20dp">
 
                     <TextView
@@ -253,9 +255,9 @@
                         android:id="@+id/orderId"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:layout_marginRight="20dp"
                         android:text=""
                         android:textColor="#333333"
                         android:textSize="14sp" />
@@ -264,22 +266,33 @@
 
 
             </LinearLayout>
-
-                <TextView
-                    android:id="@+id/Doubt_bt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="10dp"
-                    android:text="对此订单有疑问？"
-                    android:textColor="#1b7bd4"
-                    android:textSize="13sp" />
+            <TextView
+                android:id="@+id/Doubt_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:text="对此订单有疑问？"
+                android:textColor="#1b7bd4"
+                android:textSize="13sp" />
+            <TextView
+                android:id="@+id/upload_enclosure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:drawableRight="@drawable/refund_icon_more_big"
+                android:padding="15dp"
+                android:text="附件上传"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/repayPlan_bt"
                 style="@style/button_green_style"
                 android:layout_height="40dp"
-                android:text="还款"/>
+                android:text="还款" />
 
 
         </LinearLayout>

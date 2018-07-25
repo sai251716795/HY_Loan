@@ -65,7 +65,40 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="业务员编号"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"/>
+                    <EditText
+                        android:id="@+id/job_number"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:layout_marginRight="5dp"
+                        android:inputType="text"
+                        android:gravity="right|center"
+                        android:hint="业务员编号"
+                        android:textColorHint="#dfdfdf"
+                        android:textSize="15sp"
+                        android:background="@null"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/grayline" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"

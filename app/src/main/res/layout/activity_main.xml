@@ -44,7 +44,6 @@
             android:gravity="center"
             android:paddingBottom="5dp"
             android:text="首页"
-            android:visibility="gone"
             android:textColor="@color/color_radiobutton"
             android:textSize="12sp" />
 

@@ -59,7 +59,6 @@ public class WebX5Activity extends BaseCompatActivity {
         initSystemBarTint();
         setContentView(R.layout.activity_webx5);
         ButterKnife.bind(this);
-        backImage.setImageResource(R.drawable.close_icon);
         tvTitle.setTextSize(14);
         tvTitle.setMaxLines(1);
 

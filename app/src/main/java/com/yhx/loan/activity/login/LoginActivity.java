@@ -192,6 +192,7 @@ public class LoginActivity extends BaseCompatActivity  {
         map.putAll(myApplication.getHttpLoginHeader());
         map.put("loginName", username);
         map.put("userPwd", password);
+        map.put("terminalCode", myApplication.getLoanRequest().terminalCode);
         String loginUrl = AppConfig.Login_url;//TODO
         okGo.<String>post(loginUrl)
                 .upJson(new Gson().toJson(map))

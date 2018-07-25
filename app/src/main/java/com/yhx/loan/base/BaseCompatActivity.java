@@ -118,7 +118,7 @@ public class BaseCompatActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    protected void showLoadingDialog(String text) {
+    public void showLoadingDialog(String text) {
         getDialogInstance();
         if (text != null) {
             dialog.setText(text);

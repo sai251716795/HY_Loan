@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,22 +30,22 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.pay.library.uils.GsonUtil;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yhx.loan.R;
 import com.yhx.loan.activity.login.LoginActivity;
-import com.yhx.loan.activity.order.LoanDetailsActivity;
-import com.yhx.loan.activity.order.repay.RepayTableActivity;
 import com.yhx.loan.adapter.LoanOrderAdapter;
-import com.yhx.loan.adapter.OrderAdapter;
 import com.yhx.loan.base.BaseCompatActivity;
 import com.yhx.loan.base.MyApplication;
 import com.yhx.loan.bean.LoanApplyBasicInfo;
-import com.yhx.loan.bean.TradeOrder;
 import com.yhx.loan.server.UserLoanDataServer;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -86,20 +87,36 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
     List<LoanApplyBasicInfo> datalist = null;
 
     int loanType = 0;
-    public static  int type_List = 0;
-    public static  int type_repay = 1;
+    public static int type_List = 0;
+    public static int type_repay = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initSystemBarTint();
         setContentView(R.layout.activity_trade_list);
         ButterKnife.bind(this);
+
         initViewData();
-        requestLoanData();
+        loanType = getIntent().getIntExtra("loanType", 0);
+        String loanArrayListString =  getIntent().getStringExtra("loan_array");
+        Log.e(TAG, "onCreate: "+loanArrayListString );
+        if(loanArrayListString!=null){
+            Type type = new TypeToken<ArrayList<LoanApplyBasicInfo>>() {}.getType();
+            List<LoanApplyBasicInfo> arrayList = new Gson().fromJson(loanArrayListString, type);
+            if (arrayList != null) {
+                datalist = arrayList;
+                orderAdapter.setArrayData(datalist);
+                orderAdapter.notifyDataSetChanged();
+                notOrderLay.setVisibility(View.GONE);
+            }
+        } else {
+            Log.e(TAG, "type = List  " );
+            requestLoanData();
+        }
     }
 
     private void initViewData() {
-        loanType = getIntent().getIntExtra("loanType",0);
 
         titleCheck.setChecked(false);
         titleCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -119,7 +136,8 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
         });
 
         datalist = new ArrayList<>();
-        orderAdapter = new LoanOrderAdapter(getContext(), datalist);
+        orderAdapter = new LoanOrderAdapter(getContext());
+        orderAdapter.setArrayData(datalist);
         orderList.setAdapter(orderAdapter);
         orderList.setOnItemClickListener(this);
         refreshLayout.setOnRefreshListener(onRefreshListene);
@@ -151,7 +169,7 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
                     @Override
                     public void ReceiveMessage(List<LoanApplyBasicInfo> list) {
                         datalist = list;
-                        if(loanType==type_repay) {
+                        if (loanType == type_repay) {
                             //移除不属于还款条件的订单
                             for (int i = 0; i < datalist.size(); i++) {
                                 LoanApplyBasicInfo loan = datalist.get(i);
@@ -163,15 +181,15 @@ public class LoanListActivity extends BaseCompatActivity implements AdapterView.
                             }
                         }
                         if (datalist.size() > 0) {
-                            orderAdapter = new LoanOrderAdapter(getContext(), datalist);
-                            orderList.setAdapter(orderAdapter);
+                            orderAdapter.setArrayData(datalist);
                             orderAdapter.notifyDataSetChanged();
                             notOrderLay.setVisibility(View.GONE);
                         } else {
-                            Toast.makeText(getContext(),"无还款条件订单",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "无贷款条件订单", Toast.LENGTH_SHORT).show();
                             notOrderLay.setVisibility(View.VISIBLE);
                         }
                     }
+
                     @Override
                     public void ReceiveError(Object o) {
                         toast_long("数据加载失败~ V ~");

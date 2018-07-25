@@ -20,6 +20,7 @@ import com.pay.library.bean.BankCardItem;
 import com.pay.library.string.SUtils;
 import com.pay.library.tool.Logger;
 import com.yhx.loan.R;
+import com.yhx.loan.activity.authen.AuthTableActivity;
 import com.yhx.loan.activity.authen.oliveStartActivity;
 import com.yhx.loan.activity.login.LoginActivity;
 import com.yhx.loan.base.BaseCompatActivity;
@@ -75,7 +76,7 @@ public class AddBankActivity extends BaseCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    Intent intent = new Intent(getContext(), oliveStartActivity.class);
+                    Intent intent = new Intent(getContext(), AuthTableActivity.class);
                     startActivity(intent);
                     finish();
                 }

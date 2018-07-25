@@ -79,8 +79,6 @@ public class LoanMenuAdapter extends BaseAdapter {
         TextView loanMoney;
         @BindView(R.id.describe)
         TextView describe;
-        @BindView(R.id.gxd_lay)
-        RelativeLayout gxdLay;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

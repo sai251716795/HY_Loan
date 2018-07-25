@@ -33,6 +33,7 @@ import com.yhx.loan.server.UserLoanDataServer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,14 +108,37 @@ public class LoanAuthActivity extends BaseCompatActivity {
                 //如果有正在进行中的贷款数据，跳转到  记录界面
                 if (list.size() > 0) {
                     for (LoanApplyBasicInfo loanApplyBasicInfo : list) {
-                        if (Integer.valueOf(loanApplyBasicInfo.getApplyStatus()) < 500) {
-                            dismissLoadingDialog();
-                            toast_long("您还有未完成的贷款记录");
-                            Intent intent = new Intent(getContext(), LoanListActivity.class);
-                            intent.putExtra("loanType",LoanListActivity.type_List);
-                            startActivity(intent);
-                            finish();
-                            return;
+                        String ApplyStatus = loanApplyBasicInfo.getApplyStatus();
+//                        applyStatusMap.put("006", "复审");
+//                        applyStatusMap.put("101", "复审拒绝");
+//                        applyStatusMap.put("200", "终审");
+//                        applyStatusMap.put("201", "终审拒绝");
+//                        applyStatusMap.put("300", "签约");
+//                        applyStatusMap.put("301", "签约拒绝");
+//                        applyStatusMap.put("302", "复查");
+//                        applyStatusMap.put("303", "签约中");
+//                        applyStatusMap.put("401", "发放申请");
+//                        applyStatusMap.put("403", "发放确认");
+//                        applyStatusMap.put("400", "已放款");
+//                        applyStatusMap.put("402", "发放拒绝");
+//                        applyStatusMap.put("500", "完成");
+                        switch (ApplyStatus) {
+                            case "006":
+                            case "200":
+                            case "300":
+                            case "302":
+                            case "303":
+                            case "401":
+                            case "403":
+                                dismissLoadingDialog();
+                                toast_long("您还有正在审核中的的贷款记录");
+                                Log.e(TAG, "ReceiveMessage: " + list);
+                                Intent intent = new Intent(getContext(), LoanListActivity.class);
+                                intent.putExtra("loanType", LoanListActivity.type_List);
+                                intent.putExtra("loan_array", GsonUtil.objToJson(list));
+                                startActivity(intent);
+                                finish();
+                                return;
                         }
                     }
                     BrAgentAuth();
@@ -126,6 +150,7 @@ public class LoanAuthActivity extends BaseCompatActivity {
             @Override
             public void ReceiveError(Object o) {
                 dismissLoadingDialog();
+                toast_long("链接失败~~");
                 finish();
 
             }

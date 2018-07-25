@@ -22,11 +22,13 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 import com.pay.library.config.AppConfig;
+import com.pay.library.tool.AndroidDevice;
 import com.pay.library.tool.Constant;
 import com.pay.library.tool.DeviceUtils;
 import com.pay.library.tool.Logger;
 import com.pay.library.tool.Utils;
 import com.pay.library.uils.GsonUtil;
+import com.pay.library.uils.StringUtils;
 import com.yhx.loan.R;
 import com.yhx.loan.activity.bank.AddBankActivity;
 import com.yhx.loan.base.BaseCompatActivity;
@@ -75,8 +77,34 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
     TextView agreeBook2;
     @BindView(R.id.loanNext)
     Button loanNext;
+    @BindView(R.id.job_number)
+    EditText jobNumber;
     private boolean AgreeBool = false;
-    private Double maxLoanAmt = 0.00;
+    private double maxLoanAmt = 0.00;
+
+    private static List<String> loanCountArray = new ArrayList<>();
+
+    static {
+        loanCountArray.add("1 期");
+        loanCountArray.add("3 期");
+        loanCountArray.add("6 期");
+        loanCountArray.add("9 期");
+        loanCountArray.add("12 期");
+    }
+
+    private static List<String> loanPurposeArray = new ArrayList<>();
+
+    static {
+        loanPurposeArray.add("装修");
+        loanPurposeArray.add("教育");
+        loanPurposeArray.add("婚庆");
+        loanPurposeArray.add("旅游");
+        loanPurposeArray.add("家用电器");
+        loanPurposeArray.add("贬值耐用");
+        loanPurposeArray.add("手机数码");
+        loanPurposeArray.add("保值耐用");
+        loanPurposeArray.add("其他");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,15 +121,48 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
             }
         });
         initBankData();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initBankData();
     }
 
     private void initBankData() {
 
         maxLoanAmt = 20000.00;
-        bankListData = new ArrayList<BankCardModel>();
-        loanMtdcde.setText("等额本息");
+        if (myApplication.LOAN_productID.equals("1001")) {
+            maxLoanAmt = 50000.00;
+        } else {
+            maxLoanAmt = 100000.00;
+        }
+
+        String showMaxAmt = "￥" + StringUtils.formatTosepara(maxLoanAmt);
+        loanMaxAmt.setText(showMaxAmt);
+
+        setOnTextChangedListener(loanMoney, new OnTextChangedListener() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    String clearDotStr = "";
+                    if (s.toString().substring(s.length() - 1).equals(".")) {
+                        clearDotStr = s.toString().substring(0, s.length() - 1);
+                        if (clearDotStr.equals(""))
+                            clearDotStr = "0";
+                    } else {
+                        clearDotStr = s.toString();
+                    }
+
+                    if (Double.valueOf(clearDotStr) > maxLoanAmt) {
+                        loanMoney.setText(String.valueOf(maxLoanAmt));
+                    }
+                }
+            }
+        });
+
         bankListData = myApplication.getUserBeanData().getBankCardArray();
+        loanMtdcde.setText("按月等额本息");
         if (bankListData.size() == 0) {
             return;
         }
@@ -125,14 +186,10 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
                 break;
             case R.id.loan_Count://期数
             {
-                final List<String> list = new ArrayList<>();
-                list.add("12");
-                list.add("18");
-                list.add("24");
-                simplePopupWindow = new SimplePopupWindow(LoanDataCreateActivity.this, list, new AdapterView.OnItemClickListener() {
+                simplePopupWindow = new SimplePopupWindow(LoanDataCreateActivity.this, loanCountArray, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        loanCount.setText(list.get(position));
+                        loanCount.setText(loanCountArray.get(position));
                         simplePopupWindow.dismiss();
                     }
                 });
@@ -143,23 +200,26 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
                 showCustomDialog("还款日", "此专案的还款日，请根据最终审批后的还款计划表还款。", false);
                 break;
             case R.id.loan_mtdcde://还款方式
-                break;
-            case R.id.loan_purpose://用途
             {
                 final List<String> list = new ArrayList<>();
-                list.add("装修");
-                list.add("教育");
-                list.add("婚庆");
-                list.add("旅游");
-                list.add("家用电器");
-                list.add("贬值耐用");
-                list.add("手机数码");
-                list.add("保值耐用");
-                list.add("其他");
+                list.add("一次性还本付息");
+                list.add("按月等额本息");
                 simplePopupWindow = new SimplePopupWindow(LoanDataCreateActivity.this, list, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        loanPurpose.setText(list.get(position));
+                        loanMtdcde.setText(list.get(position));
+                        simplePopupWindow.dismiss();
+                    }
+                });
+                simplePopupWindow.showAtLocation(activity);
+            }
+            break;
+            case R.id.loan_purpose://用途
+            {
+                simplePopupWindow = new SimplePopupWindow(LoanDataCreateActivity.this, loanPurposeArray, new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        loanPurpose.setText(loanPurposeArray.get(position));
                         simplePopupWindow.dismiss();
                     }
                 });
@@ -169,32 +229,46 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
             case R.id.bankCard_text:    //银行卡选择
                 selectBankCard();
                 break;
-            case R.id.agreeBook1: if(addLoanRequsetData()){
-                AgBookBean agBookBean = new AgBookBean();
-                agBookBean.setAgBookBean(myApplication.getLoanRequest());
-                Intent intent = new Intent(getApplicationContext(), AgrementBookActivity.class);
-                intent.putExtra("agreement_url", "file:///android_asset/html/jiekuanxieyi.html");
-                intent.putExtra("agreement_data", GsonUtil.objToJson(agBookBean));
-                startActivity(intent);
-            }
-            break;
-            case R.id.agreeBook2: if(addLoanRequsetData()){
-                AgBookBean agBookBean = new AgBookBean();
-                agBookBean.setAgBookBean(myApplication.getLoanRequest());
-                Intent intent = new Intent(getApplicationContext(), AgrementBookActivity.class);
-                intent.putExtra("agreement_url", "file:///android_asset/html/daikouxieyi.html");
-                intent.putExtra("agreement_data", GsonUtil.objToJson(agBookBean));
-                startActivity(intent);
-            }
-            break;
-            case R.id.loanNext:
+            case R.id.agreeBook1:
+                if (addLoanRequsetData()) {
+                    AgBookBean agBookBean = new AgBookBean();
+                    agBookBean.setAgBookBean(myApplication.getLoanRequest());
+                    Intent intent = new Intent(getApplicationContext(), AgrementBookActivity.class);
+                    intent.putExtra("agreement_url", "file:///android_asset/html/jiekuanxieyi.html");
+                    intent.putExtra("agreement_data", GsonUtil.objToJson(agBookBean));
+                    startActivity(intent);
+                }
+                break;
+            case R.id.agreeBook2:
+                if (addLoanRequsetData()) {
+                    AgBookBean agBookBean = new AgBookBean();
+                    agBookBean.setAgBookBean(myApplication.getLoanRequest());
+                    Intent intent = new Intent(getApplicationContext(), AgrementBookActivity.class);
+                    intent.putExtra("agreement_url", "file:///android_asset/html/daikouxieyi.html");
+                    intent.putExtra("agreement_data", GsonUtil.objToJson(agBookBean));
+                    startActivity(intent);
+                }
+                break;
+            case R.id.loanNext: {
                 if (!AgreeBool) {
                     toast_short("请阅读协议书并同意协议！");
                     break;
                 }
+
+                if (!myApplication.getLoanRequest().terminalCode.equals("APP002")) {
+                    if (!checkTextEmpty(jobNumber)) {
+                        toast_short("业务员编号必填");
+                        break;
+                    }
+                }
+                myApplication.getLoanRequest().setJobNumber(jobNumber.getText().toString().trim());
                 //成功时，进入结果展示
-                if(addLoanRequsetData())
-                postLoanInfo(myApplication.getLoanRequest());
+                if (addLoanRequsetData()) {
+                    postLoanInfo(myApplication.getLoanRequest());
+                }
+            }
+            break;
+            default:
                 break;
         }
     }
@@ -209,17 +283,16 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
         if (!checkTextEmpty(loanCount)) {
             toast_short("请选择贷款期数！");
             return false;
-
         }
+
         if (!checkTextEmpty(loanMtdcde)) {
             toast_short("请选择还款方式！");
             return false;
-
         }
+
         if (!checkTextEmpty(loanPurpose)) {
             toast_short("请选择贷款用途！");
             return false;
-
         }
 
         Double loanMoneyAmount = Double.valueOf(loanMoney.getText().toString().trim());
@@ -229,9 +302,9 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
             return false;
         }
 
-        int loanTermCount = Integer.parseInt(loanCount.getText().toString().trim());
+        int loanTermCount = Integer.parseInt((loanCount.getText().toString().trim()).split(" ")[0]);
         myApplication.getLoanRequest().setSysType("android");                                       // String(50) 是  系统类型
-        myApplication.getLoanRequest().setDeviceId(DeviceUtils.getDeviceId(context));               //   String(50) 是  设备序号
+        myApplication.getLoanRequest().setDeviceId(new AndroidDevice(this).getUniqueId());        //   String(50) 是  设备MAC
         myApplication.getLoanRequest().setAppVer(Utils.getVersion(context));                        // String(50) 是  app版本
         myApplication.getLoanRequest().setSysVer(Constant.SYS_VERSIN);                              // String(50) 是  系统版本
         myApplication.getLoanRequest().setLoginName(userBean.getLoginName());                       //  String(50) 是  登陆名
@@ -285,11 +358,12 @@ public class LoanDataCreateActivity extends BaseCompatActivity {
         myApplication.getLoanRequest().setCompanyDuty(userBean.getWorkInfo().getCompanyDuty() + "");                           //   String(50)     是  职位
         myApplication.getLoanRequest().setCompanySalaryOfMonth(userBean.getWorkInfo().getCompanySalaryOfMonth() + "");         //  Decimal(18,2)  是  个人月收入
         myApplication.getLoanRequest().setCompanyTotalWorkingTerms(userBean.getWorkInfo().getCompanyTotalWorkingTerms() + ""); //   String(50) 是  总工作年限
-        myApplication.getLoanRequest().setPromno(myApplication.LOAN_PROMNO + "");                                              //  进件代码
+        myApplication.getLoanRequest().setPromno(myApplication.LOAN_productID + "");
+        myApplication.getLoanRequest().setProductID(myApplication.LOAN_productID + "");//  进件代码
         myApplication.getLoanRequest().setPurpose(loanPurpose.getText().toString().trim());                                    //    贷款用途
         myApplication.getLoanRequest().setIndivemptyp(userBean.getWorkInfo().getIndivemptyp());                                //    现单位性质
         myApplication.getLoanRequest().setIndivindtrytyp(userBean.getWorkInfo().getIndivindtrytyp());                          //    现单位行业性质
-        myApplication.getLoanRequest().setMtdcde("DEBX");//还款方式
+        myApplication.getLoanRequest().setMtdcde((loanMtdcde.getText().toString()).equals("一次性还本付息") ? "0" : "2");//还款方式
         return true;
     }
 

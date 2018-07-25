@@ -2,6 +2,7 @@ package com.yhx.loan.bean;
 
 import android.content.Context;
 
+import com.pay.library.tool.AndroidDevice;
 import com.pay.library.tool.Constant;
 import com.pay.library.tool.DeviceUtils;
 import com.pay.library.tool.Utils;
@@ -53,13 +54,12 @@ public class RequestModel {
     String nowLivingState;//String(50)	是	现居住房性质
     String companyTotalWorkingTerms;//String(50)	是	总工作年限
 
-
     public RequestModel(Context context) {
-        deviceId    = DeviceUtils.getDeviceId(context);
-        appVer      = Utils.getVersion(context);
-        sysVer      = Constant.SYS_VERSIN;
-        loginName   = MyApplication.mSharedPref.getUserName(context);
-        userPwd     = MyApplication.mSharedPref.getPassWord(context);
+        deviceId = new AndroidDevice(context).getUniqueId();
+        appVer = Utils.getVersion(context);
+        sysVer = Constant.SYS_VERSIN;
+        loginName = MyApplication.mSharedPref.getUserName(context);
+        userPwd = MyApplication.mSharedPref.getPassWord(context);
     }
 
 }

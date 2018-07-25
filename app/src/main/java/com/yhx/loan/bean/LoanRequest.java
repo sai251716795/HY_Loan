@@ -2,16 +2,18 @@ package com.yhx.loan.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 /**
  * 贷款数据申请字段
  */
 public class LoanRequest implements Serializable {
+    public String terminalCode = "APP001";  //終端代碼
     private String locationAddress;//当前位置
     private String id = "";//主键
     private String sysType = "android";// String(50) 是  系统类型
     private String deviceId = "";//   String(50) 是  设备序号
-    private String appVer   = "";// String(50) 是  app版本
-    private String sysVer   = "";// String(50) 是  系统版本
+    private String appVer = "";// String(50) 是  app版本
+    private String sysVer = "";// String(50) 是  系统版本
     private String loginName = "";//  String(50) 是  登陆名
     private String userPwd = "";//   String(50) 是  密码（明文）
 
@@ -25,9 +27,9 @@ public class LoanRequest implements Serializable {
     private String email = "";// String(50) 是  电子邮箱
     private String maritalStatus = "";// String(5)  是  婚姻状态
     private int supportCount = 0;//  Int    是  供养人数
-     private String nowlivingProvince;//现居住地址省份
-     private String nowlivingCity    ;//现居住地址市
-     private String nowlivingArea    ;//现居住地址区
+    private String nowlivingProvince;//现居住地址省份
+    private String nowlivingCity;//现居住地址市
+    private String nowlivingArea;//现居住地址区
     private String nowLivingAddress = "";//  String(200)    是  常住地址
     private String enducationDegree = "";//   String(10)     是  教育程度
     private String companyName = "";//   String(200)    是  工作单位
@@ -54,22 +56,34 @@ public class LoanRequest implements Serializable {
     private String companyTotalWorkingTerms = "";//   String(50) 是  总工作年限
     private String image3dcheck = "";//  String(MAX)    是  活体识别数据包BASE65
 
-    /**新增字段*/
-    private String promno;                    //进件代码
-    private String purpose;                   //贷款用途
-    private String mtdcde = "DEBX";           //还款方式
-    private String typfreqcde = "1M";         //还款间隔
-    private String regprovince;               //  户籍地址（省）
-    private String regcity;                   //户籍地址（市）
-    private String regarea;                   //户籍地址（区）
-    private String regaddr;                   //籍地址（详细地址
-    private String proftyp;                   //职业类型
-    private String indivempprovince;          //现单位地址（省）
-    private String indivempcity;              //现单位地址（市）
-    private String indivemparea;              //现单位地址（区）
-    private String indivempaddr;              //现单位地址（详细信息）
-    private String indivemptyp;               //现单位性质
-    private String indivindtrytyp;            //现单位行业性质
+    private String returnMoneyMethod;           // 还款方式
+    private String jobNumber;
+    /**
+     * 新增字段
+     */
+    private String promno;                    // 进件代码
+    private String purpose;                   // 贷款用途
+    private String mtdcde = "DEBX";           // 还款方式
+    private String typfreqcde = "1M";         // 还款间隔
+    private String regprovince;               // 户籍地址（省）
+    private String regcity;                   // 户籍地址（市）
+    private String regarea;                   // 户籍地址（区）
+    private String regaddr;                   // 籍地址（详细地址
+    private String proftyp;                   // 职业类型
+    private String indivempprovince;          // 现单位地址（省）
+    private String indivempcity;              // 现单位地址（市）
+    private String indivemparea;              // 现单位地址（区）
+    private String indivempaddr;              // 现单位地址（详细信息）
+    private String indivemptyp;               // 现单位性质
+    private String indivindtrytyp;            // 现单位行业性质
+
+    public String getJobNumber() {
+        return jobNumber;
+    }
+
+    public void setJobNumber(String jobNumber) {
+        this.jobNumber = jobNumber;
+    }
 
     private ArrayList<RelationInfo> relationInfos;//List   是  联系人列表
     private Double loanMoneyAmount = 0.0;//借款金额
@@ -77,6 +91,15 @@ public class LoanRequest implements Serializable {
 
     public String getNowlivingProvince() {
         return nowlivingProvince;
+    }
+
+
+    public String getReturnMoneyMethod() {
+        return returnMoneyMethod;
+    }
+
+    public void setReturnMoneyMethod(String returnMoneyMethod) {
+        this.returnMoneyMethod = returnMoneyMethod;
     }
 
     public void setNowlivingProvince(String nowlivingProvince) {
@@ -225,6 +248,14 @@ public class LoanRequest implements Serializable {
 
     public void setLocationAddress(String locationAddress) {
         this.locationAddress = locationAddress;
+    }
+
+    public String getTerminalCode() {
+        return terminalCode;
+    }
+
+    public void setTerminalCode(String terminalCode) {
+        this.terminalCode = terminalCode;
     }
 
     public String getId() {

@@ -17,11 +17,11 @@ import android.widget.Toast;
 
 
 import com.baidu.mapapi.SDKInitializer;
+import com.lzy.imagepicker.loader.ImageLoader;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.https.HttpsUtils;
-import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
-import com.lzy.okgo.utils.OkLogger;
+import com.pay.library.tool.AndroidDevice;
 import com.pay.library.tool.Constant;
 import com.pay.library.tool.DeviceUtils;
 import com.pay.library.tool.LogLevel;
@@ -39,6 +39,7 @@ import com.yhx.loan.server.LocationService;
 
 import org.litepal.LitePalApplication;
 import org.litepal.tablemanager.Connector;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,10 +55,10 @@ import okhttp3.OkHttpClient;
  */
 
 public class MyApplication extends LitePalApplication {
-    public   Double PSREMPRCP = 0.0;
-    public static  long OKGO_TIMEOUT = 2*60000;
+    public Double PSREMPRCP = 0.0;
+    public static long OKGO_TIMEOUT = 5 * 60000;
     public static OkGo okGo;
-    public static MySharedPreferences mSharedPref ;
+    public static MySharedPreferences mSharedPref;
     public static List<BaseCompatActivity> activityList = new ArrayList<>();
     static Context sContext;
     private static MyApplication mApplication = null;
@@ -67,23 +68,24 @@ public class MyApplication extends LitePalApplication {
     private static LoanRequest mLoanRequest;
     public static LoanApplyBasicInfo loanApplyBasicInfo;
     public static String OLIVE_STRING = "";
-    public static String LOAN_PROMNO =  "0101";
+    public static String LOAN_productID = "1001";
 
 
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
-    public LoanRequest getLoanRequest(){
+    public LoanRequest getLoanRequest() {
         return mLoanRequest;
     }
+
     private static UserBean userBean;
 
-    public  UserBean getUserBeanData(){
+    public UserBean getUserBeanData() {
         return userBean;
     }
 
-    public void initUserBeans(UserBean userBean){
+    public void initUserBeans(UserBean userBean) {
         this.userBean = userBean;
     }
 
@@ -107,6 +109,7 @@ public class MyApplication extends LitePalApplication {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
         }
+        x.Ext.init(this);                           //xUtils3初始化
         initX5SDK();
         initBaiduLocation();
     }
@@ -123,7 +126,7 @@ public class MyApplication extends LitePalApplication {
 
             @Override
             public void onCoreInitFinished() {
-                Log.d("app", " onCoreInitFinished  " );
+                Log.d("app", " onCoreInitFinished  ");
             }
         };
         //x5内核初始化接口
@@ -149,7 +152,7 @@ public class MyApplication extends LitePalApplication {
         builder.sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager);
         builder.hostnameVerifier(HttpsUtils.UnSafeHostnameVerifier);
         OkHttpClient = builder.build();
-        okGo .setOkHttpClient(OkHttpClient) .setCacheMode(CacheMode.NO_CACHE).setRetryCount(3);
+        okGo.setOkHttpClient(OkHttpClient).setCacheMode(CacheMode.NO_CACHE).setRetryCount(3);
 
     }
 
@@ -208,11 +211,11 @@ public class MyApplication extends LitePalApplication {
 
     public Map<String, String> getHttpLoginHeader() {
         Map<String, String> dataHeader = new HashMap<>();
-        dataHeader.put("deviceId",DeviceUtils.getDeviceId(this));
-        dataHeader.put("sysType","android");
-         dataHeader.put("appVer", Utils.getVersion(this));
-         dataHeader.put("sysVer", Constant.SYS_VERSIN);
-         return dataHeader;
+        dataHeader.put("deviceId", new AndroidDevice(this).getUniqueId());
+        dataHeader.put("sysType", "android");
+        dataHeader.put("appVer", Utils.getVersion(this));
+        dataHeader.put("sysVer", Constant.SYS_VERSIN);
+        return dataHeader;
     }
 
     public Map<String, String> getHttpHeader() {
@@ -239,6 +242,7 @@ public class MyApplication extends LitePalApplication {
         IntentFilter filter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         registerReceiver(mHomeWatcherReceiver, filter);
     }
+
     public class HomeWatcherReceiver extends BroadcastReceiver {
 
         private static final String SYSTEM_DIALOG_REASON_KEY = "reason";
@@ -253,7 +257,7 @@ public class MyApplication extends LitePalApplication {
                 String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY);
                 Log.i("1", "reason =" + reason);
                 if (TextUtils.equals(SYSTEM_DIALOG_REASON_HOME_KEY, reason)) {
-                    Log.e("1", "onReceive: home" );
+                    Log.e("1", "onReceive: home");
 //                    BaseCompatActivity.this.finish();
                 }
             }

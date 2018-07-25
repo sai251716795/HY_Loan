@@ -2,11 +2,13 @@ package com.yhx.loan.bean.pay;
 
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 /**
  * Created by 25171 on 2018/6/7.
  */
 
-public class PayListBean {
+public class PayListBean implements Serializable{
     private String order_name;  //訂單名稱
     private String tr_amt;   // 订单总金额
     private String merch_no; //商户号

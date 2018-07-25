@@ -2,8 +2,10 @@ package com.yhx.loan.activity.authen;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -110,6 +112,7 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
         initAccessTokenWithAkSk();
         initAccessToken();
     }
+
     private void initData() {
         realNameEdit.setText(idCardBean.getName());
         etSex.setText(idCardBean.getGender());
@@ -129,10 +132,10 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
                 finish();
                 break;
             case R.id.image_idCard_front:
-                if (!hasGotToken) {
-                    Toast.makeText(getApplicationContext(), "token还未成功获取,稍后再试！", Toast.LENGTH_LONG).show();
-                    return;
-                }
+//                if (!hasGotToken) {
+//                    Toast.makeText(getApplicationContext(), "token还未成功获取,稍后再试！", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
                 intent = new Intent(RealNameOneActivity.this, CameraActivity.class);
                 file = FileUtil.getSaveFile(getApplication());
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH, file.getAbsolutePath());
@@ -141,10 +144,10 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
 //                takePicture(ADD_ID_CARD_FRONT);
                 break;
             case R.id.image_idCard_both:
-                if (!hasGotToken) {
-                    Toast.makeText(getApplicationContext(), "token还未成功获取,稍后再试！", Toast.LENGTH_LONG).show();
-                    return;
-                }
+//                if (!hasGotToken) {
+//                    Toast.makeText(getApplicationContext(), "token还未成功获取,稍后再试！", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
                 intent = new Intent(RealNameOneActivity.this, CameraActivity.class);
                 file = FileUtil.getSaveFile(getApplication());
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH, file.getAbsolutePath());
@@ -189,18 +192,18 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
         map.putAll(myApplication.getHttpHeader());
         map.put("frontPicPath", image_idCard_front_path);                                   //身份证正面路径
         map.put("backPicPath", image_idCard_both_path);                                     //身份证背面路径
-
+        map.put("terminalCode", myApplication.getLoanRequest().terminalCode);               // 终端编号
         map.put("realName", realNameEdit.getText().toString().trim());                      //真实姓名
         map.put("idCardNumber", editTxtID.getText().toString().trim());                     //身份证
         map.put("phoneNo", myApplication.getUserBeanData().getLoginName());                 //=loginName;//手机
         map.put("sex", etSex.getText().toString().trim().equals("男") ? "1" : "0");         //性别
         map.put("birthday", changeFormatDate(etBirthday.getText().toString().trim()));      //出生年月
         map.put("ethnic", etNation.getText().toString().trim());                            //民族
-        map.put("residenceAddress", regprovince+regcity+regarea+ regaddr+loanResidenceAddress.getText().toString().trim());      //户籍地址
+        map.put("residenceAddress", regprovince + regcity + regarea + regaddr + loanResidenceAddress.getText().toString().trim());      //户籍地址
         map.put("regprovince", regprovince);
         map.put("regcity", regcity);
         map.put("regarea", regarea);
-        map.put("regaddr", regaddr+loanResidenceAddress.getText().toString().trim());
+        map.put("regaddr", regaddr + loanResidenceAddress.getText().toString().trim());
         String cardEf[] = etLoanIdCardNumberEffectPeriod.getText().toString().split("-");
         if (cardEf.length == 2) {
             map.put("signdate", changeFormatDate(cardEf[0]));                                //身份证有效期开始
@@ -209,7 +212,7 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
             map.put("signdate", "2018-04-16");       //身份证有效期开始
             map.put("expirydate", "2118-04-16");      //身份证
         }
-      Logger.json("人脸识别请求：",GsonUtil.objToJson(map));
+        Logger.json("人脸识别请求：", GsonUtil.objToJson(map));
         map.put("image3dcheck", myApplication.OLIVE_STRING);
 
         return map;
@@ -240,7 +243,7 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
             return;
         }
 
-        if (!checkTextEmpty(etRealCity)||!checkTextEmpty(loanResidenceAddress)){
+        if (!checkTextEmpty(etRealCity) || !checkTextEmpty(loanResidenceAddress)) {
             toast_short("请选择或填写地址！");
             return;
         }

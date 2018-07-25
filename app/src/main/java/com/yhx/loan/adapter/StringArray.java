@@ -16,11 +16,9 @@ public class StringArray {
 
     static {
         marryMap.put("10", "未婚");
-        marryMap.put("21", "初婚");
-        marryMap.put("22", "再婚");
-        marryMap.put("30", "丧偶");
+        marryMap.put("21", "已婚");
         marryMap.put("40", "离异");
-        marryMap.put("50", "分居");
+        marryMap.put("30", "丧偶");
     }
 
     /**
@@ -65,13 +63,14 @@ public class StringArray {
         ProftypMap.put("50", "其他");
     }
 
-    public static Map<String, String> loanEducationMap = new  HashMap<>();
-       static {
-           loanEducationMap.put( "01","初中及以下");
-           loanEducationMap.put( "02","高中/中专");
-           loanEducationMap.put( "02","大专");
-           loanEducationMap.put( "03","本科");
-           loanEducationMap.put( "04","研究生及博士");
+    public static Map<String, String> loanEducationMap = new HashMap<>();
+
+    static {
+        loanEducationMap.put("01", "初中及以下");
+        loanEducationMap.put("02", "高中/中专");
+        loanEducationMap.put("02", "大专");
+        loanEducationMap.put("03", "本科");
+        loanEducationMap.put("04", "研究生及博士");
     }
 
     public static List<String> loanCompanyType() {
@@ -100,7 +99,7 @@ public class StringArray {
     public static List<String> loanContactRela() {
         List<String> list = new ArrayList<>();
         list.add("父母");
-        list.add("子女" );
+        list.add("子女");
         list.add("兄弟姐妹");
         list.add("亲属");
         list.add("同事");
@@ -134,11 +133,13 @@ public class StringArray {
         relMap.put("99", "其他");
     }
 
-    public static Map<String,String>nowLivingStateMap =new HashMap<>();
+
+    public static Map<String, String> nowLivingStateMap = new HashMap<>();
+
     static {
-      nowLivingStateMap.put("10","自有");
-      nowLivingStateMap.put("30","租赁");
-      nowLivingStateMap.put("30","宿舍");
+        nowLivingStateMap.put("10", "自有");
+        nowLivingStateMap.put("30", "租赁");
+        nowLivingStateMap.put("30", "宿舍");
     }
 
     public static List<String> loan_work_state() {

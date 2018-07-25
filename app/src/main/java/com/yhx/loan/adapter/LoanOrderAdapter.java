@@ -32,9 +32,12 @@ public class LoanOrderAdapter extends BaseAdapter {
     private Context context;
 
 
-    public LoanOrderAdapter(Context context, List<LoanApplyBasicInfo> arryList) {
-        this.arryList = arryList;
+    public LoanOrderAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setArrayData(List<LoanApplyBasicInfo> arryList){
+        this.arryList = arryList;
     }
 
     @Override

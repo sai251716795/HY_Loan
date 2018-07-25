@@ -120,7 +120,7 @@ public class MerchantActivity extends BaseCompatActivity implements OnAddressSel
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    Intent intent = new Intent(getContext(), oliveStartActivity.class);
+                    Intent intent = new Intent(getContext(), AuthTableActivity.class);
                     startActivity(intent);
                     finish();
                 }

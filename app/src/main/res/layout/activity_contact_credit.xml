@@ -146,7 +146,7 @@
                         android:textColor="@color/textblack"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/mpf_phone_number1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -154,6 +154,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@null"
+                        android:inputType="number"
                         android:gravity="right|center_vertical"
                         android:hint="11位手机号"
                         android:paddingRight="10dp"
@@ -397,7 +398,7 @@
                         android:textColor="@color/textblack"
                         android:textSize="16sp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/mpf_phone_number2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -408,6 +409,7 @@
                         android:gravity="right|center_vertical"
                         android:hint="11位手机号"
                         android:paddingRight="10dp"
+                        android:inputType="number"
                         android:textColor="@color/textblack"
                         android:textColorHint="@color/grayline"
                         android:textSize="16sp" />

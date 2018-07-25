@@ -6,6 +6,7 @@
     <!-- 活体检测 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -31,7 +32,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -68,16 +68,15 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="7nB8i8hBW8jChQftSgdXu7Ihd1aNoTRi" />
         <!-- 本地 provider -->
-
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.yhx.loan.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
+        <!--<provider-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:authorities="com.yhx.loan.fileprovider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/filepaths" />-->
+        <!--</provider>-->
 
         <service
             android:name="com.baidu.location.f"
@@ -165,9 +164,6 @@
             android:name=".activity.loan.Stipulation"
             android:label="条款" />
         <activity
-            android:name=".activity.loan.LoanConfirmActivity"
-            android:label="贷款信息确认" />
-        <activity
             android:name=".activity.bank.AddBankActivity"
             android:label="添加银行卡" />
         <activity
@@ -216,7 +212,13 @@
         <activity android:name=".activity.qiuck.MerchanDataActivity" />
         <activity android:name=".activity.qiuck.QuickModifyBankActivity" />
         <activity android:name=".activity.qiuck.QuickOrderListActivity" />
-        <activity android:name=".activity.qiuck.QuickWithdrawalsActivity"></activity>
+        <activity android:name=".activity.qiuck.QuickWithdrawalsActivity" />
+        <activity android:name=".activity.enclosure.EnclosureActivity"></activity>
+
+        <activity
+            android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
+            android:theme="@style/ImagePickerThemeFullScreen" />
+
     </application>
 
 </manifest>

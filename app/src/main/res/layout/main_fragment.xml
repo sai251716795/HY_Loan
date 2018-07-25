@@ -208,12 +208,12 @@
                 <!--style="@style/button_green_style"-->
                 <!--android:layout_width="220dp"-->
                 <!--android:text="完善信息" />-->
-            <!--<Button-->
-                <!--android:id="@+id/quick_btn"-->
-                <!--style="@style/button_green_style"-->
-                <!--android:layout_marginTop="0dp"-->
-                <!--android:layout_width="220dp"-->
-                <!--android:text="完善信息" />-->
+            <Button
+                android:id="@+id/testBt"
+                style="@style/button_green_style"
+                android:layout_marginTop="0dp"
+                android:layout_width="220dp"
+                android:text="测试按钮" />
 
         </LinearLayout>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

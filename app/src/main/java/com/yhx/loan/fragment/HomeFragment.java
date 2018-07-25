@@ -159,7 +159,7 @@ public class HomeFragment extends Fragment implements BGABanner.Delegate<ImageVi
                     startActivity(LoginActivity.class);
                     break;
                 }
-                MyApplication.getInstance().LOAN_PROMNO = "0101";
+                MyApplication.getInstance().LOAN_productID = "1001";
                 startActivity(LoanAuthActivity.class);
                 break;
         }
@@ -209,7 +209,7 @@ public class HomeFragment extends Fragment implements BGABanner.Delegate<ImageVi
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         LoanMenu loanMenu = loanMenus.get(i);
         if (loanMenu.isEnable()) {
-            MyApplication.getInstance().LOAN_PROMNO = loanMenu.getCode();
+            MyApplication.getInstance().LOAN_productID = loanMenu.getCode();
             startActivity(LoanAuthActivity.class);
         } else {
             toast("此专案暂无开发！");

@@ -24,6 +24,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.yhx.loan.R;
 import com.yhx.loan.activity.authen.MerchantActivity;
+import com.yhx.loan.activity.enclosure.EnclosureActivity;
 import com.yhx.loan.activity.login.LoginActivity;
 import com.yhx.loan.activity.pay.PayHistoryListActivity;
 import com.yhx.loan.activity.pay.SelectReciveTypeActivity;
@@ -86,6 +87,14 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.main_fragment, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         initViewData();
+//        rootView.findViewById(R.id.testBt).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), EnclosureActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+        rootView.findViewById(R.id.testBt).setVisibility(View.GONE);
         return rootView;
     }
 
@@ -93,6 +102,8 @@ public class MainFragment extends Fragment {
         payHistoryList.setVisibility(View.GONE);
         refreshLayout.setOnRefreshListener(onRefreshListene);
         openStatusText.setText("未登录");
+
+
 
     }
 

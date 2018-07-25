@@ -23,19 +23,15 @@ import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 import com.pay.library.config.AppConfig;
 import com.pay.library.tool.Logger;
-import com.pay.library.uils.GsonUtil;
 import com.pay.library.uils.StringUtils;
-import com.yhx.loan.MainActivity;
 import com.yhx.loan.R;
 import com.yhx.loan.activity.loan.AgrementBookActivity;
 import com.yhx.loan.base.BaseCompatActivity;
-import com.yhx.loan.bean.UserBean;
 import com.yhx.loan.server.CountDownTimerUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -70,6 +66,8 @@ public class RegisterActivity extends BaseCompatActivity {
     @BindView(R.id.registerBtn)
     Button registerBtn;
     CountDownTimerUtils mCountDownTimerUtils;
+    @BindView(R.id.smsCodeLay)
+    LinearLayout smsCodeLay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +88,10 @@ public class RegisterActivity extends BaseCompatActivity {
         } else if (action == register_action) {
             tvTitle.setText(getString(R.string.register));
             registerBtn.setText("注册");
+        }
+
+        if (myApplication.getLoanRequest().terminalCode.equals("APP002")) {
+            smsCodeLay.setVisibility(View.GONE);
         }
 
         setBtnEnabledBackgroundAlpha(registerBtn, R.drawable.bt_select_green, 50, false);
@@ -206,11 +208,13 @@ public class RegisterActivity extends BaseCompatActivity {
             focusView.requestFocus();
             return;
         }
-
-        if (TextUtils.isEmpty(registerCode)) {
-            toast_short("验证码不能为空");
-            return;
+        if (!myApplication.getLoanRequest().terminalCode.equals("APP002")) {
+            if (TextUtils.isEmpty(registerCode)) {
+                toast_short("验证码不能为空");
+                return;
+            }
         }
+
         if (!checkBoolean) {
             toast_short("请同意协议");
             return;
@@ -226,6 +230,7 @@ public class RegisterActivity extends BaseCompatActivity {
             map.put("newPwd", registerPwd2);
             map.put("smsCode", registerCode);
             map.put("smsKey", msgCodeKey);
+
         }
         if (action == register_action) {
             url = AppConfig.Register_url;
@@ -234,6 +239,9 @@ public class RegisterActivity extends BaseCompatActivity {
             map.put("userPwd", registerPwd2);
             map.put("smsCode", registerCode);
             map.put("smsKey", msgCodeKey);
+        }
+        if (myApplication.getLoanRequest().terminalCode.equals("APP002")) {
+            map.put("terminalCode", myApplication.getLoanRequest().terminalCode);
         }
         httpsServer(map, url);
     }
@@ -257,6 +265,8 @@ public class RegisterActivity extends BaseCompatActivity {
                             } else {
                                 if (jsonObject.getString("respMsg").contains("违反唯一约束条件")) {
                                     toast_long("用户也存在，无需重复注册");
+                                } else if (jsonObject.getString("respMsg").contains("验证码输入错误")) {
+                                    toast_long("验证码输入错误");
                                 } else {
                                     if (action == forget_pwd_action) {
                                         toast_long("密码修改失败");

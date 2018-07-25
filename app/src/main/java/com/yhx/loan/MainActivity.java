@@ -97,8 +97,8 @@ public class MainActivity extends BaseCompatActivity {
         mViewPager = (CustomViewPager) findViewById(R.id.central);
         mViewPager.setScanScroll(false);
         initView();
-        setSelect(1);
-        buttonItem.check(R.id.loan_radio);
+        setSelect(0);
+        buttonItem.check(R.id.home_radio);
 //        iniSystemData();
         getLocation();
         handler.postDelayed(task,5000);

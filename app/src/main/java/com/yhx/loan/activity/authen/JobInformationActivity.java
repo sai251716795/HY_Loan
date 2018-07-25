@@ -107,11 +107,11 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
             try {
                 if (workInfo.getCompanyAddress() != null) {
                     String s[] = workInfo.getCompanyAddress().split("\t");
-                    if(s.length==2) {
+                    if (s.length == 2) {
                         etJobInfoCompanyAddressDetailed.setText("" + s[1] + "");
                     }
-                    String address = workInfo.getIndivempprovince() +" "+workInfo.getIndivempcity() + " " +workInfo.getIndivemparea();
-                    etJobInfoCompanyAddress.setText(""+ address);//公司地址
+                    String address = workInfo.getIndivempprovince() + " " + workInfo.getIndivempcity() + " " + workInfo.getIndivemparea();
+                    etJobInfoCompanyAddress.setText("" + address);//公司地址
                 }
                 indivempprovince = workInfo.getIndivempprovince();           //现单位地址（省）
                 indivempcity = workInfo.getIndivempcity();               //现单位地址（市）
@@ -136,7 +136,7 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
 
 //        etJobInfoProftyp.setText(getMapValue(ProftypMap, workInfo.getProftyp()));//职业类型
         etJobInfoIndivemptyp.setText(getMapValue(indivemptypMap, workInfo.getIndivemptyp()));//单位性质
-        etJobInfoIndivindtrytyp.setText(getMapValue(indivindtrytypMap, workInfo.getIndivindtrytyp()));//现单位行业性质
+        etJobInfoIndivindtrytyp.setText(workInfo.getIndivindtrytyp());//现单位行业性质
 
         etJobInfoProftyp.setText(workInfo.getProftyp());//职业类型
 //        etJobInfoIndivemptyp.setText( workInfo.getIndivemptyp());//单位性质
@@ -189,8 +189,7 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
 
             case R.id.et_jobInfo_indivindtrytyp://现单位行业性质
             {
-                final List<String> list = StringArray.getMapValues(StringArray.indivindtrytypMap);
-
+                final List<String> list = StringArray.loanCompanyType();
                 simplePopupWindow = new SimplePopupWindow(this, list, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -250,8 +249,8 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
 
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
-        String s = (province == null ? "" : province.name) +" "+(city == null ? "" : city.name) +" "+ (county == null ? "" : county.name) +
-                " "+ (street == null ? "" : street.name);
+        String s = (province == null ? "" : province.name) + " " + (city == null ? "" : city.name) + " " + (county == null ? "" : county.name) +
+                " " + (street == null ? "" : street.name);
         etJobInfoCompanyAddress.setText(s);
         indivempprovince = province == null ? "" : province.name;
         indivempcity = (city == null ? "" : city.name);                 //现单位地址（市）
@@ -343,12 +342,12 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
 
         //拼接请求数据
         String companyName = etJobInfoCompanyName.getText().toString();//String(200) 	是	工作单位
-        String companyType = "1";//String(50)	是	单位性质
-        String jobYear = etLoanJobYear.getText().toString();                //工作年限
+        String companyType = etJobInfoIndivemptyp.getText().toString().trim();//String(50)	是	单位性质
+        String jobYear = etLoanJobYear.getText().toString();              //工作年限
         String workState = spLoanWorkState.getText().toString();            //作状态：离职、在职、兼职、其他
-        String pcaAddress = indivempprovince +" "+indivempcity + " " +indivemparea;//ss
+        String pcaAddress = indivempprovince + " " + indivempcity + " " + indivemparea;//ss
         String companyAddress = pcaAddress + "\t"
-                + indivempaddr +etJobInfoCompanyAddressDetailed.getText().toString();         //公司地址
+                + indivempaddr + etJobInfoCompanyAddressDetailed.getText().toString();         //公司地址
         String companyTel = etJobInfoCompanyTelCode.getText().toString() + "-"
                 + etJobInfoCompanyTelNum.getText().toString();//公司电话;
         String companyDept = etJobInfoIndivbranch.getText().toString().trim() + "";//String(200) 	是	任职部门
@@ -360,8 +359,7 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
         String proftyp = etJobInfoProftyp.getText().toString().trim();//职业类型
 
         String indivemptyp = StringArray.getMapKey(StringArray.indivemptypMap, etJobInfoIndivemptyp.getText().toString().trim()); //现单位性质
-        String indivindtrytyp = StringArray.getMapKey(StringArray.indivindtrytypMap, etJobInfoIndivindtrytyp.getText().toString());//现单位行业性质
-
+        String indivindtrytyp = etJobInfoIndivindtrytyp.getText().toString();//现单位行业性质
 
         Map<String, Object> objectMap = new HashMap<>();
         objectMap.putAll(myApplication.getHttpHeader());
@@ -380,7 +378,7 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
         objectMap.put("indivempcity", indivempcity);      //现单位地址（市）
         objectMap.put("indivemparea", indivemparea);      //现单位地址（区）
         objectMap.put("indivempaddr", indivempaddr + etJobInfoCompanyAddressDetailed.getText().toString());      //现单位地址（详细信息）
-        objectMap.put("indivemptyp", indivemptyp);                //    现单位性质
+        objectMap.put("indivemptyp",indivemptyp);                //    现单位性质
         objectMap.put("indivindtrytyp", indivindtrytyp);              //    现单位行业性质
         //建立请求连接
         okGo.<String>post(AppConfig.WorkInfo_url)

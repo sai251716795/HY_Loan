@@ -78,7 +78,12 @@ public class AuthTableActivity extends BaseCompatActivity {
                     toast_short("你已完成身份信息认证");
                     break;
                 }
-                intent = new Intent(this, oliveStartActivity.class);
+                String TerminalCode = myApplication.getLoanRequest().getTerminalCode();
+                if(TerminalCode.equals("APP001") ) {
+                    intent = new Intent(this, oliveStartActivity.class);
+                }else {
+                    intent = new Intent(this, RealNameOneActivity.class);
+                }
                 startActivity(intent);
                 break;
             case R.id.person_info_lay: {

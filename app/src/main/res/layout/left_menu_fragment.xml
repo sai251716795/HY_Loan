@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+    <LinearLayout
+        android:id="@+id/leftMenuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:text="附件列表"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/idCardBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="身份证"
+            android:textColor="@color/textblack"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/bankCardBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="银行卡"
+            android:textColor="@color/textblack"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/pcreditBt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:text="个人征信"
+            android:textColor="@color/textblack"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+    <Button
+        android:id="@+id/add_other"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="＋ 添加项目"
+        android:background="@color/blue"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+</LinearLayout>
