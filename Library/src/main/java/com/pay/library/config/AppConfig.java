@@ -10,11 +10,17 @@ public class AppConfig {
 
     //    public static final String IP_PORT = "218.66.56.2:28010";//内网测试
     public static final String IP_PORT = "218.66.56.2:19082"; //生产外网
-//   public static  final String IP_PORT ="192.168.211.2:9080";  //生产内网
+    //   public static  final String IP_PORT ="192.168.211.2:9080";  //生产内网
+    public static final String XYIP_PORT = "218.66.56.2:19081"; //生产外网
 
     public static final String HOST_APP_URL = "http://" + IP_PORT + "/vtmp/App/Api";
+    public static final String HOST_YXAPP_URL = "http://" + XYIP_PORT + "/vtmp/App/Api";
     public static final String HOST_SIGN_URL = "http://" + IP_PORT + "/vtmp/Sign/Api";
     public static final String HOST_BR_URL = "http://" + IP_PORT + "/vtmp/BR/Api";
+    /**
+     * TODO 附件上传路径
+     */
+    public  static final String uploadDoc_url = "http://218.66.56.2:19081/vtmp/App/Api/uploadDoc";
 
     /**
      * TODO 登录
@@ -75,10 +81,6 @@ public class AppConfig {
      */
     public static final String LoanAntiFraud_url = HOST_APP_URL + "/LoanAntiFraud";
 
-    /**
-     * TODO 还款计划表
-     */
-    public static final String GetRepayPlan_url = HOST_APP_URL + "/queryRepayPlan";
 
     /**
      * TODO 获取短信验证码
@@ -94,45 +96,51 @@ public class AppConfig {
      */
     public static final String UpdatePwd_url = HOST_APP_URL + "/UpdatePwd";
 
+///////////////////////兴业银行///////////////////////////////////////////
     /**
      * TODO 兴业银行还款帐户变更
      */
-    public static final String repayAccChange_url = HOST_APP_URL + "/repayAccChange";
+    public static final String repayAccChange_url = HOST_YXAPP_URL + "/repayAccChange";
 
     /**
      * TODO 兴业银行主动还款试算
      */
-    public static final String activeRepaymentTry_url = HOST_APP_URL + "/activeRepaymentTry";
+    public static final String activeRepaymentTry_url = HOST_YXAPP_URL + "/activeRepaymentTry";
 
     /**
      * TODO 兴业银行主动还款
      */
-    public static final String activeRepayment_url = HOST_APP_URL + "/activeRepay";
+    public static final String activeRepayment_url = HOST_YXAPP_URL + "/activeRepay";
 
     /**
      * TODO 兴业银行主动还款状态查询
      */
-    public static final String activeRepaStatus_url = HOST_APP_URL + "/activeRepaStatus";
+    public static final String activeRepaStatus_url = HOST_YXAPP_URL + "/activeRepaStatus";
 
     /**
      * TODO 兴业银行查询欠款
      */
-    public static final String queryArrears_url = HOST_APP_URL + "/queryArrears";
+    public static final String queryArrears_url = HOST_YXAPP_URL + "/queryArrears";
 
     /**
      * TODO 兴业还款记录请求
      */
-    public static final String queryRepayList_url = HOST_APP_URL + "/queryRepayList";
+    public static final String queryRepayList_url = HOST_YXAPP_URL + "/queryRepayList";
+
+    /**
+     * TODO 还款计划表
+     */
+    public static final String GetRepayPlan_url = HOST_YXAPP_URL + "/queryRepayPlan";
 
     /**
      * TODO 更新下载
      */
-    public static final String updateAPP_url = HOST_APP_URL + "/queryRepayList";
+    public static final String updateAPP_url = HOST_APP_URL + "/";
 
     /**
      * TODO 移动支付链接
      */
-    public static final String payAPP_url ="http://218.66.56.2:12230/olps/route/index";
+    public static final String payAPP_url = "http://218.66.56.2:12230/olps/route/index";
 
     ///////////////////////////////////////////////////////////////////////////////
     /**
@@ -165,7 +173,6 @@ public class AppConfig {
     public static final String updateTask_url = HOST_BR_URL + "/updateTask";
 
     /******************************************************************************/
-
 
 
     /**
@@ -525,8 +532,8 @@ public class AppConfig {
     public static Map<String, String> mtdcdeMap = new HashMap<>();
 
     static {
-        mtdcdeMap.put("DEBX", "等额本息");
-        mtdcdeMap.put("DEBJ", "等额本金");
+        mtdcdeMap.put("0", "一次性还本付息");
+        mtdcdeMap.put("2", "按月等额本息");
     }
 
     public static Map<String, String> applyStatusMap = new HashMap<>();
@@ -538,7 +545,7 @@ public class AppConfig {
         applyStatusMap.put("201", "终审拒绝");
         applyStatusMap.put("300", "签约");
         applyStatusMap.put("301", "签约拒绝");
-        applyStatusMap.put("302", "法务查看签约");
+        applyStatusMap.put("302", "复查");
         applyStatusMap.put("303", "签约中");
         applyStatusMap.put("401", "发放申请");
         applyStatusMap.put("403", "发放确认");
@@ -576,30 +583,21 @@ public class AppConfig {
         applyProductType.put("1002", "工薪贷");
         applyProductType.put("1003", "精英贷");
         applyProductType.put("1004", "业主贷");
-        applyProductType.put("1005", "汽车金融");
-        applyProductType.put("1006", "装修贷");
-
-    }
-
-    /**
-     * 用于兴业进件专案
-     */
-    public static Map<String, String> applyPromnoType = new HashMap<>();
-
-    static {
-        applyPromnoType.put("0101", "受薪客户专案");
-        applyPromnoType.put("0102", "个私业主贷");
-        applyPromnoType.put("0103", "房贷专案贷");
-        applyPromnoType.put("0104", "房产专案贷");
-        applyPromnoType.put("0105", "车贷专案贷");
-        applyPromnoType.put("0106", "车产专案贷");
-        applyPromnoType.put("0107", "行内房产抵押");
-        applyPromnoType.put("0108", "低风险客户专案");
-        applyPromnoType.put("0109", "消费贷(信用保证类)");
-        applyPromnoType.put("0115", "兴业银行房贷客户交叉营销专案");
-        applyPromnoType.put("0116", "兴业银行信用卡客户交叉营销专案");
-        applyPromnoType.put("0117", "上海抵押房产客户专案");
-        applyPromnoType.put("0118", "集团内金融资产客户交叉营销专案");
+        applyProductType.put("1005", "车抵贷");
+        applyProductType.put("1006", "房抵贷");
+        applyProductType.put("0101", "受薪客户专案");
+        applyProductType.put("0102", "个私业主贷");
+        applyProductType.put("0103", "房贷专案贷");
+        applyProductType.put("0104", "房产专案贷");
+        applyProductType.put("0105", "车贷专案贷");
+        applyProductType.put("0106", "车产专案贷");
+        applyProductType.put("0107", "行内房产抵押");
+        applyProductType.put("0108", "低风险客户专案");
+        applyProductType.put("0109", "消费贷(信用保证类)");
+        applyProductType.put("0115", "兴业银行房贷客户交叉营销专案");
+        applyProductType.put("0116", "兴业银行信用卡客户交叉营销专案");
+        applyProductType.put("0117", "上海抵押房产客户专案");
+        applyProductType.put("0118", "集团内金融资产客户交叉营销专案");
 
     }
 

@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,7 +19,7 @@ public class GsonUtil {
      * 将json数据串转换成对象数据
      *
      * @param json json字符串
-     * @param cls 对象
+     * @param cls  对象
      * @return class
      * @throws IllegalAccessException 1
      * @throws InstantiationException 1
@@ -40,7 +41,15 @@ public class GsonUtil {
 
     /**
      * 将List Json数据串转换成List集合
+     *
+     * @deprecated
+     * 此方法会造成ANR异常，建议直接使用以下代码，不通过此方法去解析数组。
+     * <p>
+     * Type type = new TypeToken<ArrayList<Class>>() {}.getType();
+     * ArrayList<Class> jsonObjects = new Gson().fromJson(json, type);
+     * </p>
      */
+    @Deprecated
     public static <T> ArrayList<T> jsonToArrayList(String json, Class<T> cls) throws Exception {
         Type type = new TypeToken<ArrayList<JsonObject>>() {
         }.getType();

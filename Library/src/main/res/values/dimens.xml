@@ -15,7 +15,7 @@
     <dimen name="reg_btn_next_height">48.0dp</dimen>
     <dimen name="reg_title_tvheight">30.0dp</dimen>
     <dimen name="tab_image_height">32dp</dimen>
-    <dimen name="default_margin">10dp</dimen>
+    <dimen name="default_margin">15dp</dimen>
     <dimen name="margin_top">20dp</dimen>
     <dimen name="default_padding">5dp</dimen>
     <dimen name="default_height">45dp</dimen>
@@ -29,7 +29,7 @@
     <dimen name="font_size_default">16sp</dimen>
     <dimen name="font_size">18sp</dimen>
     <dimen name="font_min_size">16sp</dimen>
-    <dimen name="font_s_size">14sp</dimen>
+    <dimen name="font_s_size">13sp</dimen>
     <dimen name="font_btn_size">20sp</dimen>
     <dimen name="font_max_size">25sp</dimen>
 

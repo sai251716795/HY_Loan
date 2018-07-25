@@ -6,6 +6,7 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -252,6 +253,11 @@ public class StringUtils {
         }
         return hostIp;
 
+    }
+
+    public static String formatTosepara(double data) {
+        DecimalFormat df = new DecimalFormat("#,###");
+        return df.format(data);
     }
 
     public static void main(String s[]) {

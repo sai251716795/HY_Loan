@@ -100,7 +100,7 @@ public class PhotoUtils {
     public static File useCamera(Activity activity, int requestCode) {
         File file;
         file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                + "/test/" + System.currentTimeMillis() + ".jpg");
+                + "/" + System.currentTimeMillis() + ".jpg");
         try {
             final int currentapiVersion = android.os.Build.VERSION.SDK_INT;
             Log.e("this", "useCamera 1");
@@ -140,20 +140,11 @@ public class PhotoUtils {
      *            压缩后的图片路径
      * @return
      */
-    /**
-     * 把图片压缩到200K
-     *
-     * @param oldpath
-     *            压缩前的图片路径
-     * @param newPath
-     *            压缩后的图片路径
-     * @return
-     */
     public static File compressFile(String oldpath, String newPath) {
         Bitmap compressBitmap = decodeFile(oldpath);
         Bitmap newBitmap = ratingImage(oldpath, compressBitmap);
         ByteArrayOutputStream os = new ByteArrayOutputStream();
-        newBitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+        newBitmap.compress(Bitmap.CompressFormat.PNG, 70, os);
         byte[] bytes = os.toByteArray();
 
         File file = null ;
@@ -166,13 +157,11 @@ public class PhotoUtils {
                 if(!newBitmap.isRecycled()){
                     newBitmap.recycle();
                 }
-                newBitmap  = null;
             }
             if(compressBitmap != null ){
                 if(!compressBitmap.isRecycled()){
                     compressBitmap.recycle();
                 }
-                compressBitmap  = null;
             }
         }
         return file;
@@ -399,13 +388,6 @@ public class PhotoUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //其次把文件插入到系统图库
-//        String url = "";
-//        try {
-//            url = MediaStore.Images.Media.insertImage( context.getContentResolver(), file.getAbsolutePath(),fileName, null);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         // 最后通知图库更新
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getAbsolutePath())));
         return file.getAbsolutePath();
