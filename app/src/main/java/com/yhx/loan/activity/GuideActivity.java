@@ -48,10 +48,10 @@ public class GuideActivity extends AppCompatActivity {
         // Bitmap 的宽高在 maxWidth maxHeight 和 minWidth minHeight 之间
         BGALocalImageSize localImageSize = new BGALocalImageSize(720, 1280, 320, 640);
         // 设置数据源
-       mBackgroundBanner.setData(localImageSize, ImageView.ScaleType.CENTER_CROP,
-                R.drawable.guide_page,
-                R.drawable.run3);
-
+        mBackgroundBanner.setData(localImageSize, ImageView.ScaleType.CENTER_CROP,
+                R.drawable.run1,
+                R.drawable.run3,
+                R.drawable.guide_page);
     }
 
     @Override
