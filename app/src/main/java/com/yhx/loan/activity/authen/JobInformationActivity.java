@@ -392,10 +392,10 @@ JobInformationActivity extends BaseCompatActivity implements OnAddressSelectedLi
                             JSONObject jsonObject = new JSONObject(response.body());
                             String respCode = jsonObject.getString("respCode");
                             String respMsg = jsonObject.getString("respMsg");
-                            String respResult = jsonObject.getString("result");
-
                             switch (respCode) {
                                 case "00": {//实名认证成功
+                                    String respResult = jsonObject.getString("result");
+                                    toast_long("保存成功");
                                     myApplication.initUserBeans(GsonUtil.fromJson(respResult, UserBean.class));
                                     myApplication.getUserBeanData().saveOrUpdate("loginName=?", myApplication.getUserBeanData().getLoginName());
                                     //获得更新后的数据重新更新数据库与 myApplication 中的 userBean对象

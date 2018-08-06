@@ -87,13 +87,6 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.main_fragment, container, false);
         unbinder = ButterKnife.bind(this, rootView);
         initViewData();
-//        rootView.findViewById(R.id.testBt).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), EnclosureActivity.class);
-//                startActivity(intent);
-//            }
-//        });
         rootView.findViewById(R.id.testBt).setVisibility(View.GONE);
         return rootView;
     }

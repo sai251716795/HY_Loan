@@ -78,7 +78,6 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
     @BindView(R.id.et_real_city)
     TextView etRealCity;
     private boolean hasGotToken = false;
-
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.tx_back)
@@ -120,7 +119,7 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
         etBirthday.setText(idCardBean.getBirthday());
         editTxtID.setText(idCardBean.getIdNumber());
         etLoanIdCardNumberEffectPeriod.setText(idCardBean.getSignDate() + "-" + idCardBean.getExpiryDate());
-//        loanResidenceAddress.setText(idCardBean.getAddress());
+        loanResidenceAddress.setText(idCardBean.getAddress());
     }
 
     private static final int REQUEST_CODE_CAMERA = 102;
@@ -139,6 +138,8 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
                 intent = new Intent(RealNameOneActivity.this, CameraActivity.class);
                 file = FileUtil.getSaveFile(getApplication());
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH, file.getAbsolutePath());
+                intent.putExtra(CameraActivity.KEY_NATIVE_ENABLE,true);
+                intent.putExtra(CameraActivity.KEY_NATIVE_TOKEN, OCR.getInstance().getLicense());
                 intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, CameraActivity.CONTENT_TYPE_ID_CARD_FRONT);
                 startActivityForResult(intent, REQUEST_CODE_CAMERA);
 //                takePicture(ADD_ID_CARD_FRONT);
@@ -151,6 +152,8 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
                 intent = new Intent(RealNameOneActivity.this, CameraActivity.class);
                 file = FileUtil.getSaveFile(getApplication());
                 intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH, file.getAbsolutePath());
+                intent.putExtra(CameraActivity.KEY_NATIVE_ENABLE,true);
+                intent.putExtra(CameraActivity.KEY_NATIVE_TOKEN, OCR.getInstance().getLicense());
                 intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, CameraActivity.CONTENT_TYPE_ID_CARD_BACK);
                 startActivityForResult(intent, REQUEST_CODE_CAMERA);
 //                takePicture(ADD_ID_CARD_BOTH);
@@ -178,10 +181,10 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
         dialog.show();
     }
 
-    String regprovince;//  户籍地址（省）
-    String regcity;//户籍地址（市）
-    String regarea;//户籍地址（区）
-    String regaddr;//籍地址（详细地址
+    String regprovince = "";//  户籍地址（省）
+    String regcity = "";//户籍地址（市）
+    String regarea = "";//户籍地址（区）
+    String regaddr = "";//籍地址（详细地址
     /**
      * 临时文件
      */
@@ -199,7 +202,8 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
         map.put("sex", etSex.getText().toString().trim().equals("男") ? "1" : "0");         //性别
         map.put("birthday", changeFormatDate(etBirthday.getText().toString().trim()));      //出生年月
         map.put("ethnic", etNation.getText().toString().trim());                            //民族
-        map.put("residenceAddress", regprovince + regcity + regarea + regaddr + loanResidenceAddress.getText().toString().trim());      //户籍地址
+        map.put("residenceAddress",loanResidenceAddress.getText().toString().trim());      //户籍地址
+//        map.put("residenceAddress", regprovince + regcity + regarea + regaddr + loanResidenceAddress.getText().toString().trim());      //户籍地址
         map.put("regprovince", regprovince);
         map.put("regcity", regcity);
         map.put("regarea", regarea);
@@ -243,8 +247,12 @@ public class RealNameOneActivity extends BaseCompatActivity implements OnAddress
             return;
         }
 
-        if (!checkTextEmpty(etRealCity) || !checkTextEmpty(loanResidenceAddress)) {
-            toast_short("请选择或填写地址！");
+//        if (!checkTextEmpty(etRealCity) || !checkTextEmpty(loanResidenceAddress)) {
+//            toast_short("请选择或填写地址！");
+//            return;
+//        }
+        if (!checkTextEmpty(loanResidenceAddress)) {
+            toast_short("请填写地址！");
             return;
         }
 

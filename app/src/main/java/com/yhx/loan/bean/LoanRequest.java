@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * 贷款数据申请字段
  */
 public class LoanRequest implements Serializable {
-    public String terminalCode = "APP001";  //終端代碼
+    public String terminalCode = "APP002";  //終端代碼
     private String locationAddress;//当前位置
     private String id = "";//主键
     private String sysType = "android";// String(50) 是  系统类型
